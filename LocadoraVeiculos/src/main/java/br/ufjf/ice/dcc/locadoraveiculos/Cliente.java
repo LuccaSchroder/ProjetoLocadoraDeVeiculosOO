@@ -9,6 +9,18 @@ package br.ufjf.ice.dcc.locadoraveiculos;
  *
  * @author lucca
  */
-public class Cliente {
+public class Cliente extends Pessoa {
+    private String numRegistro;
+
+    public Cliente(){
+        //settar cliente e atributos de pessoa
+    }
+    public String getNumRegistro() {
+        return numRegistro;
+    }
+
+    public void setNumRegistro(String numRegistro) {
+        this.numRegistro = numRegistro;
+    }
     
 }
