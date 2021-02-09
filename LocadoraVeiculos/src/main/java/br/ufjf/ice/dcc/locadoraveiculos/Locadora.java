@@ -16,6 +16,7 @@ public class Locadora {
     static ArrayList <Reserva> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
     static ArrayList <Cliente> clientes = new ArrayList<>(); //guarda todos os clientes
     
+    //o mais será criado em uma classe main separada
     public static void main(String[] args) {
         Cliente a1 = new Cliente("Ronan dos Santos", "12312312313");
         Cliente a2 = new Cliente("Lucca", "1111111111");
@@ -42,5 +43,24 @@ public class Locadora {
             cliente.imprime();
         }
     }
+    
+    /*
+        public void setCliente (){
+            //instancia cliente e pega as informações
+        };
+        public Cliente getCliente();
+        public void setVeiculo();
+        public Veiculo getVeiculos();
+        public void deletarCliente(int numRegistro);
+        public void deletarVeiculo(String placa);
+        public void reservarVeiculo(int numRegistro, String placa);
+        public void imprimeRegistroFinanceiro();
+        public bool consultaDisponibilidade(String data);
+        public void cancelarReserva(int numRegistro);
+        public void mudarReserva();
+    
+    */
+    
+    
 
 }
