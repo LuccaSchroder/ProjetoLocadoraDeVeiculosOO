@@ -16,6 +16,7 @@ public class Veiculo {
     private String ano;
     private String cor;
     private String capacidade;
+    private String tipo;
 
     public Veiculo(){
         
@@ -83,6 +84,14 @@ public class Veiculo {
         this.capacidade = capacidade;
     }
     
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public void imprime(){
         System.out.println("Placa: " + this.getPlaca());
         System.out.println("Modelo: " + this.getModelo());
@@ -92,4 +101,6 @@ public class Veiculo {
         System.out.println("Ano: " + this.getAno());
 
     }
+
+
 }

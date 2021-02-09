@@ -18,7 +18,8 @@ public class Reserva {
     private String dataFim;
     private int periodoLocacao; //quantos dias ficara locado
     private float precoDiaria;
-
+    //adicionar forma de pagamento
+    
     public Reserva(){
       //settar cliente e veiculos recebendo como parametro  
     };
@@ -28,9 +29,11 @@ public class Reserva {
         this.setVeiculo(veiculo);
         this.setPeriodoLocacao(periodoLocacao);
     }
+    
     public Cliente getLocador(){
         return this.locador;
     }
+    
     public void setLocador(Cliente locador){
         this.locador = locador;
     }
