@@ -17,6 +17,23 @@ public class Veiculo {
     private String cor;
     private String capacidade;
 
+    public Veiculo(){
+        
+    }
+    
+    public Veiculo( String placa, String modelo, String marca, String ano, String cor, String capacidade){
+        this.setPlaca(placa);
+        this.setModelo(modelo);
+        this.setMarca(marca);
+        this.setAno(ano);
+        this.setCor(cor);
+        this.setCapacidade(capacidade);
+    }
+    
+    public Veiculo( String placa, String modelo){
+        this.setPlaca(placa);
+        this.setModelo(modelo);
+    }
     
     public String getPlaca() {
         return placa;
@@ -64,5 +81,15 @@ public class Veiculo {
 
     public void setCapacidade(String capacidade) {
         this.capacidade = capacidade;
+    }
+    
+    public void imprime(){
+        System.out.println("Placa: " + this.getPlaca());
+        System.out.println("Modelo: " + this.getModelo());
+        System.out.println("Marca: " + this.getMarca());
+        System.out.println("Cor: " + this.getCor());
+        System.out.println("Capacidade: " + this.getCapacidade());
+        System.out.println("Ano: " + this.getAno());
+
     }
 }

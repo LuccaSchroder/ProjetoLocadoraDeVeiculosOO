@@ -12,16 +12,28 @@ package br.ufjf.ice.dcc.locadoraveiculos;
 
 //Mantem um registro de uma reserva
 public class Reserva {
-    private Cliente locatario = new Cliente();
+    Cliente locador;
+    Veiculo veiculo;
     private String dataInicio;
     private String dataFim;
-    private String periodoLocacao; //quantos dias ficara locado
+    private int periodoLocacao; //quantos dias ficara locado
     private float precoDiaria;
-    Veiculo veiculo = new Veiculo();
 
     public Reserva(){
       //settar cliente e veiculos recebendo como parametro  
     };
+    
+    public Reserva(Cliente locador, Veiculo veiculo, int periodoLocacao){
+        this.setLocador(locador);
+        this.setVeiculo(veiculo);
+        this.setPeriodoLocacao(periodoLocacao);
+    }
+    public Cliente getLocador(){
+        return this.locador;
+    }
+    public void setLocador(Cliente locador){
+        this.locador = locador;
+    }
     
     public String getDataInicio() {
         return dataInicio;
@@ -39,11 +51,11 @@ public class Reserva {
         this.dataFim = dataFim;
     }
 
-    public String getPeriodoLocacao() {
+    public int getPeriodoLocacao() {
         return periodoLocacao;
     }
 
-    public void setPeriodoLocacao(String periodoLocacao) {
+    public void setPeriodoLocacao(int periodoLocacao) {
         this.periodoLocacao = periodoLocacao;
     }
 
@@ -60,5 +72,17 @@ public class Reserva {
         return 0;
     }
 
+    public Veiculo getVeiculo(){
+        return this.veiculo;
+    }
+    public void setVeiculo(Veiculo veiculo){
+        this.veiculo = veiculo;
+    }
     
+    public void imprime(){
+        System.out.println("Registro do cliente: " + this.locador.getNumRegistro());
+        System.out.println("Placa: " + this.veiculo.getPlaca());
+        System.out.println("Periodo de locação: " + this.getPeriodoLocacao());
+        
+    }
 }
