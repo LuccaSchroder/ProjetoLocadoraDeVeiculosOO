@@ -25,8 +25,10 @@ public class Locadora {
 
         //a.imprime();
         Veiculo b = new Veiculo("aaa1111", "gol");
+        veiculos.add(b);
         //b.imprime();
         Reserva c = new Reserva(a1, b, 5);
+        reservas.add(c);
         c.imprime();
         
         clientes.add(a1);
