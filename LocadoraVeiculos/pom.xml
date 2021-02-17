@@ -17,7 +17,7 @@
                 <configuration>
                   <archive>
                     <manifest>
-                      <mainClass>br.ufjf.ice.dcc.locadoraveiculos.Locadora</mainClass>
+                      <mainClass>br.ufjf.ice.dcc.locadoraveiculos.Principal</mainClass>
                     </manifest>
                   </archive>
                   <descriptorRefs>
