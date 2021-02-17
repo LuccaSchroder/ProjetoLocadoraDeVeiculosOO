@@ -16,7 +16,6 @@ public class Locadora {
     static ArrayList <Reserva> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
     static ArrayList <Cliente> clientes = new ArrayList<>(); //guarda todos os clientes
     
-    
     public static void imprimeClientes(){
         for(Cliente cliente : clientes ){
             cliente.imprime();
