@@ -16,6 +16,7 @@ public class Alugar extends javax.swing.JFrame {
      */
     public Alugar() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -14,22 +14,25 @@ public class Veiculo {
     private String placa;
     private String modelo;
     private String marca;
-    private String ano;
+    private int ano;
     private String cor;
-    private String capacidade;
+    private int capacidade;
     private String tipo;
+    private float diaria;
 
     public Veiculo(){
         
     }
     
-    public Veiculo( String placa, String modelo, String marca, String ano, String cor, String capacidade){
+    public Veiculo( String placa, String modelo, String marca, int ano, String cor, int capacidade, String tipo, float diaria){
         this.setPlaca(placa);
         this.setModelo(modelo);
         this.setMarca(marca);
         this.setAno(ano);
         this.setCor(cor);
         this.setCapacidade(capacidade);
+        this.setTipo(tipo);
+        this.setDiaria(diaria);
     }
     
     public Veiculo( String placa, String modelo){
@@ -61,11 +64,11 @@ public class Veiculo {
         this.marca = marca;
     }
 
-    public String getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(String ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
@@ -77,11 +80,11 @@ public class Veiculo {
         this.cor = cor;
     }
 
-    public String getCapacidade() {
+    public int getCapacidade() {
         return capacidade;
     }
 
-    public void setCapacidade(String capacidade) {
+    public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
     
@@ -92,6 +95,15 @@ public class Veiculo {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public float getDiaria() {
+        return diaria;
+    }
+
+    public void setDiaria(float diaria) {
+        this.diaria = diaria;
+    }
+    
     
     public void imprime(){
         System.out.println("Placa: " + this.getPlaca());
@@ -103,5 +115,5 @@ public class Veiculo {
 
     }
 
-
+    
 }

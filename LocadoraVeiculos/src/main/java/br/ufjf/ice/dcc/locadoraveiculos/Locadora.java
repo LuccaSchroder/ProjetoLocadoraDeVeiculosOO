@@ -15,31 +15,49 @@ import java.util.ArrayList;
 public class Locadora {
     static ArrayList <Veiculo> veiculos = new ArrayList<>(); //todos os veiculos
     static ArrayList <Reserva> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
-    static ArrayList <Cliente> clientes = new ArrayList<>(); //guarda todos os clientes
+    static ArrayList <Usuario> clientes = new ArrayList<>(); //guarda todos os clientes
     
     public static void imprimeClientes(){
-        for(Cliente cliente : clientes ){
+        for(Usuario cliente : clientes ){
             cliente.imprime();
         }
     }
     
-    /*
-        public void setCliente (){
-            //instancia cliente e pega as informações
-        };
-        public Cliente getCliente();
-        public void setVeiculo();
-        public Veiculo getVeiculos();
-        public void deletarCliente(int numRegistro);
-        public void deletarVeiculo(String placa);
-        public void reservarVeiculo(int numRegistro, String placa);
-        public void imprimeRegistroFinanceiro();
-        public bool consultaDisponibilidade(String data);
-        public void cancelarReserva(int numRegistro);
-        public void mudarReserva();
+    public static void adicionaVeiculo(Veiculo veiculo){
+        veiculos.add(veiculo);
+    }
+
+    public static ArrayList<Veiculo> getVeiculos() {
+        return veiculos;
+    }
     
-    */
     
+    
+    
+    public static void main(String[] args) {
+        Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
+        Usuario a2 = new Usuario("Lucca", "1111111111");
+        Usuario a3 = new Usuario("Jaque", "2222222222");
+        Usuario a4 = new Usuario("Wendell", "3333333333");
+
+        //a.imprime();
+        Veiculo b = new Veiculo("aaa1111", "gol");
+        veiculos.add(b);
+        
+        //b.imprime();
+        //Reserva c = new Reserva(a1, b, 5);
+        //reservas.add(c);
+        
+        //c.imprime();
+        
+        clientes.add(a1);
+        clientes.add(a2);
+        clientes.add(a3);
+        clientes.add(a4);
+        
+        imprimeClientes();
+   
+    }
     
 
 }

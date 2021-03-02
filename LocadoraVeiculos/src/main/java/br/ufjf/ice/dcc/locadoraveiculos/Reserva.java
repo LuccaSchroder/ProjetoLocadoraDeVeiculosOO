@@ -6,6 +6,8 @@ Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
 
+import java.util.Date;
+
 /**
  *
  * @author lucca
@@ -13,80 +15,69 @@ package br.ufjf.ice.dcc.locadoraveiculos;
 
 //Mantem um registro de uma reserva
 public class Reserva {
-    Cliente locador;
+    Usuario locador;
     Veiculo veiculo;
-    private String dataInicio;
-    private String dataFim;
-    private int periodoLocacao; //quantos dias ficara locado
-    private float precoDiaria;
-    //adicionar forma de pagamento
+    private Date dataInicio;
+    private Date dataFim;
     
     public Reserva(){
       //settar cliente e veiculos recebendo como parametro  
     };
     
-    public Reserva(Cliente locador, Veiculo veiculo, int periodoLocacao){
+    public Reserva(Usuario locador, Veiculo veiculo, Date dataInicio, Date dataFim){
         this.setLocador(locador);
         this.setVeiculo(veiculo);
-        this.setPeriodoLocacao(periodoLocacao);
+        this.dataInicio = new Date();
+        this.dataFim = new Date();
     }
     
-    public Cliente getLocador(){
+    public Usuario getLocador(){
         return this.locador;
     }
     
-    public void setLocador(Cliente locador){
+    public void setLocador(Usuario locador){
         this.locador = locador;
     }
     
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
-    }
-
-    public int getPeriodoLocacao() {
-        return periodoLocacao;
-    }
-
-    public void setPeriodoLocacao(int periodoLocacao) {
-        this.periodoLocacao = periodoLocacao;
-    }
-
-    public float getPrecoDiaria() {
-        return precoDiaria;
-    }
-
-    public void setPrecoDiaria(float precoDiaria) {
-        this.precoDiaria = precoDiaria;
-    }
-
-    public float getPrecoTotal() {
-        //implementar
-        return 0;
     }
 
     public Veiculo getVeiculo(){
         return this.veiculo;
     }
+    
     public void setVeiculo(Veiculo veiculo){
         this.veiculo = veiculo;
     }
     
+    public int PeriodoLocacao(){
+        //Calcular utilizando com dataInicio e dataFim;
+        return 0;
+    }
+    
+    /*public float PrecoTotal(){
+        return this.veiculo.getPrecoDiaria() * PeriodoLocacao();
+    }*/
+    
+    
+    
     public void imprime(){
-        System.out.println("Registro do cliente: " + this.locador.getNumRegistro());
+        //System.out.println("Registro do cliente: " + this.locador.getCpf());
         System.out.println("Placa: " + this.veiculo.getPlaca());
-        System.out.println("Periodo de locação: " + this.getPeriodoLocacao());
+        //System.out.println("Periodo de locação: " + this.getPeriodoLocacao());
         
     }
 }

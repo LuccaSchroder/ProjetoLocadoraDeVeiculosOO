@@ -5,54 +5,62 @@ Jaqueline da Silva Amaral Lopes - 201976007
 Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
+import java.util.Date;
 
 /**
  *
  * @author lucca
  */
-public class Cliente extends Pessoa {
-    private String numRegistro;
 
-    public Cliente(){
-        
-    }
-    
-    public Cliente(String nome, String cpf, String email, String endereco, String telefone, String dataNascimento){
-        //settar cliente e atributos de pessoa
-        this.setNumRegistro(cpf);
-        //atributos da classe abstrata Pessoa
-        this.setNome(nome);
-        this.setCpf(cpf);
-        this.setDataNasimento(dataNascimento);
-        this.setEmail(email);
-        this.setEndereco(endereco);
-        this.setTelefone(telefone);
-    }
-    
-    public Cliente(String nome, String cpf){
-        //settar cliente e atributos de pessoa
-        this.setNumRegistro(cpf);
-        //atributos da classe abstrata Pessoa
-        this.setNome(nome);
-        this.setCpf(cpf);
-    }
-    public String getNumRegistro() {
-        return numRegistro;
+//Precisa ter metodo abstrato
+abstract class Cliente {
+    private String nome;
+    private Endereco endereco;
+    private Date dataNasimento;
+    private String email;
+    private String telefone;
+
+    public String getNome(){
+        return nome;
     }
 
-    public void setNumRegistro(String numRegistro) {
-        this.numRegistro = numRegistro;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    
-    public void imprime(){
-        System.out.println("Nome: " + this.getNome());
-        System.out.println("CPF: " + this.getCpf());
-        System.out.println("Data de Nascimento: " + this.getDataNasimento());
-        System.out.println("Email: " + this.getEmail());
-        System.out.println("Telefone: " + this.getTelefone());
-        System.out.println("Endereço: " + this.getEndereco()+ "\n");
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public Date getDataNasimento() {
+        return dataNasimento;
+    }
+
+    public void setDataNasimento(Date dataNasimento) {
+        this.dataNasimento = dataNasimento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
 
-    }
     
+
 }
