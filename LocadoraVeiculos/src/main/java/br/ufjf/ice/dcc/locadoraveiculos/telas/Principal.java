@@ -38,7 +38,7 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Bem vindo a Locar");
+        jLabel1.setText("Bem vindo a LoCar");
 
         jLabel2.setText("(logo)");
 

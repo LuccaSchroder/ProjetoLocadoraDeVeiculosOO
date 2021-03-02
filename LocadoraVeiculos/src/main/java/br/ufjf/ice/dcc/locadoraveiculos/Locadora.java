@@ -6,7 +6,7 @@ Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *

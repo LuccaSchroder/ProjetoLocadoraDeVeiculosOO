@@ -253,7 +253,10 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         
         Veiculo veiculo = new Veiculo(ctext_placa.getText(), ctext_modelo.getText(), ctext_marca.getText(), ano, ctext_cor.getText(), capacidade, ctext_tipo.getText(), precoDiaria);
         Locadora.adicionaVeiculo(veiculo);
-        limpaCampos();          
+        limpaCampos();
+        
+        new Principal().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_but_salvarActionPerformed
 
     private void ctext_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_marcaActionPerformed

@@ -328,7 +328,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         Endereco endereco = new Endereco(ctext_endCep.getText(), ctext_endLogra.getText(), numero, ctext_endComplemento.getText(), 
                                          ctext_endBairro.getText(),ctext_endCidade.getText(),ctext_endUf.getText());
         
-        
+        new Principal().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_but_cadastroSalvarActionPerformed
 
     private void ctext_endCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_endCepActionPerformed

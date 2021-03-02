@@ -106,7 +106,7 @@ public class Registros extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        new RegistrosClientes().setVisible(true);
+        new RegistrosLocacao().setVisible(true);
         this.setVisible(false);         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
