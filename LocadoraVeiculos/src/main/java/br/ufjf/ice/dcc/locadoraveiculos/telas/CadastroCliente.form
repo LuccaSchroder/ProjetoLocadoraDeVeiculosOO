@@ -110,23 +110,23 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jL_CPF" min="-2" max="-2" attributes="0"/>
-                      <Component id="jL_email" min="-2" max="-2" attributes="0"/>
-                      <Component id="jL_nome" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="ctext_cadastroEmail" min="-2" pref="298" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jL_telefone" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ctext_cadastroTelefone" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="ctext_cadastroCpf" min="-2" pref="229" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jL_dataNascimento" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ctext_cadastroNascimento" max="32767" attributes="0"/>
                       </Group>
@@ -141,21 +141,21 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jL_nome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ctext_cadastroNome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jL_CPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ctext_cadastroCpf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jL_dataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ctext_cadastroNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jL_email" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ctext_cadastroEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jL_telefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ctext_cadastroTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -164,7 +164,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jL_nome">
+        <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nome"/>
           </Properties>
@@ -175,7 +175,7 @@
             <Property name="name" type="java.lang.String" value="Nome completo" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jL_email">
+        <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="E-mail"/>
           </Properties>
@@ -186,7 +186,7 @@
             <Property name="name" type="java.lang.String" value="Nome completo" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jL_CPF">
+        <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="CPF"/>
           </Properties>
@@ -197,7 +197,7 @@
             <Property name="name" type="java.lang.String" value="Nome completo" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jL_dataNascimento">
+        <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data de nascimento"/>
           </Properties>
@@ -208,7 +208,7 @@
             <Property name="name" type="java.lang.String" value="Nome completo" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jL_telefone">
+        <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Telefone"/>
           </Properties>

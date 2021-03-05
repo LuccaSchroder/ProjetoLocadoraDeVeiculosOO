@@ -13,9 +13,9 @@ import java.util.*;
  * @author lucca
  */
 public class Locadora {
-    static ArrayList <Veiculo> veiculos = new ArrayList<>(); //todos os veiculos
-    static ArrayList <Reserva> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
-    static ArrayList <Usuario> clientes = new ArrayList<>(); //guarda todos os clientes
+    private static List <Veiculo> veiculos = new ArrayList<>(); //todos os veiculos
+    private static List <Reserva> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
+    private static List <Usuario> clientes = new ArrayList<>(); //guarda todos os clientes
     
     public static void imprimeClientes(){
         for(Usuario cliente : clientes ){
@@ -27,7 +27,7 @@ public class Locadora {
         veiculos.add(veiculo);
     }
 
-    public static ArrayList<Veiculo> getVeiculos() {
+    public static List<Veiculo> getVeiculos() {
         return veiculos;
     }
     

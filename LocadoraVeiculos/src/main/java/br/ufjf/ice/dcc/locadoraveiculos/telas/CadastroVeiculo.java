@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author lucca
  */
 public class CadastroVeiculo extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form CadastroVeiculo
      */
@@ -254,7 +254,7 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         Veiculo veiculo = new Veiculo(ctext_placa.getText(), ctext_modelo.getText(), ctext_marca.getText(), ano, ctext_cor.getText(), capacidade, ctext_tipo.getText(), precoDiaria);
         Locadora.adicionaVeiculo(veiculo);
         limpaCampos();
-        
+  
         new Principal().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_but_salvarActionPerformed

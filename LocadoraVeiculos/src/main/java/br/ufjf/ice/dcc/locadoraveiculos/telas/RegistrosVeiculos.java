@@ -20,8 +20,29 @@ public class RegistrosVeiculos extends javax.swing.JFrame {
     public RegistrosVeiculos() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        carregaTabela();
     }
     
+    public void carregaTabela(){
+        Object colunas[] = new Object[]{"Placa", "Modelo", "Marca", "Ano", "Cor", "Capacidade", "Tipo"};
+        DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
+        
+        for (int i = 0; i < Locadora.getVeiculos().size(); i++) {
+            Object linha[] = new Object[] {Locadora.getVeiculos().get(i).getPlaca(),
+                Locadora.getVeiculos().get(i).getModelo(),
+                Locadora.getVeiculos().get(i).getMarca(),
+                Locadora.getVeiculos().get(i).getAno(),
+                Locadora.getVeiculos().get(i).getCor(),
+                Locadora.getVeiculos().get(i).getCapacidade(),
+                Locadora.getVeiculos().get(i).getTipo()};
+            
+            modeloTabela.addRow(linha);
+        }
+        
+        tableRegistroVeiculo.setModel(modeloTabela);
+        
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,19 +69,12 @@ public class RegistrosVeiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Placa", "Modelo", "Marca", "Ano", "Cor", "Capacidade", "Tipo", "Disponível"
+                "Placa", "Modelo", "Marca", "Ano", "Cor", "Capacidade", "Tipo"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -80,16 +94,18 @@ public class RegistrosVeiculos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(but_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(198, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(but_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,10 +113,10 @@ public class RegistrosVeiculos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(but_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addContainerGap())
         );
 
         pack();
