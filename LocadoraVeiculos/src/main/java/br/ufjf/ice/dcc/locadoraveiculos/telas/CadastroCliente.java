@@ -6,6 +6,7 @@
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
 import br.ufjf.ice.dcc.locadoraveiculos.Endereco;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,15 +35,15 @@ public class CadastroCliente extends javax.swing.JFrame {
         but_cadastroCancelar = new javax.swing.JButton();
         but_cadastroSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jL_nome = new javax.swing.JLabel();
         ctext_cadastroNome = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jL_email = new javax.swing.JLabel();
         ctext_cadastroEmail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jL_CPF = new javax.swing.JLabel();
         ctext_cadastroCpf = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jL_dataNascimento = new javax.swing.JLabel();
         ctext_cadastroNascimento = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jL_telefone = new javax.swing.JLabel();
         ctext_cadastroTelefone = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -81,27 +82,27 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Pessoal"));
 
-        jLabel2.setText("Nome");
+        jL_nome.setText("Nome");
 
         ctext_cadastroNome.setToolTipText("Nome completo");
         ctext_cadastroNome.setName("Nome completo"); // NOI18N
 
-        jLabel4.setText("E-mail");
+        jL_email.setText("E-mail");
 
         ctext_cadastroEmail.setToolTipText("Nome completo");
         ctext_cadastroEmail.setName("Nome completo"); // NOI18N
 
-        jLabel3.setText("CPF");
+        jL_CPF.setText("CPF");
 
         ctext_cadastroCpf.setToolTipText("Nome completo");
         ctext_cadastroCpf.setName("Nome completo"); // NOI18N
 
-        jLabel7.setText("Data de nascimento");
+        jL_dataNascimento.setText("Data de nascimento");
 
         ctext_cadastroNascimento.setToolTipText("Nome completo");
         ctext_cadastroNascimento.setName("Nome completo"); // NOI18N
 
-        jLabel5.setText("Telefone");
+        jL_telefone.setText("Telefone");
 
         ctext_cadastroTelefone.setToolTipText("Nome completo");
         ctext_cadastroTelefone.setName("Nome completo"); // NOI18N
@@ -118,21 +119,21 @@ public class CadastroCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
+                    .addComponent(jL_CPF)
+                    .addComponent(jL_email)
+                    .addComponent(jL_nome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ctext_cadastroEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                        .addComponent(jL_telefone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ctext_cadastroTelefone))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(ctext_cadastroCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                        .addComponent(jL_dataNascimento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ctext_cadastroNascimento))
                     .addComponent(ctext_cadastroNome, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -143,19 +144,19 @@ public class CadastroCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jL_nome)
                     .addComponent(ctext_cadastroNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jL_CPF)
                     .addComponent(ctext_cadastroCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
+                    .addComponent(jL_dataNascimento)
                     .addComponent(ctext_cadastroNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(jL_email)
                     .addComponent(ctext_cadastroEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
+                    .addComponent(jL_telefone)
                     .addComponent(ctext_cadastroTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -330,6 +331,14 @@ public class CadastroCliente extends javax.swing.JFrame {
         
         new Principal().setVisible(true);
         this.setVisible(false);
+        
+       // String nome = jL_nome.getText().trim();
+       // String cpf = jL_CPF.getText().trim();
+       // String dtNasc = jL_dataNascimento.getText().trim();
+       // String email = jL_email.getText().trim();
+       // String tel = jL_telefone.getText().trim();
+        
+
     }//GEN-LAST:event_but_cadastroSalvarActionPerformed
 
     private void ctext_endCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_endCepActionPerformed
@@ -402,17 +411,17 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField ctext_endLogra;
     private javax.swing.JTextField ctext_endNumero;
     private javax.swing.JTextField ctext_endUf;
+    private javax.swing.JLabel jL_CPF;
+    private javax.swing.JLabel jL_dataNascimento;
+    private javax.swing.JLabel jL_email;
+    private javax.swing.JLabel jL_nome;
+    private javax.swing.JLabel jL_telefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
