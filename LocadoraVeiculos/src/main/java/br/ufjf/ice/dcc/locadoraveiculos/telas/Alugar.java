@@ -148,7 +148,7 @@ public class Alugar extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "Preço da diária", "Quantidade de dias", "Total"

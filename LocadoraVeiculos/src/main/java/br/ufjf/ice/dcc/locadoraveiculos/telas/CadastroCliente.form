@@ -43,7 +43,7 @@
                       <Component id="but_cadastroCancelar" min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,7 +61,7 @@
                   <Component id="but_cadastroSalvar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="but_cadastroCancelar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

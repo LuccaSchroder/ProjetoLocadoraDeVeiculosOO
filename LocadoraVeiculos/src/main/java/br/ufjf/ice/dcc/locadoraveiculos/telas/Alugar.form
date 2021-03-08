@@ -293,7 +293,7 @@
         <Component class="javax.swing.JTable" name="jTable2">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="1">
+              <Table columnCount="3" rowCount="0">
                 <Column editable="true" title="Pre&#xe7;o da di&#xe1;ria" type="java.lang.Object"/>
                 <Column editable="true" title="Quantidade de dias" type="java.lang.Object"/>
                 <Column editable="true" title="Total" type="java.lang.Object"/>
