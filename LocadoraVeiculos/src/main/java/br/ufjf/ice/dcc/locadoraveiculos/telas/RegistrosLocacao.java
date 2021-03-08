@@ -5,6 +5,9 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
+import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ronan
@@ -16,9 +19,44 @@ public class RegistrosLocacao extends javax.swing.JFrame {
      */
     public RegistrosLocacao() {
         initComponents();
-        setLocationRelativeTo(null);
+        
+        carregaTabelaLocacao();
     }
-
+    
+    public void carregaTabelaLocacao(){
+        Object colunas[] = new Object[]{"Cliente", "CPF/CNPF", "Modelo", "Placa", "Data Inicio", "Data de Entrga", "Tempo de Locação(dias)", "Preço"};
+        DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
+        
+        for (int i = 0; i < Locadora.getReservasPF().size(); i++) {
+            Object linha[] = new Object[] {Locadora.getReservasPF().get(i).getClienteF().getNome(),
+                Locadora.getReservasPF().get(i).getClienteF().getCpf(),
+                Locadora.getReservasPF().get(i).getVeiculo().getModelo(),
+                Locadora.getReservasPF().get(i).getVeiculo().getPlaca(),
+                Locadora.getReservasPF().get(i).getDataInicio(),
+                Locadora.getReservasPF().get(i).getDataFim(),
+                Locadora.getReservasPF().get(i).getPeriodoLocacao(),
+                Locadora.getReservasPF().get(i).getTotal()};
+            
+            modeloTabela.addRow(linha);
+        }
+        
+        for (int i = 0; i < Locadora.getReservasPJ().size(); i++) {
+            Object linha[] = new Object[] {Locadora.getReservasPJ().get(i).getClienteJ().getNome(),
+                Locadora.getReservasPJ().get(i).getClienteJ().getCnpj(),
+                Locadora.getReservasPJ().get(i).getVeiculo().getModelo(),
+                Locadora.getReservasPJ().get(i).getVeiculo().getPlaca(),
+                Locadora.getReservasPJ().get(i).getDataInicio(),
+                Locadora.getReservasPJ().get(i).getDataFim(),
+                Locadora.getReservasPJ().get(i).getPeriodoLocacao(),
+                Locadora.getReservasPJ().get(i).getTotal()};
+            
+            modeloTabela.addRow(linha);
+        }
+        
+        table_registroLocacao.setModel(modeloTabela);
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +68,7 @@ public class RegistrosLocacao extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_registroLocacao = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,15 +77,23 @@ public class RegistrosLocacao extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro de Locação");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_registroLocacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Cliente", "Veículo", "Data Início", "Data de Entrega", "Tempo de Locação (dias)", "Preço"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table_registroLocacao);
 
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,8 +114,10 @@ public class RegistrosLocacao extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,6 +132,7 @@ public class RegistrosLocacao extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -133,6 +182,6 @@ public class RegistrosLocacao extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table_registroLocacao;
     // End of variables declaration//GEN-END:variables
 }

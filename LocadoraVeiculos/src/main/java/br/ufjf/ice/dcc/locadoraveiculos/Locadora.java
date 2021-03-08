@@ -14,14 +14,12 @@ import java.util.*;
  */
 public class Locadora {
     private static List <Veiculo> veiculos = new ArrayList<>(); //todos os veiculos
-    private static List <Reserva> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
-    private static List <Usuario> clientes = new ArrayList<>(); //guarda todos os clientes
+    private static List <Reserva> reservasPF = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
+    private static List <Reserva> reservasPJ = new ArrayList<>();
+    private static List <PessoaFisica> pFisica = new ArrayList<>(); 
+    private static List <PessoaJuridica> pJuridica = new ArrayList<>();
     
-    public static void imprimeClientes(){
-        for(Usuario cliente : clientes ){
-            cliente.imprime();
-        }
-    }
+   
     
     public static void adicionaVeiculo(Veiculo veiculo){
         veiculos.add(veiculo);
@@ -31,7 +29,37 @@ public class Locadora {
         return veiculos;
     }
     
+    public static void adicionaReservaPF(Reserva reserva){
+        reservasPF.add(reserva);
+    }
+
+    public static List<Reserva> getReservasPF() {
+        return reservasPF;
+    }
     
+    public static void adicionaReservaPJ(Reserva reserva){
+        reservasPF.add(reserva);
+    }
+
+    public static List<Reserva> getReservasPJ() {
+        return reservasPJ;
+    }
+    
+    public static void adicionaPFisica(PessoaFisica pessoa){
+        pFisica.add(pessoa);
+    }
+
+    public static List<PessoaFisica> getPFisica() {
+        return pFisica;
+    }
+    
+    public static void adicionaPJuridica(PessoaJuridica pessoa){
+        pJuridica.add(pessoa);
+    }
+
+    public static List<PessoaJuridica> getPJuridica() {
+        return pJuridica;
+    }
     
     
     public static void main(String[] args) {
@@ -50,13 +78,13 @@ public class Locadora {
         
         //c.imprime();
         
-        clientes.add(a1);
+        /*clientes.add(a1);
         clientes.add(a2);
         clientes.add(a3);
         clientes.add(a4);
         
         imprimeClientes();
-   
+        */
     }
     
 

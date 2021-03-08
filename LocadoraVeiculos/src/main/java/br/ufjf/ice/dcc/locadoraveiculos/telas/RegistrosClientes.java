@@ -5,6 +5,9 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
+import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lucca
@@ -16,6 +19,48 @@ public class RegistrosClientes extends javax.swing.JFrame {
      */
     public RegistrosClientes() {
         initComponents();
+        carregaTabelaClientes();
+    }
+    
+    public void carregaTabelaClientes(){
+        Object colunas[] = new Object[]{"Nome", "CPF/CNPJ", "Data de Nascimento", "Email", "Telefone", "Logradouro", "Nº", "CEP", "Complemento", "Bairro", "Cidade", "UF"};
+        DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
+        
+        for (int i = 0; i < Locadora.getPFisica().size(); i++) {
+            Object linha[] = new Object[] {Locadora.getPFisica().get(i).getNome(),
+                Locadora.getPFisica().get(i).getCpf(),
+                Locadora.getPFisica().get(i).getDataNascimento(),
+                Locadora.getPFisica().get(i).getEmail(),
+                Locadora.getPFisica().get(i).getTelefone(),
+                Locadora.getPFisica().get(i).getEndereco().getLogradouro(),
+                Locadora.getPFisica().get(i).getEndereco().getNumero(),
+                Locadora.getPFisica().get(i).getEndereco().getCep(),
+                Locadora.getPFisica().get(i).getEndereco().getComplemento(),
+                Locadora.getPFisica().get(i).getEndereco().getBairro(),
+                Locadora.getPFisica().get(i).getEndereco().getCidade(),
+                Locadora.getPFisica().get(i).getEndereco().getEstado()};
+            
+            modeloTabela.addRow(linha);
+        }
+        
+        for (int i = 0; i < Locadora.getPJuridica().size(); i++) {
+            Object linha[] = new Object[] {Locadora.getPJuridica().get(i).getNome(),
+                Locadora.getPJuridica().get(i).getCnpj(), " - ",
+                Locadora.getPJuridica().get(i).getEmail(),
+                Locadora.getPJuridica().get(i).getTelefone(),
+                Locadora.getPJuridica().get(i).getEndereco().getLogradouro(),
+                Locadora.getPJuridica().get(i).getEndereco().getNumero(),
+                Locadora.getPJuridica().get(i).getEndereco().getCep(),
+                Locadora.getPJuridica().get(i).getEndereco().getComplemento(),
+                Locadora.getPJuridica().get(i).getEndereco().getBairro(),
+                Locadora.getPJuridica().get(i).getEndereco().getCidade(),
+                Locadora.getPJuridica().get(i).getEndereco().getEstado()};
+            
+            modeloTabela.addRow(linha);
+        }
+        
+        jTb_Clientes.setModel(modeloTabela);
+        
     }
 
     /**
@@ -30,7 +75,7 @@ public class RegistrosClientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTb_Clientes = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        but_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,10 +92,10 @@ public class RegistrosClientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTb_Clientes);
 
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        but_voltar.setText("Voltar");
+        but_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                but_voltarActionPerformed(evt);
             }
         });
 
@@ -58,16 +103,21 @@ public class RegistrosClientes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(but_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(186, 186, 186)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 224, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,17 +127,18 @@ public class RegistrosClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(but_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void but_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_voltarActionPerformed
         new Registros().setVisible(true);
-        this.setVisible(false);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.setVisible(false); 
+    }//GEN-LAST:event_but_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,7 +176,7 @@ public class RegistrosClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton but_voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTb_Clientes;

@@ -9,13 +9,16 @@ package br.ufjf.ice.dcc.locadoraveiculos;
  *
  * @author Jaqueline
  */
-public class PessoaJuridica {
+public class PessoaJuridica extends Cliente {
     
     private String cnpj;
-
     
     public PessoaJuridica() {
     }    
+    
+    public PessoaJuridica(String cnpj) {
+        this.cnpj = cnpj;
+    }
     
     public String getCnpj() {
         return cnpj;

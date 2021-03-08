@@ -19,6 +19,7 @@ public class Veiculo {
     private int capacidade;
     private String tipo;
     private float diaria;
+    private boolean disponivel;
 
     public Veiculo(){
         
@@ -33,6 +34,7 @@ public class Veiculo {
         this.setCapacidade(capacidade);
         this.setTipo(tipo);
         this.setDiaria(diaria);
+        disponivel = true;
     }
     
     public Veiculo( String placa, String modelo){
@@ -103,6 +105,15 @@ public class Veiculo {
     public void setDiaria(float diaria) {
         this.diaria = diaria;
     }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
     
     
     public void imprime(){

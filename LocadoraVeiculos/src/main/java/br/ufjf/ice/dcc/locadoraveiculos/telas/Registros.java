@@ -30,9 +30,10 @@ public class Registros extends javax.swing.JFrame {
 
         jToggleButton3 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
+        but_registroLocacao = new javax.swing.JToggleButton();
+        but_registrosClientes = new javax.swing.JToggleButton();
+        but_voltar = new javax.swing.JToggleButton();
+        but_registrosVeiculos = new javax.swing.JToggleButton();
 
         jToggleButton3.setText("jToggleButton3");
 
@@ -41,24 +42,31 @@ public class Registros extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setText("Tela de Registros:");
 
-        jToggleButton1.setText("Registros de Veículos");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        but_registroLocacao.setText("Registros de Locação");
+        but_registroLocacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                but_registroLocacaoActionPerformed(evt);
             }
         });
 
-        jToggleButton2.setText("Registros de Clientes");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        but_registrosClientes.setText("Registros de Clientes");
+        but_registrosClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                but_registrosClientesActionPerformed(evt);
             }
         });
 
-        jToggleButton4.setText("Cancelar");
-        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+        but_voltar.setText("Voltar");
+        but_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton4ActionPerformed(evt);
+                but_voltarActionPerformed(evt);
+            }
+        });
+
+        but_registrosVeiculos.setText("Registros de Veículos");
+        but_registrosVeiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_registrosVeiculosActionPerformed(evt);
             }
         });
 
@@ -67,53 +75,59 @@ public class Registros extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(123, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(but_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(269, 269, 269))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(but_registroLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(but_registrosVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(but_registrosClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(48, 48, 48)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(118, 118, 118))
+                    .addComponent(but_registroLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(but_registrosClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(but_registrosVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(but_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        new RegistrosVeiculos().setVisible(true);
-        this.setVisible(false);        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void but_registroLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_registroLocacaoActionPerformed
         new RegistrosLocacao().setVisible(true);
-        this.setVisible(false);         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        this.setVisible(false);        
+    }//GEN-LAST:event_but_registroLocacaoActionPerformed
 
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+    private void but_registrosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_registrosClientesActionPerformed
+        new RegistrosClientes().setVisible(true);
+        this.setVisible(false);         
+    }//GEN-LAST:event_but_registrosClientesActionPerformed
+
+    private void but_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_voltarActionPerformed
         new Principal().setVisible(true);
-        this.setVisible(false);         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
+        this.setVisible(false);         
+    }//GEN-LAST:event_but_voltarActionPerformed
+
+    private void but_registrosVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_registrosVeiculosActionPerformed
+        new RegistrosVeiculos().setVisible(true);
+        this.setVisible(false); 
+    }//GEN-LAST:event_but_registrosVeiculosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,10 +165,11 @@ public class Registros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton but_registroLocacao;
+    private javax.swing.JToggleButton but_registrosClientes;
+    private javax.swing.JToggleButton but_registrosVeiculos;
+    private javax.swing.JToggleButton but_voltar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
 }

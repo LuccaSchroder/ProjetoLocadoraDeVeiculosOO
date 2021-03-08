@@ -13,10 +13,9 @@ import java.util.Date;
  */
 
 //Precisa ter metodo abstrato
-abstract class Cliente {
+public abstract class Cliente {
     private String nome;
     private Endereco endereco;
-    private Date dataNasimento;
     private String email;
     private String telefone;
 
@@ -36,14 +35,6 @@ abstract class Cliente {
         this.endereco = endereco;
     }
 
-    public Date getDataNasimento() {
-        return dataNasimento;
-    }
-
-    public void setDataNasimento(Date dataNasimento) {
-        this.dataNasimento = dataNasimento;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -60,7 +51,7 @@ abstract class Cliente {
         this.telefone = telefone;
     }
 
-
+    
     
 
 }

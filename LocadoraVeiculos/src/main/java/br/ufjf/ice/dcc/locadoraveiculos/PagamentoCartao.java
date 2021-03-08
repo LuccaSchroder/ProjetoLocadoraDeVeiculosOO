@@ -5,8 +5,6 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
 
-import java.util.Date;
-
 /**
  *
  * @author Jaqueline
@@ -14,8 +12,8 @@ import java.util.Date;
 public class PagamentoCartao implements Pagamento {
 
     @Override
-    public float pagamento(float precoDiaria, Date dataInicio, Date dataFim) {
-        return 0;
+    public float pagamento(float precoDiaria, int dias) {
+        return (precoDiaria * dias);
     }
     
 }

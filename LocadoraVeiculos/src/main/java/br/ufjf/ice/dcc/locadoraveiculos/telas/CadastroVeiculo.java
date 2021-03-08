@@ -22,7 +22,7 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public void limpaCampos(){
+    public void limpaCamposCV(){
         ctext_placa.setText("");
         ctext_modelo.setText("");
         ctext_marca.setText("");
@@ -253,7 +253,7 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         
         Veiculo veiculo = new Veiculo(ctext_placa.getText(), ctext_modelo.getText(), ctext_marca.getText(), ano, ctext_cor.getText(), capacidade, ctext_tipo.getText(), precoDiaria);
         Locadora.adicionaVeiculo(veiculo);
-        limpaCampos();
+        limpaCamposCV();
   
         new Principal().setVisible(true);
         this.setVisible(false);

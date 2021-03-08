@@ -7,23 +7,31 @@ package br.ufjf.ice.dcc.locadoraveiculos;
 
 import java.util.Date;
 
-/**
- *
- * @author Jaqueline
- */
+
+
 public class PessoaFisica extends Cliente {
 
     private String cpf;
+    private Date dataNascimento;
 
     public PessoaFisica() {
     }
-    
-    public PessoaFisica(String nome, Endereco endereco, Date dataNascimento, String email, String telefone){
-        setNome(nome);
+
+    public PessoaFisica(String cpf, Date dataNascimento) {
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
     }
 
     public String getCpf() {
         return cpf;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public void setCpf(String cpf) {

@@ -15,29 +15,53 @@ import java.util.Date;
 
 //Mantem um registro de uma reserva
 public class Reserva {
-    Usuario locador;
-    Veiculo veiculo;
-    private Date dataInicio;
-    private Date dataFim;
+    private PessoaFisica clienteF;
+    private PessoaJuridica clienteJ;
+    private Veiculo veiculo;
+    private Date dataInicio = new Date();
+    private Date dataFim = new Date();
+    private int periodoLocacao;
+    private float total;
     
     public Reserva(){
       //settar cliente e veiculos recebendo como parametro  
     };
-    
-    public Reserva(Usuario locador, Veiculo veiculo, Date dataInicio, Date dataFim){
-        this.setLocador(locador);
+
+    public Reserva(float total, int periodoLocacao) {
+        this.total = total;
+        this.periodoLocacao = periodoLocacao;
+    }
+
+    public Reserva(PessoaFisica clienteF, Veiculo veiculo, Date dataInicio, Date dataFim, float total) {
+        this.clienteF = clienteF;
+        this.veiculo = veiculo;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+    }
+   
+    public Reserva(PessoaJuridica clienteJ, Veiculo veiculo, Date dataInicio, Date dataFim, float total){
+        this.setClienteJ(clienteJ);
         this.setVeiculo(veiculo);
-        this.dataInicio = new Date();
-        this.dataFim = new Date();
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
     }
     
-    public Usuario getLocador(){
-        return this.locador;
+    public PessoaFisica getClienteF(){
+        return this.clienteF;
     }
     
-    public void setLocador(Usuario locador){
-        this.locador = locador;
+    public void setClienteF(PessoaFisica clienteF){
+        this.clienteF = clienteF;
     }
+
+    public PessoaJuridica getClienteJ() {
+        return clienteJ;
+    }
+
+    public void setClienteJ(PessoaJuridica clienteJ) {
+        this.clienteJ = clienteJ;
+    }
+    
     
     public Date getDataInicio() {
         return dataInicio;
@@ -62,22 +86,14 @@ public class Reserva {
     public void setVeiculo(Veiculo veiculo){
         this.veiculo = veiculo;
     }
-    
-    public int PeriodoLocacao(){
-        //Calcular utilizando com dataInicio e dataFim;
-        return 0;
+
+    public float getTotal() {
+        return total;
+    }
+
+    public int getPeriodoLocacao() {
+        return periodoLocacao;
     }
     
-    /*public float PrecoTotal(){
-        return this.veiculo.getPrecoDiaria() * PeriodoLocacao();
-    }*/
     
-    
-    
-    public void imprime(){
-        //System.out.println("Registro do cliente: " + this.locador.getCpf());
-        System.out.println("Placa: " + this.veiculo.getPlaca());
-        //System.out.println("Periodo de locação: " + this.getPeriodoLocacao());
-        
-    }
 }

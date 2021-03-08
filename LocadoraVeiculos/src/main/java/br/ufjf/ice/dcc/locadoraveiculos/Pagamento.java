@@ -13,5 +13,5 @@ import java.util.Date;
  */
 public interface Pagamento {
     
-    public float pagamento(float precoDiaria, Date dataInicio, Date dataFim);   
+    public float pagamento(float precoDiaria, int dias);   
 }

@@ -14,9 +14,9 @@ import java.util.Date;
 public class PagamentoDinheiro implements Pagamento{
 
     @Override
-    public float pagamento(float precoDiaria, Date dataInicio, Date dataFim) {
-        
-        return 0;
-    } 
+    public float pagamento(float precoDiaria, int dias) {
+        float desconto = (float)5 / 100;
+        return (float)(precoDiaria * dias * desconto);
+    }
     
 }

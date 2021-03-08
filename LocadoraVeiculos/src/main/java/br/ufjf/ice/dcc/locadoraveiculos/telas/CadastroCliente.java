@@ -6,6 +6,16 @@
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
 import br.ufjf.ice.dcc.locadoraveiculos.Endereco;
+import br.ufjf.ice.dcc.locadoraveiculos.PessoaFisica;
+import br.ufjf.ice.dcc.locadoraveiculos.PessoaJuridica;
+import br.ufjf.ice.dcc.locadoraveiculos.Cliente;
+import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +28,29 @@ public class CadastroCliente extends javax.swing.JFrame {
      */
     public CadastroCliente() {
         initComponents();
-        setLocationRelativeTo(null);     
+
+        //but_cadastroSalvar.setEnabled(false);
+    }
+
+    public Date converteStringData() throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataFormatada = formato.parse(ctext_cadastroNascimento.getText());
+        return dataFormatada;
+    }
+
+    public void limpaCamposCC() {
+        ctext_cadastroNome.setText("");
+        ctext_cadastroEmail.setText("");
+        ctext_cadastroID.setText("");
+        ctext_cadastroNascimento.setText("");
+        ctext_cadastroTelefone.setText("");
+        ctext_endBairro.setText("");
+        ctext_endCep.setText("");
+        ctext_endCidade.setText("");
+        ctext_endComplemento.setText("");
+        ctext_endLogra.setText("");
+        ctext_endNumero.setText("");
+        ctext_endUf.setText("");
     }
 
     /**
@@ -30,6 +62,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg_indentificador = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         but_cadastroCancelar = new javax.swing.JButton();
         but_cadastroSalvar = new javax.swing.JButton();
@@ -38,12 +71,13 @@ public class CadastroCliente extends javax.swing.JFrame {
         ctext_cadastroNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         ctext_cadastroEmail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        ctext_cadastroCpf = new javax.swing.JTextField();
+        ctext_cadastroID = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        ctext_cadastroNascimento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         ctext_cadastroTelefone = new javax.swing.JTextField();
+        rbut_cpf = new javax.swing.JRadioButton();
+        rbut_cnpj = new javax.swing.JRadioButton();
+        ctext_cadastroNascimento = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         ctext_endLogra = new javax.swing.JTextField();
@@ -62,8 +96,8 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Cadastrar Cliente");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Cadastre um novo Cliente");
 
         but_cadastroCancelar.setText("Cancelar");
         but_cadastroCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,25 +125,37 @@ public class CadastroCliente extends javax.swing.JFrame {
         ctext_cadastroEmail.setToolTipText("Nome completo");
         ctext_cadastroEmail.setName("Nome completo"); // NOI18N
 
-        jLabel3.setText("CPF");
-
-        ctext_cadastroCpf.setToolTipText("Nome completo");
-        ctext_cadastroCpf.setName("Nome completo"); // NOI18N
+        ctext_cadastroID.setToolTipText("Nome completo");
+        ctext_cadastroID.setName("Nome completo"); // NOI18N
 
         jLabel7.setText("Data de nascimento");
-
-        ctext_cadastroNascimento.setToolTipText("Nome completo");
-        ctext_cadastroNascimento.setName("Nome completo"); // NOI18N
 
         jLabel5.setText("Telefone");
 
         ctext_cadastroTelefone.setToolTipText("Nome completo");
         ctext_cadastroTelefone.setName("Nome completo"); // NOI18N
-        ctext_cadastroTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_cadastroTelefoneActionPerformed(evt);
+
+        bg_indentificador.add(rbut_cpf);
+        rbut_cpf.setText("CPF");
+        rbut_cpf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbut_cpfMouseClicked(evt);
             }
         });
+
+        bg_indentificador.add(rbut_cnpj);
+        rbut_cnpj.setText("CNPJ");
+        rbut_cnpj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbut_cnpjMouseClicked(evt);
+            }
+        });
+
+        try {
+            ctext_cadastroNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,26 +163,35 @@ public class CadastroCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ctext_cadastroEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                        .addComponent(rbut_cpf)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ctext_cadastroTelefone))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(ctext_cadastroCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ctext_cadastroNascimento))
-                    .addComponent(ctext_cadastroNome, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(22, 22, 22))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ctext_cadastroNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(ctext_cadastroEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(rbut_cnpj)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(ctext_cadastroID)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ctext_cadastroTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                    .addComponent(ctext_cadastroNascimento))))
+                        .addGap(22, 22, 22))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +202,10 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(ctext_cadastroNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(ctext_cadastroCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctext_cadastroID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
+                    .addComponent(rbut_cpf)
+                    .addComponent(rbut_cnpj)
                     .addComponent(ctext_cadastroNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -166,45 +222,16 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         ctext_endLogra.setToolTipText("Nome completo");
         ctext_endLogra.setName("Nome completo"); // NOI18N
-        ctext_endLogra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_endLograActionPerformed(evt);
-            }
-        });
 
         jLabel9.setText("CEP");
 
-        ctext_endCep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_endCepActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Número");
 
-        ctext_endNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_endNumeroActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("Complemento");
-
-        ctext_endComplemento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_endComplementoActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("Bairro");
 
         jLabel12.setText("Cidade");
-
-        ctext_endCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_endCidadeActionPerformed(evt);
-            }
-        });
 
         jLabel13.setText("UF");
 
@@ -288,10 +315,10 @@ public class CadastroCliente extends javax.swing.JFrame {
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(124, 124, 124)
-                        .addComponent(but_cadastroSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addComponent(but_cadastroSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
                         .addComponent(but_cadastroCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,54 +330,65 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(but_cadastroCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(but_cadastroSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(but_cadastroSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(but_cadastroCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void but_cadastroCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cadastroCancelarActionPerformed
         new Principal().setVisible(true);
-        this.setVisible(false);        
+        this.setVisible(false);
     }//GEN-LAST:event_but_cadastroCancelarActionPerformed
 
-    private void ctext_endLograActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_endLograActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_endLograActionPerformed
-
     private void but_cadastroSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cadastroSalvarActionPerformed
-        
+
+        Cliente pessoa;
+
+        if (rbut_cpf.isSelected()) {
+            Date dataNascimento = new Date();
+
+            try {
+                dataNascimento = converteStringData();
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "ERRO");
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            pessoa = new PessoaFisica(ctext_cadastroID.getText(), dataNascimento);
+            Locadora.adicionaPFisica((PessoaFisica) pessoa);
+        } else {
+            pessoa = new PessoaJuridica(ctext_cadastroID.getText());
+            Locadora.adicionaPJuridica((PessoaJuridica) pessoa);
+        }
+
         int numero = Integer.parseInt(ctext_endNumero.getText());//Passa numero de string para inteiro
-        //Instancia um novo endereco
-        Endereco endereco = new Endereco(ctext_endCep.getText(), ctext_endLogra.getText(), numero, ctext_endComplemento.getText(), 
-                                         ctext_endBairro.getText(),ctext_endCidade.getText(),ctext_endUf.getText());
-        
+        Endereco endereco = new Endereco(ctext_endCep.getText(), ctext_endLogra.getText(), numero, ctext_endComplemento.getText(),
+                ctext_endBairro.getText(), ctext_endCidade.getText(), ctext_endUf.getText());
+
+        pessoa.setNome(ctext_cadastroNome.getText());
+        pessoa.setEndereco(endereco);
+        pessoa.setEmail(ctext_cadastroEmail.getText());
+        pessoa.setTelefone(ctext_cadastroTelefone.getText());
+
+        limpaCamposCC();
+
         new Principal().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_but_cadastroSalvarActionPerformed
 
-    private void ctext_endCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_endCepActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_endCepActionPerformed
+    private void rbut_cnpjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbut_cnpjMouseClicked
+        ctext_cadastroNascimento.setText("");
+        ctext_cadastroNascimento.setEnabled(false);
+    }//GEN-LAST:event_rbut_cnpjMouseClicked
 
-    private void ctext_endNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_endNumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_endNumeroActionPerformed
-
-    private void ctext_endComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_endComplementoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_endComplementoActionPerformed
-
-    private void ctext_endCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_endCidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_endCidadeActionPerformed
-
-    private void ctext_cadastroTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_cadastroTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_cadastroTelefoneActionPerformed
+    private void rbut_cpfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbut_cpfMouseClicked
+        ctext_cadastroNascimento.setEnabled(true);
+    }//GEN-LAST:event_rbut_cpfMouseClicked
 
     /**
      * @param args the command line arguments
@@ -388,11 +426,12 @@ public class CadastroCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bg_indentificador;
     private javax.swing.JButton but_cadastroCancelar;
     private javax.swing.JButton but_cadastroSalvar;
-    private javax.swing.JTextField ctext_cadastroCpf;
     private javax.swing.JTextField ctext_cadastroEmail;
-    private javax.swing.JTextField ctext_cadastroNascimento;
+    private javax.swing.JTextField ctext_cadastroID;
+    private javax.swing.JFormattedTextField ctext_cadastroNascimento;
     private javax.swing.JTextField ctext_cadastroNome;
     private javax.swing.JTextField ctext_cadastroTelefone;
     private javax.swing.JTextField ctext_endBairro;
@@ -408,7 +447,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -417,5 +455,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton rbut_cnpj;
+    private javax.swing.JRadioButton rbut_cpf;
     // End of variables declaration//GEN-END:variables
 }

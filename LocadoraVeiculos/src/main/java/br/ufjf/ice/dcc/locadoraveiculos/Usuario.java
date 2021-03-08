@@ -27,7 +27,6 @@ public class Usuario extends Cliente {
         //atributos da classe abstrata Cliente
         this.setNome(nome);
         //this.setCpf(cpf);
-        this.setDataNasimento(dataNascimento);
         this.setEmail(email);
         this.setEndereco(endereco);
         this.setTelefone(telefone);
@@ -51,7 +50,7 @@ public class Usuario extends Cliente {
     public void imprime(){
         System.out.println("Nome: " + this.getNome());
         //System.out.println("CPF: " + this.getCpf());
-        System.out.println("Data de Nascimento: " + this.getDataNasimento());
+        //System.out.println("Data de Nascimento: " + this.getDataNasimento());
         System.out.println("Email: " + this.getEmail());
         System.out.println("Telefone: " + this.getTelefone());
         System.out.println("Endereço: " + this.getEndereco()+ "\n");
