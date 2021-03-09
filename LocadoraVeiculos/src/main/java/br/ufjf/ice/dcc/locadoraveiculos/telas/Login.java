@@ -5,6 +5,7 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        carregaLogo();
     }
 
     /**
@@ -29,19 +31,15 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_Login = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txt_Senha = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        logo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\lucca\\Desktop\\TrabalhoOO\\logo.png")); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(314, 145));
-        jLabel1.setPreferredSize(new java.awt.Dimension(314, 145));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Login:");
@@ -61,6 +59,11 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jButton1KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,18 +80,26 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(146, 146, 146)
-                                .addComponent(jButton1))))
+                                .addComponent(jButton1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(logo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jLabel4)
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(logo2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,7 +108,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -126,6 +137,15 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyTyped
+        new Principal().setVisible(true);
+        this.setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1KeyTyped
+
+    private void carregaLogo() {
+        ImageIcon icon = new ImageIcon("src/main/java/br/ufjf/ice/dcc/locadoraveiculos/telas/Imagens/logo.png");
+        logo2.setIcon(icon);
+    }
     /**
      * @param args the command line arguments
      */
@@ -163,9 +183,10 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel logo2;
     private javax.swing.JTextField txt_Login;
     private javax.swing.JTextField txt_Senha;
     // End of variables declaration//GEN-END:variables

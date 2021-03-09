@@ -643,12 +643,16 @@ public class Alugar extends javax.swing.JFrame {
                 Locadora.adicionaReservaPJ(novaReserva);
             }
         }
-
+        
+        new Principal().setVisible(true);
+        this.setVisible(false);
         
         
         
     }//GEN-LAST:event_but_reservarActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */
