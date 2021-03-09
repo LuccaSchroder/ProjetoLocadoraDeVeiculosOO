@@ -13,8 +13,6 @@ import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,6 +28,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         initComponents();
 
         //but_cadastroSalvar.setEnabled(false);
+        ctext_cadastroID.setEnabled(false);
     }
 
     public Date converteStringData() throws ParseException {
@@ -51,6 +50,55 @@ public class CadastroCliente extends javax.swing.JFrame {
         ctext_endLogra.setText("");
         ctext_endNumero.setText("");
         ctext_endUf.setText("");
+    }
+    
+    //TRATAMENTO DE EXCEÇÃO
+    private boolean verificaCamposPF(PessoaFisica pessoa, Endereco endereco) {
+        try {
+            pessoa.setNome(ctext_cadastroNome.getText());
+            pessoa.setCpf(ctext_cadastroID.getText());
+            pessoa.setDataNascimento(converteStringData());
+            pessoa.setEmail(ctext_cadastroEmail.getText());
+            pessoa.setTelefone(ctext_cadastroTelefone.getText());
+            pessoa.setEndereco(endereco);
+        } catch (NullPointerException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            return false;
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Data Inválida");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean verificaCamposPJ(PessoaJuridica pessoa, Endereco endereco) {
+        try {
+            pessoa.setNome(ctext_cadastroNome.getText());
+            pessoa.setCnpj(ctext_cadastroID.getText());
+            pessoa.setEmail(ctext_cadastroEmail.getText());
+            pessoa.setTelefone(ctext_cadastroTelefone.getText());
+            pessoa.setEndereco(endereco);
+        } catch (NullPointerException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean verificaCamposEnd(Endereco endereco) {
+        try {
+            endereco.setLogradouro(ctext_endLogra.getText());
+            endereco.setNumero(Integer.parseInt(ctext_endNumero.getText()));
+            endereco.setCep(ctext_endCep.getText());
+            endereco.setComplemento(ctext_endComplemento.getText());
+            endereco.setBairro(ctext_endBairro.getText());
+            endereco.setCidade(ctext_endCidade.getText());
+            endereco.setEstado(ctext_endUf.getText());
+        } catch (NullPointerException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -82,7 +130,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         ctext_endLogra = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        ctext_endCep = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         ctext_endNumero = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -93,6 +140,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         ctext_endCidade = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         ctext_endUf = new javax.swing.JTextField();
+        ctext_endCep = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -235,6 +283,12 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jLabel13.setText("UF");
 
+        try {
+            ctext_endCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -258,8 +312,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ctext_endUf, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(ctext_endCep, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addComponent(ctext_endCep, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ctext_endComplemento))
@@ -283,9 +337,9 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(ctext_endCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(ctext_endComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ctext_endComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctext_endCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -346,48 +400,40 @@ public class CadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_but_cadastroCancelarActionPerformed
 
     private void but_cadastroSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cadastroSalvarActionPerformed
+        Endereco endereco = new Endereco();
+        Cliente pessoa = null;
 
-        Cliente pessoa;
-
-        if (rbut_cpf.isSelected()) {
-            Date dataNascimento = new Date();
-
-            try {
-                dataNascimento = converteStringData();
-            } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(null, "ERRO");
-                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        if (verificaCamposEnd(endereco)) {
+            if (rbut_cpf.isSelected()) {
+                pessoa = new PessoaFisica();
+                if (verificaCamposPF((PessoaFisica) pessoa, endereco)) {
+                    Locadora.adicionaPFisica((PessoaFisica) pessoa);
+                    limpaCamposCC();
+                }
+            } else if (rbut_cnpj.isSelected()) {
+                pessoa = new PessoaJuridica();
+                if (verificaCamposPJ((PessoaJuridica) pessoa, endereco)) {
+                    Locadora.adicionaPJuridica((PessoaJuridica) pessoa);
+                    limpaCamposCC();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um indentificador");
             }
-            
-            pessoa = new PessoaFisica(ctext_cadastroID.getText(), dataNascimento);
-            Locadora.adicionaPFisica((PessoaFisica) pessoa);
-        } else {
-            pessoa = new PessoaJuridica(ctext_cadastroID.getText());
-            Locadora.adicionaPJuridica((PessoaJuridica) pessoa);
         }
 
-        int numero = Integer.parseInt(ctext_endNumero.getText());//Passa numero de string para inteiro
-        Endereco endereco = new Endereco(ctext_endCep.getText(), ctext_endLogra.getText(), numero, ctext_endComplemento.getText(),
-                ctext_endBairro.getText(), ctext_endCidade.getText(), ctext_endUf.getText());
-
-        pessoa.setNome(ctext_cadastroNome.getText());
-        pessoa.setEndereco(endereco);
-        pessoa.setEmail(ctext_cadastroEmail.getText());
-        pessoa.setTelefone(ctext_cadastroTelefone.getText());
-
-        limpaCamposCC();
-
-        new Principal().setVisible(true);
-        this.setVisible(false);
+        //new Principal().setVisible(true);
+        //this.setVisible(false);
     }//GEN-LAST:event_but_cadastroSalvarActionPerformed
 
     private void rbut_cnpjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbut_cnpjMouseClicked
         ctext_cadastroNascimento.setText("");
         ctext_cadastroNascimento.setEnabled(false);
+        ctext_cadastroID.setEnabled(true);
     }//GEN-LAST:event_rbut_cnpjMouseClicked
 
     private void rbut_cpfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbut_cpfMouseClicked
         ctext_cadastroNascimento.setEnabled(true);
+        ctext_cadastroID.setEnabled(true);
     }//GEN-LAST:event_rbut_cpfMouseClicked
 
     /**
@@ -435,7 +481,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField ctext_cadastroNome;
     private javax.swing.JTextField ctext_cadastroTelefone;
     private javax.swing.JTextField ctext_endBairro;
-    private javax.swing.JTextField ctext_endCep;
+    private javax.swing.JFormattedTextField ctext_endCep;
     private javax.swing.JTextField ctext_endCidade;
     private javax.swing.JTextField ctext_endComplemento;
     private javax.swing.JTextField ctext_endLogra;

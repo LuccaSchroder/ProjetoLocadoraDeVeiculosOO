@@ -261,11 +261,19 @@ public class Alugar extends javax.swing.JFrame {
 
         jLabel14.setText("Nome");
 
+        ctext_alugarNome.setEditable(false);
+
+        ctext_alugarEmail.setEditable(false);
+
         jLabel16.setText("Data de Nascimento");
+
+        ctext_alugarNascimento.setEditable(false);
 
         jLabel15.setText("E-mail");
 
         jLabel18.setText("Telefone");
+
+        ctext_alugarTelefone.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -336,13 +344,23 @@ public class Alugar extends javax.swing.JFrame {
 
         jLabel6.setText("Modelo");
 
+        ctext_modelo.setEditable(false);
+
         jLabel7.setText("Marca");
 
+        ctext_marca.setEditable(false);
+
         jLabel8.setText("Cor");
+
+        ctext_cor.setEditable(false);
 
         jLabel9.setText("Capacidade");
 
         jLabel10.setText("Ano");
+
+        ctext_capacidade.setEditable(false);
+
+        ctext_ano.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -591,8 +609,11 @@ public class Alugar extends javax.swing.JFrame {
     private void but_calcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_but_calcularMouseClicked
         int index = cb_veiculos.getSelectedIndex();
         float diaria = Locadora.getVeiculos().get(index).getDiaria();
-
-        carregaTabelaTotal(diaria, calculaQuantDias(), totalPagar());
+        
+        if(rbut_dinheiro.isSelected() || rbut_cartao.isSelected())
+            carregaTabelaTotal(diaria, calculaQuantDias(), totalPagar());
+        else
+            JOptionPane.showMessageDialog(null, "Selecione uma Forma de Pagamento");
     }//GEN-LAST:event_but_calcularMouseClicked
 
     private void but_reservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_reservarActionPerformed

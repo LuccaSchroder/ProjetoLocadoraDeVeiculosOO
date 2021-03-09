@@ -21,11 +21,11 @@ public class RegistrosVeiculos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        carregaTabela();
+        carregaTabelaVeiculos();
     }
     
-    public void carregaTabela(){
-        Object colunas[] = new Object[]{"Placa", "Modelo", "Marca", "Ano", "Cor", "Capacidade", "Tipo"};
+    public void carregaTabelaVeiculos(){
+        Object colunas[] = new Object[]{"Placa", "Modelo", "Marca", "Ano", "Cor", "Capacidade", "Tipo", "Diária"};
         DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
         
         for (int i = 0; i < Locadora.getVeiculos().size(); i++) {
@@ -35,7 +35,8 @@ public class RegistrosVeiculos extends javax.swing.JFrame {
                 Locadora.getVeiculos().get(i).getAno(),
                 Locadora.getVeiculos().get(i).getCor(),
                 Locadora.getVeiculos().get(i).getCapacidade(),
-                Locadora.getVeiculos().get(i).getTipo()};
+                Locadora.getVeiculos().get(i).getTipo(),
+                Locadora.getVeiculos().get(i).getDiaria()};
             
             modeloTabela.addRow(linha);
         }
@@ -69,11 +70,11 @@ public class RegistrosVeiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Placa", "Modelo", "Marca", "Ano", "Cor", "Capacidade", "Tipo"
+                "Placa", "Modelo", "Marca", "Ano", "Cor", "Capacidade", "Tipo", "Diária (R$)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

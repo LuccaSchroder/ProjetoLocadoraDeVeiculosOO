@@ -268,8 +268,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_alugarNome">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_alugarEmail">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
@@ -277,6 +283,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_alugarNascimento">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
@@ -289,6 +298,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_alugarTelefone">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -402,6 +414,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_modelo">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -409,6 +424,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_marca">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -416,6 +434,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_cor">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -428,8 +449,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_capacidade">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_ano">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

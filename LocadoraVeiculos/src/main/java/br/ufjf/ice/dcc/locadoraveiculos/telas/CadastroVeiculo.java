@@ -8,12 +8,13 @@ package br.ufjf.ice.dcc.locadoraveiculos.telas;
 import br.ufjf.ice.dcc.locadoraveiculos.Veiculo;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author lucca
  */
 public class CadastroVeiculo extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form CadastroVeiculo
      */
@@ -21,8 +22,8 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
-    public void limpaCamposCV(){
+
+    public void limpaCamposCV() {
         ctext_placa.setText("");
         ctext_modelo.setText("");
         ctext_marca.setText("");
@@ -30,6 +31,31 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         ctext_cor.setText("");
         ctext_tipo.setText("");
     }
+
+    private boolean verificaCampos(Veiculo veiculo) {
+        int ano, capacidade;
+        float precoDiaria;
+
+        try {
+            capacidade = Integer.parseInt(ctext_capacidade.getText());
+            ano = Integer.parseInt(ctext_ano.getText());
+            precoDiaria = Float.parseFloat(ctext_diaria.getText());
+
+            veiculo.setPlaca(ctext_placa.getText());
+            veiculo.setModelo(ctext_modelo.getText());
+            veiculo.setMarca(ctext_marca.getText());
+            veiculo.setAno(ano);
+            veiculo.setCor(ctext_cor.getText());
+            veiculo.setCapacidade(capacidade);
+            veiculo.setTipo(ctext_tipo.getText());
+            veiculo.setDiaria(precoDiaria);
+        } catch (NullPointerException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Complete todos os Campos.");
+            return false;
+        }
+        return true;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -234,29 +260,16 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ctext_placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_placaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_ctext_placaActionPerformed
-
-    private void ctext_anoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_anoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_anoActionPerformed
-
     private void but_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_salvarActionPerformed
-        int ano, capacidade; 
-        float precoDiaria;
-  
-        capacidade = Integer.parseInt(ctext_capacidade.getText());
-        ano = Integer.parseInt(ctext_ano.getText());
-        precoDiaria = Float.parseFloat(ctext_diaria.getText());
-        
-        Veiculo veiculo = new Veiculo(ctext_placa.getText(), ctext_modelo.getText(), ctext_marca.getText(), ano, ctext_cor.getText(), capacidade, ctext_tipo.getText(), precoDiaria);
-        Locadora.adicionaVeiculo(veiculo);
-        limpaCamposCV();
-  
-        new Principal().setVisible(true);
-        this.setVisible(false);
+        Veiculo veiculo = new Veiculo();
+        boolean estaCompleto = verificaCampos(veiculo);
+
+        if (estaCompleto) {
+            Locadora.adicionaVeiculo(veiculo);
+            limpaCamposCV();
+            new Principal().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_but_salvarActionPerformed
 
     private void ctext_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_marcaActionPerformed
@@ -272,6 +285,14 @@ public class CadastroVeiculo extends javax.swing.JFrame {
     private void ctext_diariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_diariaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ctext_diariaActionPerformed
+
+    private void ctext_anoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_anoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctext_anoActionPerformed
+
+    private void ctext_placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_placaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctext_placaActionPerformed
 
     /**
      * @param args the command line arguments
