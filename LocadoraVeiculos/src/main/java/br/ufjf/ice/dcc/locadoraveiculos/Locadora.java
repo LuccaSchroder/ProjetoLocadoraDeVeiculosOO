@@ -61,8 +61,35 @@ public class Locadora {
         return pJuridica;
     }
     
+    //RETORNA SE UM VEICULO JA FOI CADASTRADO
+    public static boolean verificaVeiculos(Veiculo veiculo){
+        for (int i = 0; i < veiculos.size(); i++) {
+            if(veiculos.get(i).getPlaca().equals(veiculo.getPlaca()))
+                return true;
+        }
+        return false;
+    }
     
-    public static void main(String[] args) {
+    //RETORNA SE UMA PESSOA FÍSICA JA FOI CADASTRADO
+    public static boolean verificaPFsica(PessoaFisica pessoa){
+        for (int i = 0; i < pFisica.size(); i++) {
+            if(pFisica.get(i).getCpf().equals(pessoa.getCpf()))
+                return true;
+        }
+        return false;
+    }
+    
+    //RETORNA SE UMA PESSOA JURIDICA JA FOI CADASTRADO
+    public static boolean verificaPJuridica(PessoaJuridica pessoa){
+        for (int i = 0; i < pJuridica.size(); i++) {
+            if(pJuridica.get(i).getCnpj().equals(pessoa.getCnpj()))
+                return true;
+        }
+        return false;
+    }
+    
+    
+    /*public static void main(String[] args) {
         Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
         Usuario a2 = new Usuario("Lucca", "1111111111");
         Usuario a3 = new Usuario("Jaque", "2222222222");
@@ -78,14 +105,14 @@ public class Locadora {
         
         //c.imprime();
         
-        /*clientes.add(a1);
+        clientes.add(a1);
         clientes.add(a2);
         clientes.add(a3);
         clientes.add(a4);
         
         imprimeClientes();
-        */
-    }
+        
+    }*/
     
 
 }

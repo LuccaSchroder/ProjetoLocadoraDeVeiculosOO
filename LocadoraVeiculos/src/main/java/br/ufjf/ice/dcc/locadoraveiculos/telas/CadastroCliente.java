@@ -10,6 +10,7 @@ import br.ufjf.ice.dcc.locadoraveiculos.PessoaFisica;
 import br.ufjf.ice.dcc.locadoraveiculos.PessoaJuridica;
 import br.ufjf.ice.dcc.locadoraveiculos.Cliente;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import br.ufjf.ice.dcc.locadoraveiculos.ValidaCpfCnpj;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,54 +52,75 @@ public class CadastroCliente extends javax.swing.JFrame {
         ctext_endNumero.setText("");
         ctext_endUf.setText("");
     }
-    
+
     //TRATAMENTO DE EXCEÇÃO
-    private boolean verificaCamposPF(PessoaFisica pessoa, Endereco endereco) {
+    //VERIFICA SE TODOS CAMPOS DE PESSOA FÍSICA FORAM PREENCHIDOS.
+    private boolean verificaCamposPF(PessoaFisica pessoa) {
+        pessoa.setNome(ctext_cadastroNome.getText());
+        pessoa.setCpf(ctext_cadastroID.getText());
+        pessoa.setEmail(ctext_cadastroEmail.getText());
+        pessoa.setTelefone(ctext_cadastroTelefone.getText());
+
         try {
-            pessoa.setNome(ctext_cadastroNome.getText());
-            pessoa.setCpf(ctext_cadastroID.getText());
             pessoa.setDataNascimento(converteStringData());
-            pessoa.setEmail(ctext_cadastroEmail.getText());
-            pessoa.setTelefone(ctext_cadastroTelefone.getText());
-            pessoa.setEndereco(endereco);
-        } catch (NullPointerException | NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
-            return false;
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Data Inválida");
+        } catch (NullPointerException | NumberFormatException | ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Campos incompletos ou preenchidos incorretamente.");
             return false;
         }
-        return true;
-    }
 
-    private boolean verificaCamposPJ(PessoaJuridica pessoa, Endereco endereco) {
-        try {
-            pessoa.setNome(ctext_cadastroNome.getText());
-            pessoa.setCnpj(ctext_cadastroID.getText());
-            pessoa.setEmail(ctext_cadastroEmail.getText());
-            pessoa.setTelefone(ctext_cadastroTelefone.getText());
-            pessoa.setEndereco(endereco);
-        } catch (NullPointerException | NumberFormatException ex) {
+        if (pessoa.getNome().isEmpty() || pessoa.getEmail().isEmpty() || pessoa.getTelefone().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
             return false;
+        }else if(!ValidaCpfCnpj.isValid(pessoa.getCpf())) {
+            JOptionPane.showMessageDialog(null, "CPF inválido!");
+            return false;
+        }else {
+            return true;
         }
-        return true;
     }
 
+    //VERIFICA SE TODOS CAMPOS DE PESSOA JURÍCA FORAM PREENCHIDOS.
+    private boolean verificaCamposPJ(PessoaJuridica pessoa) {
+        pessoa.setNome(ctext_cadastroNome.getText());
+        pessoa.setCnpj(ctext_cadastroID.getText());
+        pessoa.setEmail(ctext_cadastroEmail.getText());
+        pessoa.setTelefone(ctext_cadastroTelefone.getText());
+
+        if (pessoa.getNome().isEmpty() || pessoa.getEmail().isEmpty() || pessoa.getTelefone().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            return false;
+        }else if(!ValidaCpfCnpj.isValid(pessoa.getCnpj())) {
+            JOptionPane.showMessageDialog(null, "CNPJ inválido!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //VERIFICA SE TODOS CAMPOS DE ENDERECO FORAM PREENCHIDOS.
     private boolean verificaCamposEnd(Endereco endereco) {
+        endereco.setLogradouro(ctext_endLogra.getText());
+        endereco.setComplemento(ctext_endComplemento.getText());
+        endereco.setCep(ctext_endCep.getText());
+        endereco.setBairro(ctext_endBairro.getText());
+        endereco.setCidade(ctext_endCidade.getText());
+        endereco.setEstado(ctext_endUf.getText());
+
         try {
-            endereco.setLogradouro(ctext_endLogra.getText());
             endereco.setNumero(Integer.parseInt(ctext_endNumero.getText()));
-            endereco.setCep(ctext_endCep.getText());
-            endereco.setComplemento(ctext_endComplemento.getText());
-            endereco.setBairro(ctext_endBairro.getText());
-            endereco.setCidade(ctext_endCidade.getText());
-            endereco.setEstado(ctext_endUf.getText());
         } catch (NullPointerException | NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            JOptionPane.showMessageDialog(null, "Campos incompletos ou preenchidos incorretamente.");
             return false;
         }
-        return true;
+
+        if (endereco.getLogradouro().isEmpty() || endereco.getComplemento().isEmpty()
+                || endereco.getBairro().isEmpty() || endereco.getCidade().isEmpty()
+                || endereco.getEstado().isEmpty() || endereco.getCep().trim().equals("-")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -148,6 +170,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel1.setText("Cadastre um novo Cliente");
 
         but_cadastroCancelar.setText("Cancelar");
+        but_cadastroCancelar.setToolTipText("Cancelar");
         but_cadastroCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_cadastroCancelarActionPerformed(evt);
@@ -155,6 +178,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
 
         but_cadastroSalvar.setText("Salvar");
+        but_cadastroSalvar.setToolTipText("Salvar");
         but_cadastroSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_cadastroSalvarActionPerformed(evt);
@@ -170,21 +194,22 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jLabel4.setText("E-mail");
 
-        ctext_cadastroEmail.setToolTipText("Nome completo");
+        ctext_cadastroEmail.setToolTipText("Email");
         ctext_cadastroEmail.setName("Nome completo"); // NOI18N
 
-        ctext_cadastroID.setToolTipText("Nome completo");
+        ctext_cadastroID.setToolTipText("Identificador");
         ctext_cadastroID.setName("Nome completo"); // NOI18N
 
-        jLabel7.setText("Data de nascimento");
+        jLabel7.setText("Data de Nascimento");
 
         jLabel5.setText("Telefone");
 
-        ctext_cadastroTelefone.setToolTipText("Nome completo");
+        ctext_cadastroTelefone.setToolTipText("Telefone");
         ctext_cadastroTelefone.setName("Nome completo"); // NOI18N
 
         bg_indentificador.add(rbut_cpf);
         rbut_cpf.setText("CPF");
+        rbut_cpf.setToolTipText("CPF");
         rbut_cpf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rbut_cpfMouseClicked(evt);
@@ -193,6 +218,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         bg_indentificador.add(rbut_cnpj);
         rbut_cnpj.setText("CNPJ");
+        rbut_cnpj.setToolTipText("CNPJ");
         rbut_cnpj.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rbut_cnpjMouseClicked(evt);
@@ -204,6 +230,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ctext_cadastroNascimento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        ctext_cadastroNascimento.setToolTipText("Data de Nascimento");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,26 +296,37 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jLabel8.setText("Logradouro");
 
-        ctext_endLogra.setToolTipText("Nome completo");
+        ctext_endLogra.setToolTipText("Logradouro");
         ctext_endLogra.setName("Nome completo"); // NOI18N
 
         jLabel9.setText("CEP");
 
         jLabel6.setText("Número");
 
+        ctext_endNumero.setToolTipText("Número");
+
         jLabel10.setText("Complemento");
+
+        ctext_endComplemento.setToolTipText("Complemento");
 
         jLabel11.setText("Bairro");
 
+        ctext_endBairro.setToolTipText("Bairro");
+
         jLabel12.setText("Cidade");
 
+        ctext_endCidade.setToolTipText("Cidade");
+
         jLabel13.setText("UF");
+
+        ctext_endUf.setToolTipText("UF");
 
         try {
             ctext_endCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ctext_endCep.setToolTipText("CEP");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -404,20 +443,33 @@ public class CadastroCliente extends javax.swing.JFrame {
         Cliente pessoa = null;
 
         if (verificaCamposEnd(endereco)) {
+            //VERIFICA SE ALGUM JBOTTOM FOI SELECIONADO
             if (rbut_cpf.isSelected()) {
                 pessoa = new PessoaFisica();
-                if (verificaCamposPF((PessoaFisica) pessoa, endereco)) {
-                    Locadora.adicionaPFisica((PessoaFisica) pessoa);
-                    limpaCamposCC();
+                //VERICA SE TODOS OS CAMPOS DE PESSOA FISICA FOI PREENCHIDO E SE ELA JÁ ESTÁ CADASTRADA
+                if (verificaCamposPF((PessoaFisica) pessoa) ) {
+                    if (!Locadora.verificaPFsica((PessoaFisica) pessoa)) {
+                        pessoa.setEndereco(endereco);
+                        Locadora.adicionaPFisica((PessoaFisica) pessoa);
+                        limpaCamposCC();
+                        JOptionPane.showMessageDialog(null, "Cliente Cadastrado.");
+                    }else
+                    JOptionPane.showMessageDialog(null, "Cliente já está Cadastrado!");
                 }
             } else if (rbut_cnpj.isSelected()) {
                 pessoa = new PessoaJuridica();
-                if (verificaCamposPJ((PessoaJuridica) pessoa, endereco)) {
-                    Locadora.adicionaPJuridica((PessoaJuridica) pessoa);
-                    limpaCamposCC();
+                //VERICA SE TODOS OS CAMPOS DE PESSOA JURIDICA FOI PREENCHIDO E SE ELA JÁ ESTÁ CADASTRADA
+                if (verificaCamposPJ((PessoaJuridica) pessoa)) {
+                    if (!Locadora.verificaPJuridica((PessoaJuridica) pessoa)) {
+                        pessoa.setEndereco(endereco);
+                        Locadora.adicionaPJuridica((PessoaJuridica) pessoa);
+                        limpaCamposCC();
+                        JOptionPane.showMessageDialog(null, "Cliente Cadastrado.");
+                    }else 
+                        JOptionPane.showMessageDialog(null, "Cliente já está Cadastrado!");   
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Selecione um indentificador");
+                JOptionPane.showMessageDialog(null, "Selecione um Indentificador.");
             }
         }
 

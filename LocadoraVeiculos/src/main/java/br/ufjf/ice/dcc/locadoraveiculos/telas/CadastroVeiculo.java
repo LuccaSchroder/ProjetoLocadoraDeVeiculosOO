@@ -31,8 +31,8 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         ctext_cor.setText("");
         ctext_tipo.setText("");
     }
-
-    private boolean verificaCampos(Veiculo veiculo) {
+    
+    private boolean verificaCamposNumero(Veiculo veiculo) {
         int ano, capacidade;
         float precoDiaria;
 
@@ -41,19 +41,32 @@ public class CadastroVeiculo extends javax.swing.JFrame {
             ano = Integer.parseInt(ctext_ano.getText());
             precoDiaria = Float.parseFloat(ctext_diaria.getText());
 
-            veiculo.setPlaca(ctext_placa.getText());
-            veiculo.setModelo(ctext_modelo.getText());
-            veiculo.setMarca(ctext_marca.getText());
             veiculo.setAno(ano);
-            veiculo.setCor(ctext_cor.getText());
             veiculo.setCapacidade(capacidade);
-            veiculo.setTipo(ctext_tipo.getText());
             veiculo.setDiaria(precoDiaria);
+
         } catch (NullPointerException | NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Complete todos os Campos.");
+            JOptionPane.showMessageDialog(null, "Campos incompletos ou preenchidos incorretamente.");
             return false;
         }
         return true;
+    }
+    
+    //VERIFICA SE HÁ ALGUM CAMPO NÃO PREENCHIDO.
+    private boolean verificaCampoString(Veiculo veiculo) {
+
+        veiculo.setPlaca(ctext_placa.getText());
+        veiculo.setModelo(ctext_modelo.getText());
+        veiculo.setMarca(ctext_marca.getText());
+        veiculo.setCor(ctext_cor.getText());
+        veiculo.setTipo(ctext_tipo.getText());
+
+        if (veiculo.getPlaca().isEmpty() || veiculo.getModelo().isEmpty() || veiculo.getMarca().isEmpty() || veiculo.getCor().isEmpty() || veiculo.getTipo().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -74,15 +87,15 @@ public class CadastroVeiculo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         ctext_marca = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        ctext_ano = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         ctext_cor = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         ctext_tipo = new javax.swing.JTextField();
-        ctext_capacidade = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         ctext_diaria = new javax.swing.JTextField();
+        ctext_capacidade = new javax.swing.JFormattedTextField();
+        ctext_ano = new javax.swing.JFormattedTextField();
         but_salvar = new javax.swing.JButton();
         but_cancelar = new javax.swing.JButton();
 
@@ -98,29 +111,11 @@ public class CadastroVeiculo extends javax.swing.JFrame {
 
         jLabel2.setText("Placa");
 
-        ctext_placa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_placaActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Modelo");
 
         jLabel7.setText("Marca");
 
-        ctext_marca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_marcaActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Ano");
-
-        ctext_ano.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_anoActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("Capacidade");
 
@@ -130,11 +125,17 @@ public class CadastroVeiculo extends javax.swing.JFrame {
 
         jLabel9.setText("Diária R$");
 
-        ctext_diaria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctext_diariaActionPerformed(evt);
-            }
-        });
+        try {
+            ctext_capacidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            ctext_ano.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,10 +170,10 @@ public class CadastroVeiculo extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ctext_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ctext_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ctext_capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,7 +181,7 @@ public class CadastroVeiculo extends javax.swing.JFrame {
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ctext_diaria)))))
+                                .addComponent(ctext_diaria, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -197,9 +198,9 @@ public class CadastroVeiculo extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(ctext_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(ctext_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(ctext_capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ctext_capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctext_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -232,15 +233,15 @@ public class CadastroVeiculo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(but_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(but_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(but_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(but_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -262,37 +263,27 @@ public class CadastroVeiculo extends javax.swing.JFrame {
 
     private void but_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_salvarActionPerformed
         Veiculo veiculo = new Veiculo();
-        boolean estaCompleto = verificaCampos(veiculo);
-
-        if (estaCompleto) {
-            Locadora.adicionaVeiculo(veiculo);
-            limpaCamposCV();
-            new Principal().setVisible(true);
-            this.setVisible(false);
+        
+        //VERIFICA SE TODOS CAMPOS FORAM PREENCHIDOS CORRETAMENTE.
+        if (verificaCamposNumero(veiculo) && verificaCampoString(veiculo)) {
+            //VERIFICA SE O VEICULO JÁ ESTÁ CADASTRADO.
+            if (Locadora.verificaVeiculos(veiculo)) {
+                JOptionPane.showMessageDialog(null, "Veiculo já cadastrado.");
+            }else{
+                Locadora.adicionaVeiculo(veiculo);
+                JOptionPane.showMessageDialog(null, "Veiculo Cadastrado");
+                limpaCamposCV();
+                new Principal().setVisible(true);
+                this.setVisible(false);
+            }
         }
     }//GEN-LAST:event_but_salvarActionPerformed
-
-    private void ctext_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_marcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_marcaActionPerformed
 
     private void but_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cancelarActionPerformed
         // TODO add your handling code here:
         new Principal().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_but_cancelarActionPerformed
-
-    private void ctext_diariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_diariaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_diariaActionPerformed
-
-    private void ctext_anoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_anoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_anoActionPerformed
-
-    private void ctext_placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctext_placaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ctext_placaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,8 +323,8 @@ public class CadastroVeiculo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton but_cancelar;
     private javax.swing.JButton but_salvar;
-    private javax.swing.JTextField ctext_ano;
-    private javax.swing.JTextField ctext_capacidade;
+    private javax.swing.JFormattedTextField ctext_ano;
+    private javax.swing.JFormattedTextField ctext_capacidade;
     private javax.swing.JTextField ctext_cor;
     private javax.swing.JTextField ctext_diaria;
     private javax.swing.JTextField ctext_marca;

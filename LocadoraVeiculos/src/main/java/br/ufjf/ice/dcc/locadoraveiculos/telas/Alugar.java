@@ -32,6 +32,7 @@ public class Alugar extends javax.swing.JFrame {
         carregaCBVeiculos();
     }
 
+    //CARREGA COMBO BOX VEÍCULOS.
     public void carregaCBVeiculos() {
         cb_veiculos.removeAllItems();
 
@@ -56,6 +57,7 @@ public class Alugar extends javax.swing.JFrame {
         return quantDias;
     }
 
+    //CARREGA DADOS DO VEÍCULO SELECIONADO NAS CAIXA DE TEXTO.
     public void carregaDadosVeiculo() {
         int indice = cb_veiculos.getSelectedIndex();
 
@@ -70,20 +72,23 @@ public class Alugar extends javax.swing.JFrame {
         ctext_ano.setText(ano);
     }
 
-    public String converteDateString(Date data) {
+    //CONVERTE DATA PARA STRING.
+    public static String converteDateString(Date data) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = dateFormat.format(data);
 
         return dataFormatada;
     }
 
+    //CONVERTE STRING EM DATA.
     public Date converteStringData(String dataString) throws ParseException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataFormatada = formato.parse(dataString);
+        Date data = formato.parse(dataString);
 
-        return dataFormatada;
+        return data;
     }
 
+    //CARREGA DADOS DE PESSOA FÍSICA NAS CAIXAS DE TEXTO.
     public void carregaDadosPFisica(int i) {
         Date dataAtual = new Date();
         dataAtual = Locadora.getPFisica().get(i).getDataNascimento();
@@ -94,6 +99,7 @@ public class Alugar extends javax.swing.JFrame {
         ctext_alugarNascimento.setText(converteDateString(dataAtual));
     }
 
+    //CARREGA DADOS DE PESSOA JURÍDICA NAS CAIXAS DE TEXTO.
     public void carregaDadosPJuridica(int i) {
         ctext_alugarNome.setText(Locadora.getPJuridica().get(i).getNome());
         ctext_alugarEmail.setText(Locadora.getPJuridica().get(i).getEmail());
@@ -111,6 +117,7 @@ public class Alugar extends javax.swing.JFrame {
         table_total.setModel(modeloTabela);
     }
 
+    //PESQUISA CPF JÁ CADASTRADOS.
     public int pesquisaCpf() {
         for (int i = 0; i < Locadora.getPFisica().size(); i++) {
             if (Locadora.getPFisica().get(i).getCpf().compareTo(ctext_alugarID.getText()) == 0) {
@@ -120,6 +127,7 @@ public class Alugar extends javax.swing.JFrame {
         return -1;
     }
 
+    //PESQUISA CNPJ JÁ CADASTRADOS.
     public int pesquisaCnpf() {
         for (int i = 0; i < Locadora.getPJuridica().size(); i++) {
             if (Locadora.getPJuridica().get(i).getCnpj().compareTo(ctext_alugarID.getText()) == 0) {
@@ -128,12 +136,12 @@ public class Alugar extends javax.swing.JFrame {
         }
         return -1;
     }
-    
-    public float totalPagar(){
+
+    public float totalPagar() {
         int index = cb_veiculos.getSelectedIndex();
         float diaria = Locadora.getVeiculos().get(index).getDiaria();
         int quantDias = calculaQuantDias();
-        float total = 0;        
+        float total = 0;
 
         if (rbut_dinheiro.isSelected()) {
             PagamentoDinheiro pag = new PagamentoDinheiro();
@@ -142,8 +150,25 @@ public class Alugar extends javax.swing.JFrame {
             PagamentoCartao pag = new PagamentoCartao();
             total = pag.pagamento(diaria, quantDias);
         }
-        
+
         return total;
+    }
+
+    public boolean verificaCampo(Reserva reserva) {
+        try {
+            reserva.setDataInicio(converteStringData(ctext_dataLocacao.getText()));
+            reserva.setDataFim(converteStringData(ctext_dataDevolucao.getText()));
+        } catch (ParseException | NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Campos incompletos ou preenchidos incorretamente.");
+            return false;
+        }
+        
+        if (ctext_alugarID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -231,6 +256,7 @@ public class Alugar extends javax.swing.JFrame {
         jLabel1.setText("Alugue um veículo");
 
         but_reservar.setText("Reservar");
+        but_reservar.setToolTipText("Reservar");
         but_reservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_reservarActionPerformed(evt);
@@ -238,6 +264,7 @@ public class Alugar extends javax.swing.JFrame {
         });
 
         but_cancelar.setText("Cancelar");
+        but_cancelar.setToolTipText("Cancelar");
         but_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_cancelarActionPerformed(evt);
@@ -248,11 +275,16 @@ public class Alugar extends javax.swing.JFrame {
 
         bgrup_alugarID.add(rbut_alugarCpf);
         rbut_alugarCpf.setText("CPF");
+        rbut_alugarCpf.setToolTipText("CPF");
 
         bgrup_alugarID.add(rbut_alugarCnpj);
         rbut_alugarCnpj.setText("CNPJ");
+        rbut_alugarCnpj.setToolTipText("CNPJ");
+
+        ctext_alugarID.setToolTipText("Identificador");
 
         but_pesquisar.setText("Pesquisar");
+        but_pesquisar.setToolTipText("Pesquisar");
         but_pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_pesquisarActionPerformed(evt);
@@ -262,18 +294,22 @@ public class Alugar extends javax.swing.JFrame {
         jLabel14.setText("Nome");
 
         ctext_alugarNome.setEditable(false);
+        ctext_alugarNome.setToolTipText("Nome");
 
         ctext_alugarEmail.setEditable(false);
+        ctext_alugarEmail.setToolTipText("Email");
 
         jLabel16.setText("Data de Nascimento");
 
         ctext_alugarNascimento.setEditable(false);
+        ctext_alugarNascimento.setToolTipText("Data de Nascimento");
 
         jLabel15.setText("E-mail");
 
         jLabel18.setText("Telefone");
 
         ctext_alugarTelefone.setEditable(false);
+        ctext_alugarTelefone.setToolTipText("Telefone");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -336,6 +372,7 @@ public class Alugar extends javax.swing.JFrame {
 
         jLabel2.setText("Escolha o Veículo");
 
+        cb_veiculos.setToolTipText("Escolha o Veículo");
         cb_veiculos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_veiculosItemStateChanged(evt);
@@ -345,22 +382,27 @@ public class Alugar extends javax.swing.JFrame {
         jLabel6.setText("Modelo");
 
         ctext_modelo.setEditable(false);
+        ctext_modelo.setToolTipText("Modelo");
 
         jLabel7.setText("Marca");
 
         ctext_marca.setEditable(false);
+        ctext_marca.setToolTipText("Marca");
 
         jLabel8.setText("Cor");
 
         ctext_cor.setEditable(false);
+        ctext_cor.setToolTipText("Cor");
 
         jLabel9.setText("Capacidade");
 
         jLabel10.setText("Ano");
 
         ctext_capacidade.setEditable(false);
+        ctext_capacidade.setToolTipText("Capacidade");
 
         ctext_ano.setEditable(false);
+        ctext_ano.setToolTipText("Ano");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -432,6 +474,7 @@ public class Alugar extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ctext_dataLocacao.setToolTipText("Data de Locação");
 
         jLabel4.setText("Data de devolução");
 
@@ -440,14 +483,18 @@ public class Alugar extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ctext_dataDevolucao.setToolTipText("Data de Devolução");
 
         bgrup_formaPagar.add(rbut_dinheiro);
         rbut_dinheiro.setText("Dinheiro");
+        rbut_dinheiro.setToolTipText("Dinheiro");
 
         bgrup_formaPagar.add(rbut_cartao);
         rbut_cartao.setText("Cartão");
+        rbut_cartao.setToolTipText("Cartão");
 
         but_calcular.setText("Calcular");
+        but_calcular.setToolTipText("Calcular");
         but_calcular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 but_calcularMouseClicked(evt);
@@ -601,7 +648,7 @@ public class Alugar extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um identificador");
         }
     }//GEN-LAST:event_but_pesquisarActionPerformed
@@ -609,8 +656,8 @@ public class Alugar extends javax.swing.JFrame {
     private void but_calcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_but_calcularMouseClicked
         int index = cb_veiculos.getSelectedIndex();
         float diaria = Locadora.getVeiculos().get(index).getDiaria();
-        
-        if(rbut_dinheiro.isSelected() || rbut_cartao.isSelected())
+
+        if (rbut_dinheiro.isSelected() || rbut_cartao.isSelected())
             carregaTabelaTotal(diaria, calculaQuantDias(), totalPagar());
         else
             JOptionPane.showMessageDialog(null, "Selecione uma Forma de Pagamento");
@@ -620,39 +667,26 @@ public class Alugar extends javax.swing.JFrame {
         Reserva novaReserva = new Reserva(totalPagar(), calculaQuantDias());
         int indexVeiculo = cb_veiculos.getSelectedIndex();
         int indexCliente;
-      
+
         novaReserva.setVeiculo(Locadora.getVeiculos().get(indexVeiculo));
-        
-        try {
-            novaReserva.setDataInicio(converteStringData(ctext_dataLocacao.getText()));
-            novaReserva.setDataFim(converteStringData(ctext_dataDevolucao.getText()));
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Data Inválida");
-        }
-        
-        if (rbut_alugarCpf.isSelected()) {
+
+        if (rbut_alugarCpf.isSelected() && verificaCampo(novaReserva)) {
             indexCliente = pesquisaCpf();
             if (indexCliente > -1) {
                 novaReserva.setClienteF(Locadora.getPFisica().get(indexCliente));
                 Locadora.adicionaReservaPF(novaReserva);
             }
-        } else if (rbut_alugarCnpj.isSelected()) {
+        } else if (rbut_alugarCnpj.isSelected() && verificaCampo(novaReserva)) {
             indexCliente = pesquisaCnpf();
             if (indexCliente > -1) {
                 novaReserva.setClienteJ(Locadora.getPJuridica().get(indexCliente));
                 Locadora.adicionaReservaPJ(novaReserva);
             }
         }
-        
-        new Principal().setVisible(true);
-        this.setVisible(false);
-        
-        
-        
+
+
     }//GEN-LAST:event_but_reservarActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */

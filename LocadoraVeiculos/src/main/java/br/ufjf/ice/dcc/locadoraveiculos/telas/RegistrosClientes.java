@@ -23,13 +23,19 @@ public class RegistrosClientes extends javax.swing.JFrame {
     }
     
     public void carregaTabelaClientes(){
+        
+        //VETOR DE OBJETO COM O NOME DAS COLUNAS
         Object colunas[] = new Object[]{"Nome", "CPF/CNPJ", "Data de Nascimento", "Email", "Telefone", "Logradouro", "Nº", "CEP", "Complemento", "Bairro", "Cidade", "UF"};
+        //ADICIONA COLUNAS NA TABELA.
         DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
         
         for (int i = 0; i < Locadora.getPFisica().size(); i++) {
+            //FORMATA SAÍDA DA DATA.
+            String data = Alugar.converteDateString(Locadora.getPFisica().get(i).getDataNascimento());
+            
+            //VETOR DE OBJETOS COM ITEMS DA LINHA
             Object linha[] = new Object[] {Locadora.getPFisica().get(i).getNome(),
-                Locadora.getPFisica().get(i).getCpf(),
-                Locadora.getPFisica().get(i).getDataNascimento(),
+                Locadora.getPFisica().get(i).getCpf(),data,
                 Locadora.getPFisica().get(i).getEmail(),
                 Locadora.getPFisica().get(i).getTelefone(),
                 Locadora.getPFisica().get(i).getEndereco().getLogradouro(),
@@ -40,6 +46,7 @@ public class RegistrosClientes extends javax.swing.JFrame {
                 Locadora.getPFisica().get(i).getEndereco().getCidade(),
                 Locadora.getPFisica().get(i).getEndereco().getEstado()};
             
+            //ADICIONA LINHA NA TABELA
             modeloTabela.addRow(linha);
         }
         

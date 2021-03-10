@@ -136,6 +136,7 @@
     <Component class="javax.swing.JButton" name="but_reservar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reservar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Reservar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="but_reservarActionPerformed"/>
@@ -144,6 +145,7 @@
     <Component class="javax.swing.JButton" name="but_cancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="but_cancelarActionPerformed"/>
@@ -242,6 +244,7 @@
               <ComponentRef name="bgrup_alugarID"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CPF"/>
+            <Property name="toolTipText" type="java.lang.String" value="CPF"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbut_alugarCnpj">
@@ -250,13 +253,18 @@
               <ComponentRef name="bgrup_alugarID"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CNPJ"/>
+            <Property name="toolTipText" type="java.lang.String" value="CNPJ"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_alugarID">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Identificador"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="but_pesquisar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Pesquisar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="but_pesquisarActionPerformed"/>
@@ -270,11 +278,13 @@
         <Component class="javax.swing.JTextField" name="ctext_alugarNome">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Nome"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_alugarEmail">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Email"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
@@ -285,6 +295,7 @@
         <Component class="javax.swing.JTextField" name="ctext_alugarNascimento">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Data de Nascimento"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
@@ -300,6 +311,7 @@
         <Component class="javax.swing.JTextField" name="ctext_alugarTelefone">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Telefone"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -400,6 +412,7 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Escolha o Ve&#xed;culo"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cb_veiculosItemStateChanged"/>
@@ -416,6 +429,7 @@
         <Component class="javax.swing.JTextField" name="ctext_modelo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Modelo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -426,6 +440,7 @@
         <Component class="javax.swing.JTextField" name="ctext_marca">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Marca"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -436,6 +451,7 @@
         <Component class="javax.swing.JTextField" name="ctext_cor">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
@@ -451,11 +467,13 @@
         <Component class="javax.swing.JTextField" name="ctext_capacidade">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Capacidade"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ctext_ano">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ano"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -552,6 +570,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Data de Loca&#xe7;&#xe3;o"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -564,6 +583,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Data de Devolu&#xe7;&#xe3;o"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbut_dinheiro">
@@ -572,6 +592,7 @@
               <ComponentRef name="bgrup_formaPagar"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Dinheiro"/>
+            <Property name="toolTipText" type="java.lang.String" value="Dinheiro"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbut_cartao">
@@ -580,11 +601,13 @@
               <ComponentRef name="bgrup_formaPagar"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cart&#xe3;o"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cart&#xe3;o"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="but_calcular">
           <Properties>
             <Property name="text" type="java.lang.String" value="Calcular"/>
+            <Property name="toolTipText" type="java.lang.String" value="Calcular"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="but_calcularMouseClicked"/>
