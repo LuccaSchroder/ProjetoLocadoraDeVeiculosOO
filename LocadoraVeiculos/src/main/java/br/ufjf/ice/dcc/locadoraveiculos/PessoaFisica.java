@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class PessoaFisica extends Cliente {
 
-    private String cpf;
+    private String cpf = "";
     private Date dataNascimento;
 
     public PessoaFisica() {

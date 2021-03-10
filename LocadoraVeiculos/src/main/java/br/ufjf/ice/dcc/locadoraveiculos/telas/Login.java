@@ -5,6 +5,7 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
+import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -107,6 +108,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(txt_Login.getText().equals("funcionario") && txt_Senha.getText().equals("1234"))
         {
+            Locadora.adicionaAtendente();
             new Principal().setVisible(true);
             this.setVisible(false);
         }

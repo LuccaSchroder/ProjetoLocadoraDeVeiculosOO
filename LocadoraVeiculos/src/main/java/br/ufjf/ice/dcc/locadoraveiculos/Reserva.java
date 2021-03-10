@@ -95,5 +95,9 @@ public class Reserva {
         return periodoLocacao;
     }
     
+    public boolean estaDisponivel(Date dataParaReserva){
+        return false;
+    }
+    
     
 }

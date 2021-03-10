@@ -13,9 +13,18 @@ package br.ufjf.ice.dcc.locadoraveiculos;
  */
 public class Gerente extends Funcionario {
 
-    @Override
-    public void calculaComicao() {
+    Gerente(){
         
     }
     
+    @Override
+    public void calculaComicao() {
+
+    }
+
+    @Override
+    public int tipoFuncionario() {
+        return 0;
+    }
+
 }

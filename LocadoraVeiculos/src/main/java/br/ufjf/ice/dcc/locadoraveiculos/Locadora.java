@@ -18,7 +18,11 @@ public class Locadora {
     private static List <Reserva> reservasPJ = new ArrayList<>();
     private static List <PessoaFisica> pFisica = new ArrayList<>(); 
     private static List <PessoaJuridica> pJuridica = new ArrayList<>();
-    
+    private static List <Atendente> atendentes = new ArrayList<>(); 
+    private static List <Gerente> gerentes = new ArrayList<>(); 
+    private static Atendente atendenteLogado = new Atendente("");
+    private static Gerente gerenteLogado = new Gerente();
+
    
     
     public static void adicionaVeiculo(Veiculo veiculo){
@@ -88,6 +92,41 @@ public class Locadora {
         return false;
     }
     
+    public static boolean buscaAtendente(Atendente pessoa){
+        for (int i = 0; i < pFisica.size(); i++) {
+            if(atendentes.get(i).getCpf().equals(pessoa.getCpf())){
+                atendenteLogado = pessoa;
+                return true;
+            }  
+        }
+        return false;
+    }
+    
+    public static boolean buscaGerente(Gerente pessoa){
+        for (int i = 0; i < pFisica.size(); i++) {
+            if(atendentes.get(i).getCpf().equals(pessoa.getCpf())){
+                gerenteLogado = pessoa;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static Funcionario getLogado(){
+        if(atendenteLogado.getCpf() != ""){
+            System.out.println("é atendente");
+            return atendenteLogado;
+        } else {
+            System.out.println("é gerente");
+            return gerenteLogado;
+        }
+    }
+    
+    public static void adicionaAtendente(){
+        Atendente ronan = new Atendente("123456");
+        atendenteLogado = ronan;
+        atendentes.add(ronan);
+    }
     
     /*public static void main(String[] args) {
         Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
