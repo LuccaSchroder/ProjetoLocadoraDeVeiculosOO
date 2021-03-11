@@ -11,9 +11,13 @@ package br.ufjf.ice.dcc.locadoraveiculos;
  */
 public class Atendente extends Funcionario{
 
+    public Atendente() {
+    }
+    
     Atendente(String cpf){
         this.setCpf(cpf);
     }
+    
     @Override
     public void calculaComicao() {
         

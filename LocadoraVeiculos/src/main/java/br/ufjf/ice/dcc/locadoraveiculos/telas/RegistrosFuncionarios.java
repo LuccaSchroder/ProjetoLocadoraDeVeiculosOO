@@ -5,6 +5,9 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
+import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lucca
@@ -16,6 +19,58 @@ public class RegistrosFuncionarios extends javax.swing.JFrame {
      */
     public RegistrosFuncionarios() {
         initComponents();
+        carregaTabelaFuncionario();
+    }
+    
+    
+    public void carregaTabelaFuncionario(){
+        
+        //VETOR DE OBJETO COM O NOME DAS COLUNAS
+        Object colunas[] = new Object[]{"Funcionario", "Nome", "CPF", "Data de Nascimento", "Email", "Telefone", "Logradouro", "Nº", "CEP", "Complemento", "Bairro", "Cidade", "UF"};
+        //ADICIONA COLUNAS NA TABELA.
+        DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
+        
+        for (int i = 0; i < Locadora.getAtendente().size(); i++) {
+            //FORMATA SAÍDA DA DATA.
+            String data = Alugar.converteDateString(Locadora.getAtendente().get(i).getDataNascimento());
+            
+            //VETOR DE OBJETOS COM ITEMS DA LINHA
+            Object linha[] = new Object[] {"Atendente", Locadora.getAtendente().get(i).getNome(),
+                Locadora.getAtendente().get(i).getCpf(),data,
+                Locadora.getAtendente().get(i).getEmail(),
+                Locadora.getAtendente().get(i).getTelefone(),
+                Locadora.getAtendente().get(i).getEndereco().getLogradouro(),
+                Locadora.getAtendente().get(i).getEndereco().getNumero(),
+                Locadora.getAtendente().get(i).getEndereco().getCep(),
+                Locadora.getAtendente().get(i).getEndereco().getComplemento(),
+                Locadora.getAtendente().get(i).getEndereco().getBairro(),
+                Locadora.getAtendente().get(i).getEndereco().getCidade(),
+                Locadora.getAtendente().get(i).getEndereco().getEstado()};
+            
+            //ADICIONA LINHA NA TABELA
+            modeloTabela.addRow(linha);
+        }
+        
+        for (int i = 0; i < Locadora.getGerente().size(); i++) {
+            //FORMATA SAÍDA DA DATA.
+            String data = Alugar.converteDateString(Locadora.getGerente().get(i).getDataNascimento());
+            
+            //VETOR DE OBJETOS COM ITEMS DA LINHA
+            Object linha[] = new Object[] {"Gerente", Locadora.getGerente().get(i).getNome(),
+                Locadora.getGerente().get(i).getCpf(),data,
+                Locadora.getGerente().get(i).getEmail(),
+                Locadora.getGerente().get(i).getTelefone(),
+                Locadora.getGerente().get(i).getEndereco().getLogradouro(),
+                Locadora.getGerente().get(i).getEndereco().getNumero(),
+                Locadora.getGerente().get(i).getEndereco().getCep(),
+                Locadora.getGerente().get(i).getEndereco().getComplemento(),
+                Locadora.getGerente().get(i).getEndereco().getBairro(),
+                Locadora.getGerente().get(i).getEndereco().getCidade(),
+                Locadora.getGerente().get(i).getEndereco().getEstado()};
+            
+            //ADICIONA LINHA NA TABELA
+            modeloTabela.addRow(linha);
+        }
     }
 
     /**
@@ -29,28 +84,36 @@ public class RegistrosFuncionarios extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTb_Clientes = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jTb_funcionario = new javax.swing.JTable();
+        bt_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Registro de Funcionários");
 
-        jTb_Clientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTb_funcionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "CPF", "Data de Nascimento", "Email", "Telefone", "Logradouro", "Número", "CEP", "Complemento", "Bairro", "Cidade", "UF"
+                "Funcionário", "Nome", "CPF", "Data de Nascimento", "Email", "Telefone", "Logradouro", "Número", "CEP", "Complemento", "Bairro", "Cidade", "UF"
             }
-        ));
-        jScrollPane1.setViewportView(jTb_Clientes);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
 
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTb_funcionario);
+
+        bt_voltar.setText("Voltar");
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bt_voltarActionPerformed(evt);
             }
         });
 
@@ -61,7 +124,7 @@ public class RegistrosFuncionarios extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(628, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -76,17 +139,18 @@ public class RegistrosFuncionarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new RegistrosGerente().setVisible(true);
+    private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
+        new Registros().setVisible(true);
         this.setVisible(false);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bt_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,9 +189,9 @@ public class RegistrosFuncionarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTb_Clientes;
+    private javax.swing.JTable jTb_funcionario;
     // End of variables declaration//GEN-END:variables
 }

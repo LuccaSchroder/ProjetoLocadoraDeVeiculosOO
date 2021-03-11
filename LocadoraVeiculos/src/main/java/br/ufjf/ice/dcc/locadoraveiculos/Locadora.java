@@ -65,6 +65,14 @@ public class Locadora {
         return pJuridica;
     }
     
+    public static List<Atendente> getAtendente() {
+        return atendentes;
+    }
+    
+    public static List<Gerente> getGerente() {
+        return gerentes;
+    }
+    
     //RETORNA SE UM VEICULO JA FOI CADASTRADO
     public static boolean verificaVeiculos(Veiculo veiculo){
         for (int i = 0; i < veiculos.size(); i++) {
@@ -92,22 +100,38 @@ public class Locadora {
         return false;
     }
     
-    public static boolean buscaAtendente(Atendente pessoa){
-        for (int i = 0; i < pFisica.size(); i++) {
-            if(atendentes.get(i).getCpf().equals(pessoa.getCpf())){
-                atendenteLogado = pessoa;
+    public static boolean buscaAtendente(String cpf){
+        for (int i = 0; i < atendentes.size(); i++) {
+            if(atendentes.get(i).getCpf().equals(cpf)){
+                atendenteLogado = atendentes.get(i);
                 return true;
             }  
         }
         return false;
     }
     
-    public static boolean buscaGerente(Gerente pessoa){
-        for (int i = 0; i < pFisica.size(); i++) {
-            if(atendentes.get(i).getCpf().equals(pessoa.getCpf())){
-                gerenteLogado = pessoa;
+    public static boolean buscaGerente(String cpf){
+        for (int i = 0; i < gerentes.size(); i++) {
+            if(gerentes.get(i).getCpf().equals(cpf)){
+                gerenteLogado = gerentes.get(i);
                 return true;
             }
+        }
+        return false;
+    }
+    
+    public static boolean verificaAtendente(Atendente funcionario){
+        for (int i = 0; i < atendentes.size(); i++) {
+            if(atendentes.get(i).getCpf().equals(funcionario.getCpf()))
+                return true;
+        }
+        return false;
+    }
+    
+    public static boolean verificaGerente(Gerente funcionario){
+        for (int i = 0; i < gerentes.size(); i++) {
+            if(gerentes.get(i).getCpf().equals(funcionario.getCpf()))
+                return true;
         }
         return false;
     }
@@ -122,10 +146,19 @@ public class Locadora {
         }
     }
     
-    public static void adicionaAtendente(){
+    public static void adicionaAtendente(/*Atendente funcionario*/){
         Atendente ronan = new Atendente("123456");
         atendenteLogado = ronan;
         atendentes.add(ronan);
+        //atendentes.add(funcionario);
+        
+    }
+    
+    public static void adicionaGerente(Gerente funcionario){
+        Atendente ronan = new Atendente("123456");
+        atendenteLogado = ronan;
+        atendentes.add(ronan);
+        //gerentes.add(funcionario);
     }
     
     /*public static void main(String[] args) {
