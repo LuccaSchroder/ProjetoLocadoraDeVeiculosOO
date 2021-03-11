@@ -8,12 +8,14 @@ package br.ufjf.ice.dcc.locadoraveiculos.telas;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
 import br.ufjf.ice.dcc.locadoraveiculos.PagamentoCartao;
 import br.ufjf.ice.dcc.locadoraveiculos.PagamentoDinheiro;
-import br.ufjf.ice.dcc.locadoraveiculos.Reserva;
+import br.ufjf.ice.dcc.locadoraveiculos.Locacao;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -154,7 +156,7 @@ public class Alugar extends javax.swing.JFrame {
         return total;
     }
 
-    public boolean verificaCampo(Reserva reserva) {
+    public boolean verificaCampo(Locacao reserva) {
         try {
             reserva.setDataInicio(converteStringData(ctext_dataLocacao.getText()));
             reserva.setDataFim(converteStringData(ctext_dataDevolucao.getText()));
@@ -171,6 +173,22 @@ public class Alugar extends javax.swing.JFrame {
         }
     }
 
+    public void estaDisponivel(){
+        int indice = cb_veiculos.getSelectedIndex();
+        try {
+            if(Locadora.estaDisponivel(
+                    Locadora.getVeiculos().get(indice).getPlaca(), 
+                    converteStringData(ctext_dataLocacao.getText()),
+                    converteStringData(ctext_dataDevolucao.getText()))){
+                JOptionPane.showMessageDialog(null, "Esta disponivel!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Não esta disponivel nessa data!");
+            }
+            
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Deu ruim!");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -500,6 +518,11 @@ public class Alugar extends javax.swing.JFrame {
                 but_calcularMouseClicked(evt);
             }
         });
+        but_calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_calcularActionPerformed(evt);
+            }
+        });
 
         table_total.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -664,7 +687,7 @@ public class Alugar extends javax.swing.JFrame {
     }//GEN-LAST:event_but_calcularMouseClicked
 
     private void but_reservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_reservarActionPerformed
-        Reserva novaReserva = new Reserva(totalPagar(), calculaQuantDias());
+        Locacao novaReserva = new Locacao(totalPagar(), calculaQuantDias());
         int indexVeiculo = cb_veiculos.getSelectedIndex();
         int indexCliente;
 
@@ -687,6 +710,11 @@ public class Alugar extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_but_reservarActionPerformed
+
+    private void but_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_calcularActionPerformed
+        // TODO add your handling code here:
+        estaDisponivel();
+    }//GEN-LAST:event_but_calcularActionPerformed
 
     /**
      * @param args the command line arguments

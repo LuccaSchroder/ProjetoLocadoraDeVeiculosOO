@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 //Mantem um registro de uma reserva
-public class Reserva {
+public class Locacao {
     private PessoaFisica clienteF;
     private PessoaJuridica clienteJ;
     private Veiculo veiculo;
@@ -23,23 +23,23 @@ public class Reserva {
     private int periodoLocacao;
     private float total;
     
-    public Reserva(){
+    public Locacao(){
       //settar cliente e veiculos recebendo como parametro  
     };
 
-    public Reserva(float total, int periodoLocacao) {
+    public Locacao(float total, int periodoLocacao) {
         this.total = total;
         this.periodoLocacao = periodoLocacao;
     }
 
-    public Reserva(PessoaFisica clienteF, Veiculo veiculo, Date dataInicio, Date dataFim, float total) {
+    public Locacao(PessoaFisica clienteF, Veiculo veiculo, Date dataInicio, Date dataFim, float total) {
         this.clienteF = clienteF;
         this.veiculo = veiculo;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
     }
    
-    public Reserva(PessoaJuridica clienteJ, Veiculo veiculo, Date dataInicio, Date dataFim, float total){
+    public Locacao(PessoaJuridica clienteJ, Veiculo veiculo, Date dataInicio, Date dataFim, float total){
         this.setClienteJ(clienteJ);
         this.setVeiculo(veiculo);
         this.dataInicio = dataInicio;
@@ -95,9 +95,6 @@ public class Reserva {
         return periodoLocacao;
     }
     
-    public boolean estaDisponivel(Date dataParaReserva){
-        return false;
-    }
     
     
 }

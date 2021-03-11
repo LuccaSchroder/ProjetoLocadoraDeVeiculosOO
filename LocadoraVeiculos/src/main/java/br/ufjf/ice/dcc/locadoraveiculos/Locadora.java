@@ -14,8 +14,8 @@ import java.util.*;
  */
 public class Locadora {
     private static List <Veiculo> veiculos = new ArrayList<>(); //todos os veiculos
-    private static List <Reserva> reservasPF = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
-    private static List <Reserva> reservasPJ = new ArrayList<>();
+    private static List <Locacao> reservasPF = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
+    private static List <Locacao> reservasPJ = new ArrayList<>();
     private static List <PessoaFisica> pFisica = new ArrayList<>(); 
     private static List <PessoaJuridica> pJuridica = new ArrayList<>();
     private static List <Atendente> atendentes = new ArrayList<>(); 
@@ -33,19 +33,19 @@ public class Locadora {
         return veiculos;
     }
     
-    public static void adicionaReservaPF(Reserva reserva){
+    public static void adicionaReservaPF(Locacao reserva){
         reservasPF.add(reserva);
     }
 
-    public static List<Reserva> getReservasPF() {
+    public static List<Locacao> getReservasPF() {
         return reservasPF;
     }
     
-    public static void adicionaReservaPJ(Reserva reserva){
+    public static void adicionaReservaPJ(Locacao reserva){
         reservasPF.add(reserva);
     }
 
-    public static List<Reserva> getReservasPJ() {
+    public static List<Locacao> getReservasPJ() {
         return reservasPJ;
     }
     
@@ -161,6 +161,43 @@ public class Locadora {
         //gerentes.add(funcionario);
     }
     
+    public static boolean estaDisponivel(String placa, Date dataIncio, Date dataFim){
+        for (int i = 0; i < reservasPF.size(); i++) {
+            if(reservasPF.get(i).getVeiculo().getPlaca().equals(placa)){
+                if(reservasPF.get(i).getDataFim().equals(dataFim)){
+                    System.out.println("data de fim igual a data da nova locacao");
+                    return false;
+                } else if(reservasPF.get(i).getDataInicio().equals(dataIncio)){
+                    return false;
+                } else if(reservasPF.get(i).getDataFim().equals(dataIncio)){
+                    return false;
+                } else {
+                    if(reservasPF.get(i).getDataFim().before(dataFim)){
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        }
+        for (int i = 0; i < reservasPJ.size(); i++) {
+            if(reservasPJ.get(i).getVeiculo().getPlaca().equals(placa)){
+                if(reservasPJ.get(i).getDataFim().equals(dataFim)){
+                    return false;
+                } else if(reservasPJ.get(i).getDataInicio().equals(dataIncio)){
+                    return false;
+                } else if(reservasPJ.get(i).getDataFim().equals(dataIncio)){
+                    return false;
+                } else {
+                    if(reservasPJ.get(i).getDataFim().before(dataFim)){
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
     /*public static void main(String[] args) {
         Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
         Usuario a2 = new Usuario("Lucca", "1111111111");
@@ -172,7 +209,7 @@ public class Locadora {
         veiculos.add(b);
         
         //b.imprime();
-        //Reserva c = new Reserva(a1, b, 5);
+        //Reserva c = new Locacao(a1, b, 5);
         //reservas.add(c);
         
         //c.imprime();
