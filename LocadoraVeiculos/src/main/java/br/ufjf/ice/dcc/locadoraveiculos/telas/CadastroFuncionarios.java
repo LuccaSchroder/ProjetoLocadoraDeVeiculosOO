@@ -433,6 +433,8 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
             } else 
                 JOptionPane.showMessageDialog(null, "Selecione um Indentificador.");
         }
+        new Principal().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jb_salvarActionPerformed
 
     private void jb_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_cancelarActionPerformed

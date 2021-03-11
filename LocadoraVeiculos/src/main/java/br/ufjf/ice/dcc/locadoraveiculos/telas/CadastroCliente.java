@@ -473,8 +473,8 @@ public class CadastroCliente extends javax.swing.JFrame {
             }
         }
 
-        //new Principal().setVisible(true);
-        //this.setVisible(false);
+        new Principal().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_but_cadastroSalvarActionPerformed
 
     private void rbut_cnpjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbut_cnpjMouseClicked

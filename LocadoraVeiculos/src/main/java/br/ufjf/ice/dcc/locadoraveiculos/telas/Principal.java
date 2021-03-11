@@ -81,6 +81,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,6 +156,11 @@ public class Principal extends javax.swing.JFrame {
         new CadastroFuncionarios().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cadastrar_funcionarioActionPerformed
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sairActionPerformed
     
     private void verificaTipoUsuario(){
         Funcionario logado = Locadora.getLogado();
