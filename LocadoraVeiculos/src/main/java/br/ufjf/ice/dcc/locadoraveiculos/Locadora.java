@@ -161,41 +161,44 @@ public class Locadora {
         //gerentes.add(funcionario);
     }
     
-    public static boolean estaDisponivel(String placa, Date dataIncio, Date dataFim){
-        for (int i = 0; i < reservasPF.size(); i++) {
-            if(reservasPF.get(i).getVeiculo().getPlaca().equals(placa)){
-                if(reservasPF.get(i).getDataFim().equals(dataFim)){
-                    System.out.println("data de fim igual a data da nova locacao");
-                    return false;
-                } else if(reservasPF.get(i).getDataInicio().equals(dataIncio)){
-                    return false;
-                } else if(reservasPF.get(i).getDataFim().equals(dataIncio)){
-                    return false;
-                } else {
-                    if(reservasPF.get(i).getDataFim().before(dataFim)){
-                        return true;
+    public static boolean estaDisponivel(String placa, Date dataInicio, Date dataFim){
+        if(dataInicio.before(dataFim) || dataInicio.equals(dataFim)){
+            for (int i = 0; i < reservasPF.size(); i++) {
+                if(reservasPF.get(i).getVeiculo().getPlaca().equals(placa)){
+                    if(reservasPF.get(i).getDataFim().equals(dataFim)){
+                        System.out.println("data de fim igual a data da nova locacao");
+                        return false;
+                    } else if(reservasPF.get(i).getDataInicio().equals(dataInicio)){
+                        return false;
+                    } else if(reservasPF.get(i).getDataFim().equals(dataInicio)){
+                        return false;
+                    } else {
+                        if(reservasPF.get(i).getDataFim().before(dataFim)){
+                            return true;
+                        }
+                        return false;
                     }
-                    return false;
                 }
             }
-        }
-        for (int i = 0; i < reservasPJ.size(); i++) {
-            if(reservasPJ.get(i).getVeiculo().getPlaca().equals(placa)){
-                if(reservasPJ.get(i).getDataFim().equals(dataFim)){
-                    return false;
-                } else if(reservasPJ.get(i).getDataInicio().equals(dataIncio)){
-                    return false;
-                } else if(reservasPJ.get(i).getDataFim().equals(dataIncio)){
-                    return false;
-                } else {
-                    if(reservasPJ.get(i).getDataFim().before(dataFim)){
-                        return true;
+            for (int i = 0; i < reservasPJ.size(); i++) {
+                if(reservasPJ.get(i).getVeiculo().getPlaca().equals(placa)){
+                    if(reservasPJ.get(i).getDataFim().equals(dataFim)){
+                        return false;
+                    } else if(reservasPJ.get(i).getDataInicio().equals(dataInicio)){
+                        return false;
+                    } else if(reservasPJ.get(i).getDataFim().equals(dataInicio)){
+                        return false;
+                    } else {
+                        if(reservasPJ.get(i).getDataFim().before(dataFim)){
+                            return true;
+                        }
+                        return false;
                     }
-                    return false;
                 }
             }
-        }
-        return true;
+            return true;
+        } else
+            return false;
     }
     
     /*public static void main(String[] args) {
