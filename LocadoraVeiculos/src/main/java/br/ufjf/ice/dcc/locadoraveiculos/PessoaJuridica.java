@@ -5,6 +5,8 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
 
+import java.util.Date;
+
 /**
  *
  * @author Jaqueline
@@ -26,6 +28,26 @@ public class PessoaJuridica extends Cliente {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    @Override
+    public String getID() {
+        return this.cnpj;
+    }
+
+    @Override
+    public void setID(String id) {
+        this.cnpj = id;
+    }
+
+    @Override
+    public Date getDataNascimento() {
+        return null;
+    }
+
+    @Override
+    public void setDataNascimento(Date nascimento) {
+        
     }
     
     

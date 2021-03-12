@@ -15,8 +15,7 @@ import java.util.Date;
 
 //Mantem um registro de uma reserva
 public class Locacao {
-    private PessoaFisica clienteF;
-    private PessoaJuridica clienteJ;
+    private Cliente cliente;
     private Veiculo veiculo;
     private Date dataInicio = new Date();
     private Date dataFim = new Date();
@@ -33,34 +32,34 @@ public class Locacao {
     }
 
     public Locacao(PessoaFisica clienteF, Veiculo veiculo, Date dataInicio, Date dataFim, float total) {
-        this.clienteF = clienteF;
+        this.cliente = clienteF;
         this.veiculo = veiculo;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
     }
    
-    public Locacao(PessoaJuridica clienteJ, Veiculo veiculo, Date dataInicio, Date dataFim, float total){
+    /*public Locacao(PessoaJuridica clienteJ, Veiculo veiculo, Date dataInicio, Date dataFim, float total){
         this.setClienteJ(clienteJ);
         this.setVeiculo(veiculo);
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+    }*/
+    
+    public Cliente getCliente(){
+        return this.cliente;
     }
     
-    public PessoaFisica getClienteF(){
-        return this.clienteF;
-    }
-    
-    public void setClienteF(PessoaFisica clienteF){
-        this.clienteF = clienteF;
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
     }
 
-    public PessoaJuridica getClienteJ() {
+    /*public PessoaJuridica getClienteJ() {
         return clienteJ;
     }
 
     public void setClienteJ(PessoaJuridica clienteJ) {
         this.clienteJ = clienteJ;
-    }
+    }*/
     
     
     public Date getDataInicio() {

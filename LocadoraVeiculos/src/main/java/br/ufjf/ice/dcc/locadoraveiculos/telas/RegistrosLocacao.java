@@ -24,34 +24,25 @@ public class RegistrosLocacao extends javax.swing.JFrame {
     }
     
     public void carregaTabelaLocacao(){
+        String dataInicio, dataFim;
+        
         Object colunas[] = new Object[]{"Cliente", "CPF/CNPF", "Modelo", "Placa", "Data Inicio", "Data de Entrga", "Tempo de Locação(dias)", "Preço"};
         DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
         
-        for (int i = 0; i < Locadora.getReservasPF().size(); i++) {
-            Object linha[] = new Object[] {Locadora.getReservasPF().get(i).getClienteF().getNome(),
-                Locadora.getReservasPF().get(i).getClienteF().getCpf(),
-                Locadora.getReservasPF().get(i).getVeiculo().getModelo(),
-                Locadora.getReservasPF().get(i).getVeiculo().getPlaca(),
-                Locadora.getReservasPF().get(i).getDataInicio(),
-                Locadora.getReservasPF().get(i).getDataFim(),
-                Locadora.getReservasPF().get(i).getPeriodoLocacao(),
-                Locadora.getReservasPF().get(i).getTotal()};
+        for (int i = 0; i < Locadora.getReservas().size(); i++) {
+            dataInicio = Alugar.converteDateString(Locadora.getReservas().get(i).getDataInicio());
+            dataFim = Alugar.converteDateString(Locadora.getReservas().get(i).getDataFim());
+            
+            Object linha[] = new Object[] {Locadora.getReservas().get(i).getCliente().getNome(),
+                Locadora.getReservas().get(i).getCliente().getID(),
+                Locadora.getReservas().get(i).getVeiculo().getModelo(),
+                Locadora.getReservas().get(i).getVeiculo().getPlaca(), dataInicio, dataFim,
+                Locadora.getReservas().get(i).getPeriodoLocacao(),
+                Locadora.getReservas().get(i).getTotal()};
             
             modeloTabela.addRow(linha);
         }
         
-        for (int i = 0; i < Locadora.getReservasPJ().size(); i++) {
-            Object linha[] = new Object[] {Locadora.getReservasPJ().get(i).getClienteJ().getNome(),
-                Locadora.getReservasPJ().get(i).getClienteJ().getCnpj(),
-                Locadora.getReservasPJ().get(i).getVeiculo().getModelo(),
-                Locadora.getReservasPJ().get(i).getVeiculo().getPlaca(),
-                Locadora.getReservasPJ().get(i).getDataInicio(),
-                Locadora.getReservasPJ().get(i).getDataFim(),
-                Locadora.getReservasPJ().get(i).getPeriodoLocacao(),
-                Locadora.getReservasPJ().get(i).getTotal()};
-            
-            modeloTabela.addRow(linha);
-        }
         
         table_registroLocacao.setModel(modeloTabela);
         

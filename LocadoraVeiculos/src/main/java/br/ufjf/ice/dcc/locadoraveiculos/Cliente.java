@@ -19,6 +19,7 @@ public abstract class Cliente {
     private String email;
     private String telefone;
 
+
     public String getNome(){
         return nome;
     }
@@ -51,7 +52,10 @@ public abstract class Cliente {
         this.telefone = telefone;
     }
 
-    
+    public abstract String getID();
+    public abstract void setID(String id);
+    public abstract Date getDataNascimento();
+    public abstract void setDataNascimento(Date nascimento);
     
 
 }

@@ -10,7 +10,6 @@ import br.ufjf.ice.dcc.locadoraveiculos.Endereco;
 import br.ufjf.ice.dcc.locadoraveiculos.Funcionario;
 import br.ufjf.ice.dcc.locadoraveiculos.Gerente;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
-import br.ufjf.ice.dcc.locadoraveiculos.PessoaFisica;
 import br.ufjf.ice.dcc.locadoraveiculos.ValidaCpfCnpj;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

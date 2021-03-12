@@ -14,8 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -91,23 +89,22 @@ public class Alugar extends javax.swing.JFrame {
     }
 
     //CARREGA DADOS DE PESSOA FÍSICA NAS CAIXAS DE TEXTO.
-    public void carregaDadosPFisica(int i) {
+    public void carregaDadosCliente(int i) {
         Date dataAtual = new Date();
-        dataAtual = Locadora.getPFisica().get(i).getDataNascimento();
-
-        ctext_alugarNome.setText(Locadora.getPFisica().get(i).getNome());
-        ctext_alugarEmail.setText(Locadora.getPFisica().get(i).getEmail());
-        ctext_alugarTelefone.setText(Locadora.getPFisica().get(i).getTelefone());
-        ctext_alugarNascimento.setText(converteDateString(dataAtual));
+        dataAtual = Locadora.getCliente().get(i).getDataNascimento();
+        
+        if(dataAtual != null)
+            ctext_alugarNascimento.setText(converteDateString(dataAtual));
+        else
+            ctext_alugarNascimento.setText("");
+        
+        ctext_alugarNome.setText(Locadora.getCliente().get(i).getNome());
+        ctext_alugarEmail.setText(Locadora.getCliente().get(i).getEmail());
+        ctext_alugarTelefone.setText(Locadora.getCliente().get(i).getTelefone());
+        
     }
 
-    //CARREGA DADOS DE PESSOA JURÍDICA NAS CAIXAS DE TEXTO.
-    public void carregaDadosPJuridica(int i) {
-        ctext_alugarNome.setText(Locadora.getPJuridica().get(i).getNome());
-        ctext_alugarEmail.setText(Locadora.getPJuridica().get(i).getEmail());
-        ctext_alugarTelefone.setText(Locadora.getPJuridica().get(i).getTelefone());
-        ctext_alugarNascimento.setEnabled(false);
-    }
+    
 
     public void carregaTabelaTotal(float precoDiaria, int quantDias, float total) {
         Object colunas[] = new Object[]{"Preço da Diária", "Quantidade de dias", "Total"};
@@ -120,24 +117,16 @@ public class Alugar extends javax.swing.JFrame {
     }
 
     //PESQUISA CPF JÁ CADASTRADOS.
-    public int pesquisaCpf() {
-        for (int i = 0; i < Locadora.getPFisica().size(); i++) {
-            if (Locadora.getPFisica().get(i).getCpf().compareTo(ctext_alugarID.getText()) == 0) {
+    public int pesquisaID() {
+        for (int i = 0; i < Locadora.getCliente().size(); i++) {
+            if (Locadora.getCliente().get(i).getID().compareTo(ctext_alugarID.getText()) == 0) {
                 return i;
             }
         }
         return -1;
     }
 
-    //PESQUISA CNPJ JÁ CADASTRADOS.
-    public int pesquisaCnpf() {
-        for (int i = 0; i < Locadora.getPJuridica().size(); i++) {
-            if (Locadora.getPJuridica().get(i).getCnpj().compareTo(ctext_alugarID.getText()) == 0) {
-                return i;
-            }
-        }
-        return -1;
-    }
+    
 
     public float totalPagar() {
         int index = cb_veiculos.getSelectedIndex();
@@ -657,17 +646,10 @@ public class Alugar extends javax.swing.JFrame {
     private void but_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_pesquisarActionPerformed
         int index;
 
-        if (rbut_alugarCpf.isSelected()) {
-            index = pesquisaCpf();
+        if (rbut_alugarCpf.isSelected() || rbut_alugarCnpj.isSelected()) {
+            index = pesquisaID();
             if (index > -1) {
-                carregaDadosPFisica(index);
-            } else {
-                JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
-            }
-        } else if (rbut_alugarCnpj.isSelected()) {
-            index = pesquisaCnpf();
-            if (index > -1) {
-                carregaDadosPJuridica(index);
+                carregaDadosCliente(index);
             } else {
                 JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
             }
@@ -694,18 +676,18 @@ public class Alugar extends javax.swing.JFrame {
         novaReserva.setVeiculo(Locadora.getVeiculos().get(indexVeiculo));
 
         if (rbut_alugarCpf.isSelected() && verificaCampo(novaReserva)) {
-            indexCliente = pesquisaCpf();
+            indexCliente = pesquisaID();
             if (indexCliente > -1) {
-                novaReserva.setClienteF(Locadora.getPFisica().get(indexCliente));
-                Locadora.adicionaReservaPF(novaReserva);
+                novaReserva.setCliente(Locadora.getCliente().get(indexCliente));
+                Locadora.adicionaReserva(novaReserva);
             }
-        } else if (rbut_alugarCnpj.isSelected() && verificaCampo(novaReserva)) {
+        }/* else if (rbut_alugarCnpj.isSelected() && verificaCampo(novaReserva)) {
             indexCliente = pesquisaCnpf();
             if (indexCliente > -1) {
                 novaReserva.setClienteJ(Locadora.getPJuridica().get(indexCliente));
                 Locadora.adicionaReservaPJ(novaReserva);
             }
-        }
+        }*/
         new Principal().setVisible(true);
         this.setVisible(false);
 

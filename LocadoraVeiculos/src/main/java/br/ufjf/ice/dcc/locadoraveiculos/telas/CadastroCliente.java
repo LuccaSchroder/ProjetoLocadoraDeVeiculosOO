@@ -6,10 +6,10 @@
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
 import br.ufjf.ice.dcc.locadoraveiculos.Endereco;
-import br.ufjf.ice.dcc.locadoraveiculos.PessoaFisica;
-import br.ufjf.ice.dcc.locadoraveiculos.PessoaJuridica;
 import br.ufjf.ice.dcc.locadoraveiculos.Cliente;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import br.ufjf.ice.dcc.locadoraveiculos.PessoaFisica;
+import br.ufjf.ice.dcc.locadoraveiculos.PessoaJuridica;
 import br.ufjf.ice.dcc.locadoraveiculos.ValidaCpfCnpj;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -55,23 +55,27 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     //TRATAMENTO DE EXCEÇÃO
     //VERIFICA SE TODOS CAMPOS DE PESSOA FÍSICA FORAM PREENCHIDOS.
-    private boolean verificaCamposPF(PessoaFisica pessoa) {
-        pessoa.setNome(ctext_cadastroNome.getText());
-        pessoa.setCpf(ctext_cadastroID.getText());
-        pessoa.setEmail(ctext_cadastroEmail.getText());
-        pessoa.setTelefone(ctext_cadastroTelefone.getText());
+    private boolean verificaCampos(Cliente cliente) {
+        cliente.setNome(ctext_cadastroNome.getText());
+        cliente.setID(ctext_cadastroID.getText());
+        cliente.setEmail(ctext_cadastroEmail.getText());
+        cliente.setTelefone(ctext_cadastroTelefone.getText());
 
-        try {
-            pessoa.setDataNascimento(converteStringData());
-        } catch (NullPointerException | NumberFormatException | ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Campos incompletos ou preenchidos incorretamente.");
-            return false;
-        }
+        if(rbut_cnpj.isSelected()){
+            cliente.setDataNascimento(null);
+        }else{
+            try {
+                cliente.setDataNascimento(converteStringData());
+            } catch (NullPointerException | NumberFormatException | ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Campos incompletos ou preenchidos incorretamente.");
+                return false;
+            }
+        }    
 
-        if (pessoa.getNome().isEmpty() || pessoa.getEmail().isEmpty() || pessoa.getTelefone().isEmpty()) {
+        if (cliente.getNome().isEmpty() || cliente.getEmail().isEmpty() || cliente.getTelefone().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
             return false;
-        }else if(!ValidaCpfCnpj.isValid(pessoa.getCpf())) {
+        }else if(!ValidaCpfCnpj.isValid(cliente.getID())) {
             JOptionPane.showMessageDialog(null, "CPF inválido!");
             return false;
         }else {
@@ -79,23 +83,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         }
     }
 
-    //VERIFICA SE TODOS CAMPOS DE PESSOA JURÍCA FORAM PREENCHIDOS.
-    private boolean verificaCamposPJ(PessoaJuridica pessoa) {
-        pessoa.setNome(ctext_cadastroNome.getText());
-        pessoa.setCnpj(ctext_cadastroID.getText());
-        pessoa.setEmail(ctext_cadastroEmail.getText());
-        pessoa.setTelefone(ctext_cadastroTelefone.getText());
-
-        if (pessoa.getNome().isEmpty() || pessoa.getEmail().isEmpty() || pessoa.getTelefone().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
-            return false;
-        }else if(!ValidaCpfCnpj.isValid(pessoa.getCnpj())) {
-            JOptionPane.showMessageDialog(null, "CNPJ inválido!");
-            return false;
-        } else {
-            return true;
-        }
-    }
+    
 
     //VERIFICA SE TODOS CAMPOS DE ENDERECO FORAM PREENCHIDOS.
     private boolean verificaCamposEnd(Endereco endereco) {
@@ -113,7 +101,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             return false;
         }
 
-        if (endereco.getLogradouro().isEmpty() || endereco.getComplemento().isEmpty()
+        if (endereco.getLogradouro().isEmpty()
                 || endereco.getBairro().isEmpty() || endereco.getCidade().isEmpty()
                 || endereco.getEstado().isEmpty() || endereco.getCep().trim().equals("-")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
@@ -440,35 +428,34 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     private void but_cadastroSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cadastroSalvarActionPerformed
         Endereco endereco = new Endereco();
-        Cliente pessoa = null;
+        Cliente cliente = null;
 
         if (verificaCamposEnd(endereco)) {
             //VERIFICA SE ALGUM JBOTTOM FOI SELECIONADO
-            if (rbut_cpf.isSelected()) {
-                pessoa = new PessoaFisica();
-                //VERICA SE TODOS OS CAMPOS DE PESSOA FISICA FOI PREENCHIDO E SE ELA JÁ ESTÁ CADASTRADA
-                if (verificaCamposPF((PessoaFisica) pessoa) ) {
-                    if (!Locadora.verificaPFsica((PessoaFisica) pessoa)) {
-                        pessoa.setEndereco(endereco);
-                        Locadora.adicionaPFisica((PessoaFisica) pessoa);
+            if (rbut_cpf.isSelected()){ 
+                cliente = new PessoaFisica();
+                if (verificaCampos(cliente) ) {
+                    if (!Locadora.verificaCliente( cliente)) {
+                        cliente.setEndereco(endereco);
+                        Locadora.adicionaCliente( cliente);
                         limpaCamposCC();
                         JOptionPane.showMessageDialog(null, "Cliente Cadastrado.");
                     }else
                     JOptionPane.showMessageDialog(null, "Cliente já está Cadastrado!");
                 }
-            } else if (rbut_cnpj.isSelected()) {
-                pessoa = new PessoaJuridica();
-                //VERICA SE TODOS OS CAMPOS DE PESSOA JURIDICA FOI PREENCHIDO E SE ELA JÁ ESTÁ CADASTRADA
-                if (verificaCamposPJ((PessoaJuridica) pessoa)) {
-                    if (!Locadora.verificaPJuridica((PessoaJuridica) pessoa)) {
-                        pessoa.setEndereco(endereco);
-                        Locadora.adicionaPJuridica((PessoaJuridica) pessoa);
+            }else if( rbut_cnpj.isSelected()){
+                cliente = new PessoaJuridica();
+                if (verificaCampos(cliente) ) {
+                    if (!Locadora.verificaCliente( cliente)) {
+                        cliente.setEndereco(endereco);
+                        Locadora.adicionaCliente( cliente);
                         limpaCamposCC();
                         JOptionPane.showMessageDialog(null, "Cliente Cadastrado.");
-                    }else 
-                        JOptionPane.showMessageDialog(null, "Cliente já está Cadastrado!");   
+                    }else
+                    JOptionPane.showMessageDialog(null, "Cliente já está Cadastrado!");
                 }
-            } else {
+                
+            }else {
                 JOptionPane.showMessageDialog(null, "Selecione um Indentificador.");
             }
         }

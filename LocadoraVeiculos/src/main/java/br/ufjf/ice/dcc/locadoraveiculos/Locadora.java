@@ -14,10 +14,8 @@ import java.util.*;
  */
 public class Locadora {
     private static List <Veiculo> veiculos = new ArrayList<>(); //todos os veiculos
-    private static List <Locacao> reservasPF = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
-    private static List <Locacao> reservasPJ = new ArrayList<>();
-    private static List <PessoaFisica> pFisica = new ArrayList<>(); 
-    private static List <PessoaJuridica> pJuridica = new ArrayList<>();
+    private static List <Locacao> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
+    private static List <Cliente> clientes = new ArrayList<>();
     private static List <Atendente> atendentes = new ArrayList<>(); 
     private static List <Gerente> gerentes = new ArrayList<>(); 
     private static Atendente atendenteLogado = new Atendente("");
@@ -33,37 +31,37 @@ public class Locadora {
         return veiculos;
     }
     
-    public static void adicionaReservaPF(Locacao reserva){
-        reservasPF.add(reserva);
+    public static void adicionaReserva(Locacao reserva){
+        reservas.add(reserva);
     }
 
-    public static List<Locacao> getReservasPF() {
-        return reservasPF;
+    public static List<Locacao> getReservas() {
+        return reservas;
     }
     
-    public static void adicionaReservaPJ(Locacao reserva){
+    /*public static void adicionaReservaPJ(Locacao reserva){
         reservasPF.add(reserva);
     }
 
     public static List<Locacao> getReservasPJ() {
         return reservasPJ;
-    }
+    }*/
     
-    public static void adicionaPFisica(PessoaFisica pessoa){
-        pFisica.add(pessoa);
+    public static void adicionaCliente(Cliente cliente){
+        clientes.add(cliente);
     }
 
-    public static List<PessoaFisica> getPFisica() {
-        return pFisica;
+    public static List<Cliente> getCliente() {
+        return clientes;
     }
-    
+    /*
     public static void adicionaPJuridica(PessoaJuridica pessoa){
         pJuridica.add(pessoa);
     }
 
     public static List<PessoaJuridica> getPJuridica() {
         return pJuridica;
-    }
+    }*/
     
     public static List<Atendente> getAtendente() {
         return atendentes;
@@ -83,22 +81,22 @@ public class Locadora {
     }
     
     //RETORNA SE UMA PESSOA FÍSICA JA FOI CADASTRADO
-    public static boolean verificaPFsica(PessoaFisica pessoa){
-        for (int i = 0; i < pFisica.size(); i++) {
-            if(pFisica.get(i).getCpf().equals(pessoa.getCpf()))
+    public static boolean verificaCliente(Cliente cliente){
+        for (int i = 0; i < clientes.size(); i++) {
+            if(clientes.get(i).getID().equals(cliente.getID()))
                 return true;
         }
         return false;
     }
     
     //RETORNA SE UMA PESSOA JURIDICA JA FOI CADASTRADO
-    public static boolean verificaPJuridica(PessoaJuridica pessoa){
+    /*public static boolean verificaPJuridica(PessoaJuridica pessoa){
         for (int i = 0; i < pJuridica.size(); i++) {
             if(pJuridica.get(i).getCnpj().equals(pessoa.getCnpj()))
                 return true;
         }
         return false;
-    }
+    }*/
     
     public static boolean buscaAtendente(String cpf){
         for (int i = 0; i < atendentes.size(); i++) {
@@ -163,24 +161,24 @@ public class Locadora {
     
     public static boolean estaDisponivel(String placa, Date dataInicio, Date dataFim){
         if(dataInicio.before(dataFim) || dataInicio.equals(dataFim)){
-            for (int i = 0; i < reservasPF.size(); i++) {
-                if(reservasPF.get(i).getVeiculo().getPlaca().equals(placa)){
-                    if(reservasPF.get(i).getDataFim().equals(dataFim)){
+            for (int i = 0; i < reservas.size(); i++) {
+                if(reservas.get(i).getVeiculo().getPlaca().equals(placa)){
+                    if(reservas.get(i).getDataFim().equals(dataFim)){
                         System.out.println("data de fim igual a data da nova locacao");
                         return false;
-                    } else if(reservasPF.get(i).getDataInicio().equals(dataInicio)){
+                    } else if(reservas.get(i).getDataInicio().equals(dataInicio)){
                         return false;
-                    } else if(reservasPF.get(i).getDataFim().equals(dataInicio)){
+                    } else if(reservas.get(i).getDataFim().equals(dataInicio)){
                         return false;
                     } else {
-                        if(reservasPF.get(i).getDataFim().before(dataFim)){
+                        if(reservas.get(i).getDataFim().before(dataFim)){
                             return true;
                         }
                         return false;
                     }
                 }
             }
-            for (int i = 0; i < reservasPJ.size(); i++) {
+            /*for (int i = 0; i < reservasPJ.size(); i++) {
                 if(reservasPJ.get(i).getVeiculo().getPlaca().equals(placa)){
                     if(reservasPJ.get(i).getDataFim().equals(dataFim)){
                         return false;
@@ -195,14 +193,14 @@ public class Locadora {
                         return false;
                     }
                 }
-            }
+            }*/
             return true;
         } else
             return false;
     }
     
-    /*public static void main(String[] args) {
-        Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
+    public static void main(String[] args) {
+        /*Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
         Usuario a2 = new Usuario("Lucca", "1111111111");
         Usuario a3 = new Usuario("Jaque", "2222222222");
         Usuario a4 = new Usuario("Wendell", "3333333333");
@@ -222,9 +220,13 @@ public class Locadora {
         clientes.add(a3);
         clientes.add(a4);
         
-        imprimeClientes();
+        imprimeClientes();*/
+        Cliente pessoa = null;
         
-    }*/
+        pessoa.getID();
+        
+        System.out.println(pessoa.getID());
+    }
     
 
 }
