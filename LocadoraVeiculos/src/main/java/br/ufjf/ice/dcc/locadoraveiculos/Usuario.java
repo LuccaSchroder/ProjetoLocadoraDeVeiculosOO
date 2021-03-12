@@ -14,66 +14,57 @@ import java.util.Date;
  */
 
 //Parte do login
-public class Usuario extends Cliente {
-    //private String numRegistro;
+public class Usuario {
+    private String id;
+    private String senha;
     
-    public Usuario(){
-        
+    Usuario(){}
+    
+    Usuario(String id, String senha){
+        this.setId(id);
+        this.setSenha(senha);
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the senha
+     */
+    public String getSenha() {
+        return senha;
+    }
+
+    /**
+     * @param senha the senha to set
+     */
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
     
-    public Usuario(String nome, String cpf, String email, Endereco endereco, String telefone, Date dataNascimento){
-        //settar cliente e atributos de pessoa
-        //this.setNumRegistro(cpf);
-        //atributos da classe abstrata Cliente
-        this.setNome(nome);
-        //this.setCpf(cpf);
-        this.setEmail(email);
-        this.setEndereco(endereco);
-        this.setTelefone(telefone);
-    }
-    
-    public Usuario(String nome, String cpf){
-        //settar cliente e atributos de pessoa
-        //this.setNumRegistro(cpf);
-        //atributos da classe abstrata Cliente
-        this.setNome(nome);
-        //this.setCpf(cpf);
-    }
-    /*public String getNumRegistro() {
-        return numRegistro;
-    }
-
-    public void setNumRegistro(String numRegistro) {
-        this.numRegistro = numRegistro;
-    }*/
-    
-    public void imprime(){
-        System.out.println("Nome: " + this.getNome());
-        //System.out.println("CPF: " + this.getCpf());
-        //System.out.println("Data de Nascimento: " + this.getDataNasimento());
-        System.out.println("Email: " + this.getEmail());
-        System.out.println("Telefone: " + this.getTelefone());
-        System.out.println("Endereço: " + this.getEndereco()+ "\n");
-    }
-
-    @Override
-    public String getID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Date getDataNascimento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setDataNascimento(Date nascimento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean validarUsuario(String id, String senha){
+        System.out.println(this.getId());
+        if(this.getId().equals(id)){
+            System.out.println("ID igual");
+           if(this.getSenha().equals(senha)){
+               System.out.println("Senha igual");
+               return true; 
+           }
+                 
+        }
+            
+        return false;
     }
     
 }

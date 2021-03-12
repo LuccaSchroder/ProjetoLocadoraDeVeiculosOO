@@ -271,8 +271,8 @@ public class CadastroVeiculo extends javax.swing.JFrame {
                 this.setVisible(false);
             }
         }
-        new Principal().setVisible(true);
-        this.setVisible(false);
+        //new Principal().setVisible(true);
+        //this.setVisible(false);
     }//GEN-LAST:event_but_salvarActionPerformed
 
     private void but_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cancelarActionPerformed

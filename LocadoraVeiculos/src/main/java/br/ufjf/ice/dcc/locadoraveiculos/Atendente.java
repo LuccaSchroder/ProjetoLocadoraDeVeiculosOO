@@ -10,7 +10,6 @@ package br.ufjf.ice.dcc.locadoraveiculos;
  * @author Jaqueline
  */
 public class Atendente extends Funcionario{
-
     public Atendente() {
     }
     

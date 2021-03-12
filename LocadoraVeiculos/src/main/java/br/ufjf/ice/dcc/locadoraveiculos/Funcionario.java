@@ -11,6 +11,8 @@ package br.ufjf.ice.dcc.locadoraveiculos;
  */
 abstract public class Funcionario extends PessoaFisica{
     
+    public Usuario usuario = new Usuario();
+
     public abstract void calculaComicao();    
     public abstract int tipoFuncionario();
 

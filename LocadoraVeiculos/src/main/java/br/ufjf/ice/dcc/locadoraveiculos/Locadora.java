@@ -98,25 +98,37 @@ public class Locadora {
         return false;
     }*/
     
-    public static boolean buscaAtendente(String cpf){
-        for (int i = 0; i < atendentes.size(); i++) {
-            if(atendentes.get(i).getCpf().equals(cpf)){
-                atendenteLogado = atendentes.get(i);
-                return true;
-            }  
-        }
-        return false;
-    }
-    
-    public static boolean buscaGerente(String cpf){
-        for (int i = 0; i < gerentes.size(); i++) {
-            if(gerentes.get(i).getCpf().equals(cpf)){
-                gerenteLogado = gerentes.get(i);
-                return true;
+    public static boolean buscaUsuario(String id, String senha){
+        if(id.equals("adm") && senha.equals("123")){
+            return true;
+        } else {
+            for (int i = 0; i < atendentes.size(); i++) {
+                System.out.println("entrou nos atendentes");
+                if(atendentes.get(i).getCpf().equals(id)){
+                    if(atendentes.get(i).usuario.validarUsuario(id, senha)){
+                        System.out.println("Atendente logado com sucesso.");
+                        atendenteLogado = atendentes.get(i);
+                        return true;
+                    }
+
+                }  
             }
+            for (int i = 0; i < gerentes.size(); i++) {
+                System.out.println("entrou nos gerentes");
+                if(gerentes.get(i).getCpf().equals(id)){
+                    System.out.println("Encontrou fulano");
+                    if(gerentes.get(i).usuario.validarUsuario(id, senha)){
+                        System.out.println("Gerente logado com sucesso.");
+                        gerenteLogado = gerentes.get(i);
+                        return true;
+                    }
+
+                } 
+            }
+            return false;
         }
-        return false;
     }
+
     
     public static boolean verificaAtendente(Atendente funcionario){
         for (int i = 0; i < atendentes.size(); i++) {
@@ -136,27 +148,22 @@ public class Locadora {
     
     public static Funcionario getLogado(){
         if(atendenteLogado.getCpf() != ""){
-            System.out.println("é atendente");
+            //System.out.println("é atendente");
             return atendenteLogado;
         } else {
-            System.out.println("é gerente");
+            //System.out.println("é gerente");
             return gerenteLogado;
         }
     }
     
-    public static void adicionaAtendente(/*Atendente funcionario*/){
-        Atendente ronan = new Atendente("123456");
-        atendenteLogado = ronan;
-        atendentes.add(ronan);
-        //atendentes.add(funcionario);
+    public static void adicionaAtendente(Atendente funcionario){
+        atendentes.add(funcionario);
         
     }
     
     public static void adicionaGerente(Gerente funcionario){
-        Atendente ronan = new Atendente("123456");
-        atendenteLogado = ronan;
-        atendentes.add(ronan);
-        //gerentes.add(funcionario);
+        System.out.println(funcionario.getCpf());
+        gerentes.add(funcionario);
     }
     
     public static boolean estaDisponivel(String placa, Date dataInicio, Date dataFim){
@@ -197,6 +204,19 @@ public class Locadora {
             return true;
         } else
             return false;
+    }
+    
+    public static void deslogar(){
+        gerenteLogado = new Gerente();
+        atendenteLogado = new Atendente();
+    }
+    
+    public static String getNomeLogado(){
+        if(gerenteLogado != null)
+            return gerenteLogado.getNome();
+        else if(atendenteLogado != null)
+            return atendenteLogado.getNome();
+        return "";
     }
     
     public static void main(String[] args) {

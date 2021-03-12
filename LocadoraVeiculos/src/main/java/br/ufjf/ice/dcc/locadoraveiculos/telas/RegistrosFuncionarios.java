@@ -71,6 +71,7 @@ public class RegistrosFuncionarios extends javax.swing.JFrame {
             //ADICIONA LINHA NA TABELA
             modeloTabela.addRow(linha);
         }
+        jTb_funcionario.setModel(modeloTabela);
     }
 
     /**

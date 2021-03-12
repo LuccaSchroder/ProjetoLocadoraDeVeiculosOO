@@ -5,7 +5,11 @@
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
+import br.ufjf.ice.dcc.locadoraveiculos.Endereco;
+import br.ufjf.ice.dcc.locadoraveiculos.Funcionario;
+import br.ufjf.ice.dcc.locadoraveiculos.Gerente;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -105,9 +109,31 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Login não cadastrado.");
         }*/
         
+        /*
+        //instaciando administrador
+        Funcionario adm = new Gerente();
+        adm.setCpf("adm");
+        adm.setDataNascimento(new Date());
+        adm.setEmail("adm@locar.com");
+        adm.setEndereco(new Endereco("", "", 0, "", "", "", ""));
+        adm.setNome("adm");
+        adm.setTelefone("0000000");
+        adm.usuario.setId("adm");        
+        adm.usuario.setSenha("123");
+
+        Locadora.adicionaGerente((Gerente) adm);
+        */
+        if(Locadora.buscaUsuario(txt_Login.getText(), txt_Senha.getText())){
+            new Principal().setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Acesso negado!");
+        }
+        
+        /*
         if(txt_Login.getText().equals("funcionario") && txt_Senha.getText().equals("1234"))
         {
-            Locadora.adicionaAtendente();
+            //Locadora.adicionaAtendente();
             new Principal().setVisible(true);
             this.setVisible(false);
         }
@@ -120,6 +146,7 @@ public class Login extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Acesso negado!");
         }
+        */
     }//GEN-LAST:event_jb_entrarActionPerformed
 
     private void carregaLogo() {

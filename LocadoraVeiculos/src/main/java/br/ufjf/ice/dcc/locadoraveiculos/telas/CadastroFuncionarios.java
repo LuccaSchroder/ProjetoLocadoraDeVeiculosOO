@@ -81,6 +81,9 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
         funcionario.setCpf(ct_cpf.getText());
         funcionario.setEmail(ctext_cadastroEmail.getText());
         funcionario.setTelefone(ct_telefone.getText());
+        funcionario.usuario.setId(ct_cpf.getText());        
+        funcionario.usuario.setSenha(ctext_senhausuaro.getText());
+
 
         try {
             funcionario.setDataNascimento(converteStringData());
@@ -89,7 +92,11 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
             return false;
         }
 
-        if (funcionario.getNome().isEmpty() || funcionario.getEmail().isEmpty() || funcionario.getTelefone().isEmpty()) {
+        if (    funcionario.getNome().isEmpty() || 
+                funcionario.getEmail().isEmpty() || 
+                funcionario.getTelefone().isEmpty() || 
+                funcionario.usuario.getSenha().isEmpty()
+            ) {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
             return false;
         } else if (!ValidaCpfCnpj.isValid(funcionario.getCpf())) {
@@ -124,6 +131,8 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
         rb_gerente = new javax.swing.JRadioButton();
         ct_cpf = new javax.swing.JFormattedTextField();
         ct_dataNascimento = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        ctext_senhausuaro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         ctext_endLogra = new javax.swing.JTextField();
@@ -190,41 +199,47 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
         }
         ct_dataNascimento.setToolTipText("Data de Nascimento");
 
+        jLabel14.setText("Senha de usuário");
+
+        ctext_senhausuaro.setToolTipText("Número");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rb_gerente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rb_atendente)
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ct_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ctext_cadastroEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ct_telefone))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ct_dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ct_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ct_nome))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rb_gerente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_atendente)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ct_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ctext_cadastroEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ct_telefone))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ct_dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ctext_senhausuaro)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -233,7 +248,9 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(ct_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ct_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(ctext_senhausuaro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -412,7 +429,7 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
                 funcionario = new Atendente();
                 if (verificaCamposFunc((Atendente) funcionario) && !Locadora.verificaAtendente((Atendente) funcionario)) {
                     funcionario.setEndereco(endereco);
-                    //Locadora.adicionaAtendente((Atendente) funcionario);
+                    Locadora.adicionaAtendente((Atendente) funcionario);
                     limpaCamposCC();
                     JOptionPane.showMessageDialog(null, "Funcionário Cadastrado.");
                 } else 
@@ -420,9 +437,9 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
                 
             } else if (rb_gerente.isSelected()) {
                 funcionario = new Gerente();
-                if (verificaCamposFunc((Gerente) funcionario) && Locadora.verificaGerente((Gerente) funcionario)) {
+                if (verificaCamposFunc((Gerente) funcionario) && !Locadora.verificaGerente((Gerente) funcionario)) {
                     funcionario.setEndereco(endereco);
-                    //Locadora.adicionaGerente((Gerente) funcionario);
+                    Locadora.adicionaGerente((Gerente) funcionario);
                     limpaCamposCC();
                     JOptionPane.showMessageDialog(null, "Funcionário Cadastrado.");
                 } else {
@@ -490,11 +507,13 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
     private javax.swing.JTextField ctext_endLogra;
     private javax.swing.JTextField ctext_endNumero;
     private javax.swing.JTextField ctext_endUf;
+    private javax.swing.JTextField ctext_senhausuaro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

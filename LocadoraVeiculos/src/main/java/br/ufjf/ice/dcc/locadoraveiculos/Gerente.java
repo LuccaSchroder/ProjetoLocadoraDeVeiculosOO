@@ -12,7 +12,7 @@ package br.ufjf.ice.dcc.locadoraveiculos;
  * @author Jaqueline
  */
 public class Gerente extends Funcionario {
-
+    
     public Gerente(){
         
     }
