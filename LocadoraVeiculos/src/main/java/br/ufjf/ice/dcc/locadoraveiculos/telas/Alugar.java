@@ -662,9 +662,9 @@ public class Alugar extends javax.swing.JFrame {
         int index = cb_veiculos.getSelectedIndex();
         float diaria = Locadora.getVeiculos().get(index).getDiaria();
 
-        if (rbut_dinheiro.isSelected() || rbut_cartao.isSelected())
+        if (rbut_dinheiro.isSelected() || rbut_cartao.isSelected()){
             carregaTabelaTotal(diaria, calculaQuantDias(), totalPagar());
-        else
+        } else
             JOptionPane.showMessageDialog(null, "Selecione uma Forma de Pagamento");
     }//GEN-LAST:event_but_calcularMouseClicked
 
@@ -694,8 +694,7 @@ public class Alugar extends javax.swing.JFrame {
     }//GEN-LAST:event_but_reservarActionPerformed
 
     private void but_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_calcularActionPerformed
-        // TODO add your handling code here:
-        estaDisponivel();
+        //estaDisponivel();
     }//GEN-LAST:event_but_calcularActionPerformed
 
     /**

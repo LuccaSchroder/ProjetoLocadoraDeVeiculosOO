@@ -9,6 +9,7 @@ import br.ufjf.ice.dcc.locadoraveiculos.Endereco;
 import br.ufjf.ice.dcc.locadoraveiculos.Funcionario;
 import br.ufjf.ice.dcc.locadoraveiculos.Gerente;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
+import br.ufjf.ice.dcc.locadoraveiculos.telas.ArquivoDeDados.Arquivo;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         carregaLogo();
+        Arquivo.carregarDados();
     }
     
     /**

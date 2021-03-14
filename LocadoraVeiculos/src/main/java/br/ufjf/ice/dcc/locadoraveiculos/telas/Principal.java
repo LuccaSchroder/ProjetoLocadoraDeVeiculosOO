@@ -170,9 +170,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrar_funcionarioActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        new Login().setVisible(true);
-        this.setVisible(false);
-        Locadora.deslogar();
+        try{
+            new Login().setVisible(true);
+            this.setVisible(false);
+            Locadora.deslogar();
+        }catch(RuntimeException err){
+            System.out.println(err);
+        }
+        
     }//GEN-LAST:event_sairActionPerformed
     
     private void verificaTipoUsuario(){

@@ -435,9 +435,9 @@ public class CadastroCliente extends javax.swing.JFrame {
             if (rbut_cpf.isSelected()){ 
                 cliente = new PessoaFisica();
                 if (verificaCampos(cliente) ) {
-                    if (!Locadora.verificaCliente( cliente)) {
+                    if (!Locadora.verificaCliente((PessoaFisica) cliente)) {
                         cliente.setEndereco(endereco);
-                        Locadora.adicionaCliente( cliente);
+                        Locadora.adicionaCliente((PessoaFisica) cliente);
                         limpaCamposCC();
                         JOptionPane.showMessageDialog(null, "Cliente Cadastrado.");
                     }else
@@ -446,9 +446,9 @@ public class CadastroCliente extends javax.swing.JFrame {
             }else if( rbut_cnpj.isSelected()){
                 cliente = new PessoaJuridica();
                 if (verificaCampos(cliente) ) {
-                    if (!Locadora.verificaCliente( cliente)) {
+                    if (!Locadora.verificaCliente((PessoaJuridica) cliente)) {
                         cliente.setEndereco(endereco);
-                        Locadora.adicionaCliente( cliente);
+                        Locadora.adicionaCliente((PessoaJuridica) cliente);
                         limpaCamposCC();
                         JOptionPane.showMessageDialog(null, "Cliente Cadastrado.");
                     }else

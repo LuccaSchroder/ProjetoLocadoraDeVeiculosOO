@@ -6,7 +6,9 @@ Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
 
+import br.ufjf.ice.dcc.locadoraveiculos.telas.ArquivoDeDados.Arquivo;
 import java.util.*;
+import com.google.gson.Gson;
 
 /**
  *
@@ -20,11 +22,11 @@ public class Locadora {
     private static List <Gerente> gerentes = new ArrayList<>(); 
     private static Atendente atendenteLogado = new Atendente("");
     private static Gerente gerenteLogado = new Gerente();
-
-   
+    private static Gson gson = new Gson();
     
     public static void adicionaVeiculo(Veiculo veiculo){
         veiculos.add(veiculo);
+        salvarVeiculos();
     }
 
     public static List<Veiculo> getVeiculos() {
@@ -32,7 +34,9 @@ public class Locadora {
     }
     
     public static void adicionaReserva(Locacao reserva){
+        //System.out.println(reserva.getDataInicio());
         reservas.add(reserva);
+        salvarReservas();
     }
 
     public static List<Locacao> getReservas() {
@@ -49,6 +53,7 @@ public class Locadora {
     
     public static void adicionaCliente(Cliente cliente){
         clientes.add(cliente);
+        salvarClientes();
     }
 
     public static List<Cliente> getCliente() {
@@ -158,15 +163,18 @@ public class Locadora {
     
     public static void adicionaAtendente(Atendente funcionario){
         atendentes.add(funcionario);
+        salvarAtendentes();
         
     }
     
     public static void adicionaGerente(Gerente funcionario){
         System.out.println(funcionario.getCpf());
         gerentes.add(funcionario);
+        salvarGerentes();
     }
     
     public static boolean estaDisponivel(String placa, Date dataInicio, Date dataFim){
+        /*
         if(dataInicio.before(dataFim) || dataInicio.equals(dataFim)){
             for (int i = 0; i < reservas.size(); i++) {
                 if(reservas.get(i).getVeiculo().getPlaca().equals(placa)){
@@ -185,25 +193,11 @@ public class Locadora {
                     }
                 }
             }
-            /*for (int i = 0; i < reservasPJ.size(); i++) {
-                if(reservasPJ.get(i).getVeiculo().getPlaca().equals(placa)){
-                    if(reservasPJ.get(i).getDataFim().equals(dataFim)){
-                        return false;
-                    } else if(reservasPJ.get(i).getDataInicio().equals(dataInicio)){
-                        return false;
-                    } else if(reservasPJ.get(i).getDataFim().equals(dataInicio)){
-                        return false;
-                    } else {
-                        if(reservasPJ.get(i).getDataFim().before(dataFim)){
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }*/
             return true;
         } else
             return false;
+        */
+        return true;
     }
     
     public static void deslogar(){
@@ -218,7 +212,92 @@ public class Locadora {
             return atendenteLogado.getNome();
         return "";
     }
+   
+    public static void salvarGerentes(){
+        /*
+        List <Funcionario> funcionarios = new ArrayList<>();
+        Funcionario ronan = new Gerente();
+        ronan.usuario.setId("13084376689");
+        ronan.usuario.setSenha("1234");
+        ronan.setCpf("13084376689");
+        ronan.setDataNascimento(new Date());
+        ronan.setEmail("r@live.com");
+        ronan.setNome("Ronan");
+        ronan.setEndereco(new Endereco("36000000", "av", 0, "c", "c", "jf", "mg"));
+        funcionarios.add(ronan);
+        */
+        if(Arquivo.write("gerentes.txt", gson.toJson(gerentes) ))
+            System.out.println("Gerentes salvos com sucesso");
+        else 
+            System.out.println("Erro ao salvar Gerentes");
+    }
     
+    public static void salvarAtendentes(){
+        
+        if(Arquivo.write("atendentes.txt", gson.toJson(atendentes) ))
+            System.out.println("atendentes salvo com sucesso");
+        else 
+            System.out.println("Erro ao salvar atendentes");
+    }
+    
+    public static void salvarVeiculos(){
+        
+        if(Arquivo.write("veiculos.txt", gson.toJson(veiculos) ))
+            System.out.println("veiculos salvo com sucesso");
+        else 
+            System.out.println("Erro ao salvar veiculos");
+    }
+    
+    public static void salvarClientes(){
+        List <Cliente> clientesPF = new ArrayList<>();
+        List <Cliente> clientesPJ = new ArrayList<>();
+
+        clientes.forEach((cliente) -> {
+            if(cliente.getDataNascimento() != null)
+                clientesPF.add(cliente);
+            else 
+                clientesPJ.add(cliente);
+        });
+        
+        if(Arquivo.write("clientesPF.txt", gson.toJson(clientesPF) ))
+            System.out.println("clientes salvo com sucesso");
+        else 
+            System.out.println("Erro ao salvar clientesPJ");
+        
+        if(Arquivo.write("clientesPJ.txt", gson.toJson(clientesPJ) ))
+            System.out.println("clientesPJ salvo com sucesso");
+        else 
+            System.out.println("Erro ao salvar clientes");
+    }
+    
+    public static void salvarReservas(){
+        
+        if(Arquivo.write("reservas.txt", gson.toJson(reservas) ))
+            System.out.println("reservas salvo com sucesso");
+        else 
+            System.out.println("Erro ao salvar reservas");
+    }
+    
+    public static void carregaDados(
+            Veiculo [] veiculosSalvos, 
+            List clientesSalvos, 
+            Atendente [] atendentesSalvos, 
+            Gerente [] gerentesSalvos, 
+            List reservasSalvas 
+    ){
+        if(veiculosSalvos != null)
+            veiculos.addAll(Arrays.asList(veiculosSalvos));
+        clientes = clientesSalvos;
+        if(atendentesSalvos != null)
+            atendentes.addAll(Arrays.asList(atendentesSalvos));
+        if(gerentesSalvos != null)
+            gerentes.addAll(Arrays.asList(gerentesSalvos));
+        reservas = reservasSalvas;
+    }
+    
+    public static void carregaListVeiculos(List veiculosSalvos){
+        veiculos = veiculosSalvos;
+    }
     public static void main(String[] args) {
         /*Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
         Usuario a2 = new Usuario("Lucca", "1111111111");
@@ -247,6 +326,5 @@ public class Locadora {
         
         System.out.println(pessoa.getID());
     }
-    
 
 }
