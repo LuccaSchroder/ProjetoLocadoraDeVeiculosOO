@@ -196,7 +196,10 @@ public class Principal extends javax.swing.JFrame {
     }
     
     private void carregaNomeUsuario() {
-        cx_bem_vindo.setText("Bem-vindo " + Locadora.getNomeLogado());
+        if(Locadora.getNomeLogado() == null)
+            cx_bem_vindo.setText("Bem-vindo Administrador");
+        else
+            cx_bem_vindo.setText("Bem-vindo " + Locadora.getNomeLogado());
     }
     /**
      * @param args the command line arguments

@@ -99,7 +99,7 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
             ) {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
             return false;
-        } else if (!ValidaCpfCnpj.isValid(funcionario.getCpf())) {
+        } else if (!ValidaCpfCnpj.isValid(ct_cpf.getText())) {
             JOptionPane.showMessageDialog(null, "CPF inválido!");
             return false;
         } else {

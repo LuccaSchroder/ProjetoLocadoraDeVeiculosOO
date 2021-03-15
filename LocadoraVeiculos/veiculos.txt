@@ -1,0 +1,1 @@
+[{"placa":"llp4871","modelo":"f","marca":"f","ano":5220,"cor":"preta","capacidade":5,"tipo":"f","diaria":100.0,"disponivel":false}]

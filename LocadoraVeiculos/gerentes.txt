@@ -1,0 +1,1 @@
+[{"usuario":{"id":"123.456.789-09","senha":"123"},"cpf":"123.456.789-09","dataNascimento":"Feb 25, 2000 12:00:00 AM","nome":"lucca","endereco":{"cep":"36000-000","logradouro":"sb","numero":5,"complemento":"d","bairro":"d","cidade":"d","estado":"d"},"email":"lucca@","telefone":"32221212"}]

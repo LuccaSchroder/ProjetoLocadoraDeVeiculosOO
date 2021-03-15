@@ -31,11 +31,13 @@ public class Locacao {
         this.periodoLocacao = periodoLocacao;
     }
 
-    public Locacao(Cliente cliente, Veiculo veiculo, Date dataInicio, Date dataFim, float total) {
+    public Locacao(Cliente cliente, Veiculo veiculo, Date dataInicio, Date dataFim, int periodoLocacao, float total) {
         this.cliente = cliente;
         this.veiculo = veiculo;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+        this.periodoLocacao = periodoLocacao;
+        this.total = total;
     }
     
     public Cliente getCliente(){

@@ -15,7 +15,7 @@ public class PagamentoDinheiro implements Pagamento{
 
     @Override
     public float pagamento(float precoDiaria, int dias) {
-        float desconto = (float)5 / 100;
+        float desconto = (float)95 / 100;
         return (float)(precoDiaria * dias * desconto);
     }
     

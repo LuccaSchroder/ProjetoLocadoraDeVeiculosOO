@@ -109,7 +109,7 @@ public class Locadora {
         } else {
             for (int i = 0; i < atendentes.size(); i++) {
                 System.out.println("entrou nos atendentes");
-                if(atendentes.get(i).getCpf().equals(id)){
+                if(atendentes.get(i).getID().equals(id)){
                     if(atendentes.get(i).usuario.validarUsuario(id, senha)){
                         System.out.println("Atendente logado com sucesso.");
                         atendenteLogado = atendentes.get(i);
@@ -120,7 +120,7 @@ public class Locadora {
             }
             for (int i = 0; i < gerentes.size(); i++) {
                 System.out.println("entrou nos gerentes");
-                if(gerentes.get(i).getCpf().equals(id)){
+                if(gerentes.get(i).getID().equals(id)){
                     System.out.println("Encontrou fulano");
                     if(gerentes.get(i).usuario.validarUsuario(id, senha)){
                         System.out.println("Gerente logado com sucesso.");
@@ -137,7 +137,7 @@ public class Locadora {
     
     public static boolean verificaAtendente(Atendente funcionario){
         for (int i = 0; i < atendentes.size(); i++) {
-            if(atendentes.get(i).getCpf().equals(funcionario.getCpf()))
+            if(atendentes.get(i).getID().equals(funcionario.getID()))
                 return true;
         }
         return false;
@@ -145,14 +145,14 @@ public class Locadora {
     
     public static boolean verificaGerente(Gerente funcionario){
         for (int i = 0; i < gerentes.size(); i++) {
-            if(gerentes.get(i).getCpf().equals(funcionario.getCpf()))
+            if(gerentes.get(i).getID().equals(funcionario.getID()))
                 return true;
         }
         return false;
     }
     
     public static Funcionario getLogado(){
-        if(atendenteLogado.getCpf() != ""){
+        if(atendenteLogado.getID() != ""){
             //System.out.println("é atendente");
             return atendenteLogado;
         } else {
@@ -168,7 +168,7 @@ public class Locadora {
     }
     
     public static void adicionaGerente(Gerente funcionario){
-        System.out.println(funcionario.getCpf());
+        System.out.println(funcionario.getID());
         gerentes.add(funcionario);
         salvarGerentes();
     }
@@ -285,15 +285,23 @@ public class Locadora {
             Gerente [] gerentesSalvos, 
             List reservasSalvas 
     ){
-        if(veiculosSalvos != null)
+        if(veiculosSalvos != null){
+            veiculos.clear();
             veiculos.addAll(Arrays.asList(veiculosSalvos));
+        }
         clientes = clientesSalvos;
-        if(atendentesSalvos != null)
+        if(atendentesSalvos != null){
+            atendentes.clear();
             atendentes.addAll(Arrays.asList(atendentesSalvos));
-        if(gerentesSalvos != null)
+        }
+            
+        if(gerentesSalvos != null){
+            gerentes.clear();
             gerentes.addAll(Arrays.asList(gerentesSalvos));
+        }
+            
         if(reservasSalvas != null)
-            reservas.addAll(reservasSalvas);
+            reservas = reservasSalvas;
         
     }
     

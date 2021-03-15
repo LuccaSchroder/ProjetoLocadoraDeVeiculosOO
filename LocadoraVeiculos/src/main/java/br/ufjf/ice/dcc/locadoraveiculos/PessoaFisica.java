@@ -18,7 +18,7 @@ public class PessoaFisica extends Cliente {
     }
 
     public PessoaFisica(String cpf, Date dataNascimento) {
-        this.cpf = cpf;
+        this.cpf = cpf.replaceAll(".", "").replaceAll("-", "");
         this.dataNascimento = dataNascimento;
     }
 
@@ -35,7 +35,7 @@ public class PessoaFisica extends Cliente {
     }*/
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpf = cpf.replaceAll(".", "").replaceAll("-", "");
     }
 
     @Override

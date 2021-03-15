@@ -1,0 +1,1 @@
+[{"cnpj":"16657574000177","nome":"jaqueline","endereco":{"cep":"30000-000","logradouro":"d","numero":5,"complemento":"d","bairro":"d","cidade":"d","estado":"d"},"email":"jq@","telefone":"33232"}]

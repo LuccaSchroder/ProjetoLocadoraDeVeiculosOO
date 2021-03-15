@@ -81,7 +81,7 @@ public class Alugar extends javax.swing.JFrame {
     }
 
     //CONVERTE STRING EM DATA.
-    public Date converteStringData(String dataString) throws ParseException {
+    public static Date converteStringData(String dataString) throws ParseException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date data = formato.parse(dataString);
 
@@ -117,7 +117,7 @@ public class Alugar extends javax.swing.JFrame {
 
     //PESQUISA CPF JÁ CADASTRADOS.
     public int pesquisaID() {
-        for (int i = 0; i <= Locadora.getCliente().size(); i++) {
+        for (int i = 0; i < Locadora.getCliente().size(); i++) {
             if (Locadora.getCliente().get(i).getID().equals(ctext_alugarID.getText())) {
                 return i;
             }
