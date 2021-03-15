@@ -31,19 +31,12 @@ public class Locacao {
         this.periodoLocacao = periodoLocacao;
     }
 
-    public Locacao(PessoaFisica clienteF, Veiculo veiculo, Date dataInicio, Date dataFim, float total) {
-        this.cliente = clienteF;
+    public Locacao(Cliente cliente, Veiculo veiculo, Date dataInicio, Date dataFim, float total) {
+        this.cliente = cliente;
         this.veiculo = veiculo;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
     }
-   
-    /*public Locacao(PessoaJuridica clienteJ, Veiculo veiculo, Date dataInicio, Date dataFim, float total){
-        this.setClienteJ(clienteJ);
-        this.setVeiculo(veiculo);
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-    }*/
     
     public Cliente getCliente(){
         return this.cliente;
@@ -52,15 +45,6 @@ public class Locacao {
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }
-
-    /*public PessoaJuridica getClienteJ() {
-        return clienteJ;
-    }
-
-    public void setClienteJ(PessoaJuridica clienteJ) {
-        this.clienteJ = clienteJ;
-    }*/
-    
     
     public Date getDataInicio() {
         return dataInicio;

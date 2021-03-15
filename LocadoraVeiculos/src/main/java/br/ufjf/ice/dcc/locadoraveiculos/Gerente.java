@@ -17,9 +17,8 @@ public class Gerente extends Funcionario {
         
     }
     
-    @Override
-    public void calculaComicao() {
-
+    Gerente(String cpf){
+        this.setCpf(cpf);
     }
 
     @Override

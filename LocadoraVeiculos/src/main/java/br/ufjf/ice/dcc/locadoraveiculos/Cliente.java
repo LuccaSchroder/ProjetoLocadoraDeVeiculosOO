@@ -19,7 +19,6 @@ public abstract class Cliente {
     private String email;
     private String telefone;
 
-    public Cliente(){}
     
     public String getNome(){
         return nome;

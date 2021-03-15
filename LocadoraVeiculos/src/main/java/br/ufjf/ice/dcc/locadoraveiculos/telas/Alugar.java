@@ -92,19 +92,18 @@ public class Alugar extends javax.swing.JFrame {
     public void carregaDadosCliente(int i) {
         Date dataAtual = new Date();
         dataAtual = Locadora.getCliente().get(i).getDataNascimento();
-        
-        if(dataAtual != null)
+
+        if (dataAtual != null) {
             ctext_alugarNascimento.setText(converteDateString(dataAtual));
-        else
+        } else {
             ctext_alugarNascimento.setText("");
-        
+        }
+
         ctext_alugarNome.setText(Locadora.getCliente().get(i).getNome());
         ctext_alugarEmail.setText(Locadora.getCliente().get(i).getEmail());
         ctext_alugarTelefone.setText(Locadora.getCliente().get(i).getTelefone());
-        
-    }
 
-    
+    }
 
     public void carregaTabelaTotal(float precoDiaria, int quantDias, float total) {
         Object colunas[] = new Object[]{"Preço da Diária", "Quantidade de dias", "Total"};
@@ -118,15 +117,13 @@ public class Alugar extends javax.swing.JFrame {
 
     //PESQUISA CPF JÁ CADASTRADOS.
     public int pesquisaID() {
-        for (int i = 0; i < Locadora.getCliente().size(); i++) {
-            if (Locadora.getCliente().get(i).getID().compareTo(ctext_alugarID.getText()) == 0) {
+        for (int i = 0; i <= Locadora.getCliente().size(); i++) {
+            if (Locadora.getCliente().get(i).getID().equals(ctext_alugarID.getText())) {
                 return i;
             }
         }
         return -1;
     }
-
-    
 
     public float totalPagar() {
         int index = cb_veiculos.getSelectedIndex();
@@ -153,7 +150,7 @@ public class Alugar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campos incompletos ou preenchidos incorretamente.");
             return false;
         }
-        
+
         if (ctext_alugarID.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos.");
             return false;
@@ -162,22 +159,23 @@ public class Alugar extends javax.swing.JFrame {
         }
     }
 
-    public void estaDisponivel(){
+    public void estaDisponivel() {
         int indice = cb_veiculos.getSelectedIndex();
         try {
-            if(Locadora.estaDisponivel(
-                    Locadora.getVeiculos().get(indice).getPlaca(), 
+            if (Locadora.estaDisponivel(
+                    Locadora.getVeiculos().get(indice).getPlaca(),
                     converteStringData(ctext_dataLocacao.getText()),
-                    converteStringData(ctext_dataDevolucao.getText()))){
+                    converteStringData(ctext_dataDevolucao.getText()))) {
                 JOptionPane.showMessageDialog(null, "Esta disponivel!");
             } else {
                 JOptionPane.showMessageDialog(null, "Não esta disponivel nessa data!");
             }
-            
+
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Deu ruim!");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -329,7 +327,7 @@ public class Alugar extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(rbut_alugarCpf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(rbut_alugarCnpj)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -337,20 +335,18 @@ public class Alugar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(but_pesquisar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ctext_alugarNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(ctext_alugarEmail, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(ctext_alugarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ctext_alugarNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ctext_alugarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ctext_alugarNascimento))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ctext_alugarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ctext_alugarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,14 +360,14 @@ public class Alugar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(ctext_alugarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(ctext_alugarNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel18)
+                    .addComponent(ctext_alugarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ctext_alugarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel18)
-                    .addComponent(ctext_alugarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel16)
+                    .addComponent(ctext_alugarNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -383,6 +379,11 @@ public class Alugar extends javax.swing.JFrame {
         cb_veiculos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_veiculosItemStateChanged(evt);
+            }
+        });
+        cb_veiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_veiculosActionPerformed(evt);
             }
         });
 
@@ -423,20 +424,20 @@ public class Alugar extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ctext_modelo)
+                            .addComponent(ctext_cor, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ctext_cor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ctext_capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
+                                .addComponent(ctext_capacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ctext_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ctext_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ctext_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -539,9 +540,6 @@ public class Alugar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 13, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -560,7 +558,9 @@ public class Alugar extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(but_calcular)
                             .addComponent(ctext_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -589,16 +589,16 @@ public class Alugar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel17))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel17))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(but_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -662,7 +662,7 @@ public class Alugar extends javax.swing.JFrame {
         int index = cb_veiculos.getSelectedIndex();
         float diaria = Locadora.getVeiculos().get(index).getDiaria();
 
-        if (rbut_dinheiro.isSelected() || rbut_cartao.isSelected()){
+        if (rbut_dinheiro.isSelected() || rbut_cartao.isSelected()) {
             carregaTabelaTotal(diaria, calculaQuantDias(), totalPagar());
         } else
             JOptionPane.showMessageDialog(null, "Selecione uma Forma de Pagamento");
@@ -675,27 +675,27 @@ public class Alugar extends javax.swing.JFrame {
 
         novaReserva.setVeiculo(Locadora.getVeiculos().get(indexVeiculo));
 
-        if (rbut_alugarCpf.isSelected() && verificaCampo(novaReserva)) {
+        if ((rbut_alugarCpf.isSelected() || rbut_alugarCnpj.isSelected()) && verificaCampo(novaReserva)) {
             indexCliente = pesquisaID();
             if (indexCliente > -1) {
+                System.out.println(indexCliente);
                 novaReserva.setCliente(Locadora.getCliente().get(indexCliente));
                 Locadora.adicionaReserva(novaReserva);
+                new Principal().setVisible(true);
+                this.setVisible(false);
             }
-        }/* else if (rbut_alugarCnpj.isSelected() && verificaCampo(novaReserva)) {
-            indexCliente = pesquisaCnpf();
-            if (indexCliente > -1) {
-                novaReserva.setClienteJ(Locadora.getPJuridica().get(indexCliente));
-                Locadora.adicionaReservaPJ(novaReserva);
-            }
-        }*/
-        new Principal().setVisible(true);
-        this.setVisible(false);
+        }
+
 
     }//GEN-LAST:event_but_reservarActionPerformed
 
     private void but_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_calcularActionPerformed
-        //estaDisponivel();
+        estaDisponivel();
     }//GEN-LAST:event_but_calcularActionPerformed
+
+    private void cb_veiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_veiculosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_veiculosActionPerformed
 
     /**
      * @param args the command line arguments

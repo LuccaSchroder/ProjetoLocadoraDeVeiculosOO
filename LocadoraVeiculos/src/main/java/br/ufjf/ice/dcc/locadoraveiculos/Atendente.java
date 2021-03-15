@@ -16,11 +16,6 @@ public class Atendente extends Funcionario{
     Atendente(String cpf){
         this.setCpf(cpf);
     }
-    
-    @Override
-    public void calculaComicao() {
-        
-    }
 
     @Override
     public int tipoFuncionario() {

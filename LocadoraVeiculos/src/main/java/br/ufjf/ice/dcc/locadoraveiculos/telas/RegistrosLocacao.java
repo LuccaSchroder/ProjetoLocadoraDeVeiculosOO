@@ -26,7 +26,7 @@ public class RegistrosLocacao extends javax.swing.JFrame {
     public void carregaTabelaLocacao(){
         String dataInicio, dataFim;
         
-        Object colunas[] = new Object[]{"Cliente", "CPF/CNPF", "Modelo", "Placa", "Data Inicio", "Data de Entrga", "Tempo de Locação(dias)", "Preço"};
+        Object colunas[] = new Object[]{"Cliente", "CPF/CNPJ", "Modelo", "Placa", "Data Inicio", "Data de Entrga", "Tempo de Locação(dias)", "Preço"};
         DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
         
         for (int i = 0; i < Locadora.getReservas().size(); i++) {
@@ -73,11 +73,11 @@ public class RegistrosLocacao extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cliente", "Veículo", "Data Início", "Data de Entrega", "Tempo de Locação (dias)", "Preço"
+                "Cliente", "CPF/CNPJ", "Veículo", "Data Início", "Data de Entrega", "Tempo de Locação (dias)", "Preço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -106,9 +106,9 @@ public class RegistrosLocacao extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

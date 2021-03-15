@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufjf.ice.dcc.locadoraveiculos;
+package br.ufjf.ice.dcc.locadoraveiculos.telas.ArquivoDeDados;
 
 /**
  *
  * @author Jaqueline
  */
-abstract public class Funcionario extends PessoaFisica{
+class Gson {
     
-    public Usuario usuario = new Usuario();
-    
-    public abstract int tipoFuncionario();
-
 }

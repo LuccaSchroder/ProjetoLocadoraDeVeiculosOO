@@ -174,7 +174,7 @@ public class Locadora {
     }
     
     public static boolean estaDisponivel(String placa, Date dataInicio, Date dataFim){
-        /*
+        
         if(dataInicio.before(dataFim) || dataInicio.equals(dataFim)){
             for (int i = 0; i < reservas.size(); i++) {
                 if(reservas.get(i).getVeiculo().getPlaca().equals(placa)){
@@ -196,8 +196,8 @@ public class Locadora {
             return true;
         } else
             return false;
-        */
-        return true;
+        
+       
     }
     
     public static void deslogar(){
@@ -292,7 +292,9 @@ public class Locadora {
             atendentes.addAll(Arrays.asList(atendentesSalvos));
         if(gerentesSalvos != null)
             gerentes.addAll(Arrays.asList(gerentesSalvos));
-        reservas = reservasSalvas;
+        if(reservasSalvas != null)
+            reservas.addAll(reservasSalvas);
+        
     }
     
     public static void carregaListVeiculos(List veiculosSalvos){

@@ -6,7 +6,6 @@
 package br.ufjf.ice.dcc.locadoraveiculos.telas.ArquivoDeDados;
 import br.ufjf.ice.dcc.locadoraveiculos.Atendente;
 import br.ufjf.ice.dcc.locadoraveiculos.Cliente;
-import br.ufjf.ice.dcc.locadoraveiculos.Endereco;
 import br.ufjf.ice.dcc.locadoraveiculos.Gerente;
 import br.ufjf.ice.dcc.locadoraveiculos.Locacao;
 import br.ufjf.ice.dcc.locadoraveiculos.Locadora;
