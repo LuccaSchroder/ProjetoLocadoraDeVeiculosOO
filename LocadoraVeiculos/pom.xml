@@ -17,7 +17,7 @@
                 <configuration>
                   <archive>
                     <manifest>
-                      <mainClass>br.ufjf.ice.dcc.locadoraveiculos.telas.Login</mainClass>
+                      <mainClass>br.ufjf.ice.dcc.locadoraveiculos.Main</mainClass>
                     </manifest>
                   </archive>
                   <descriptorRefs>
@@ -37,11 +37,6 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
-            <groupId>org.netbeans.external</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
-            <version>RELEASE122</version>
-        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

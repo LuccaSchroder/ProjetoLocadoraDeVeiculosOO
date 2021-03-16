@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Lucca Oliveira Schroder - 201765205AC
+Ronan Dos Santos Rosa - 201765026AB
+Jaqueline da Silva Amaral Lopes - 201976007
+Wendell Guimarães Júnior - 201635032
  */
+
 package br.ufjf.ice.dcc.locadoraveiculos.telas.ArquivoDeDados;
 
 import br.ufjf.ice.dcc.locadoraveiculos.Atendente;
@@ -18,29 +20,19 @@ import br.ufjf.ice.dcc.locadoraveiculos.telas.Alugar;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-/**
- *
- * @author Enedilson
- */
 public class Arquivo {
 
     public static String read(String caminho) {

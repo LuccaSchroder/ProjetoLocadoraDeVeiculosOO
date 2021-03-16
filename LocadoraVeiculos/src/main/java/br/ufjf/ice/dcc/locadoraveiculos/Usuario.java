@@ -8,11 +8,6 @@ package br.ufjf.ice.dcc.locadoraveiculos;
 
 import java.util.Date;
 
-/**
- *
- * @author lucca
- */
-
 //Parte do login
 public class Usuario {
     private String id;
@@ -21,7 +16,7 @@ public class Usuario {
     Usuario(){}
     
     Usuario(String id, String senha){
-        this.setId(id);
+        this.setId(id.replaceAll("\\.", "").replaceAll("-", ""));
         this.setSenha(senha);
     }
 
@@ -36,7 +31,7 @@ public class Usuario {
      * @param id the id to set
      */
     public void setId(String id) {
-        this.id = id;
+        this.id = id.replaceAll("\\.", "").replaceAll("-", "");
     }
 
     /**

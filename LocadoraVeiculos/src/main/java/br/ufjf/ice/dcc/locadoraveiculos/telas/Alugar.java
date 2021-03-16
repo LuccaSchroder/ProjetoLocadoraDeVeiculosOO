@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Lucca Oliveira Schroder - 201765205AC
+Ronan Dos Santos Rosa - 201765026AB
+Jaqueline da Silva Amaral Lopes - 201976007
+Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
@@ -167,6 +168,14 @@ public class Alugar extends javax.swing.JFrame {
                     converteStringData(ctext_dataLocacao.getText()),
                     converteStringData(ctext_dataDevolucao.getText()))) {
                 JOptionPane.showMessageDialog(null, "Esta disponivel!");
+                int index = cb_veiculos.getSelectedIndex();
+                float diaria = Locadora.getVeiculos().get(index).getDiaria();
+
+                if (rbut_dinheiro.isSelected() || rbut_cartao.isSelected()) {
+                    carregaTabelaTotal(diaria, calculaQuantDias(), totalPagar());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Selecione uma Forma de Pagamento");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Não esta disponivel nessa data!");
             }
@@ -659,31 +668,29 @@ public class Alugar extends javax.swing.JFrame {
     }//GEN-LAST:event_but_pesquisarActionPerformed
 
     private void but_calcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_but_calcularMouseClicked
-        int index = cb_veiculos.getSelectedIndex();
-        float diaria = Locadora.getVeiculos().get(index).getDiaria();
 
-        if (rbut_dinheiro.isSelected() || rbut_cartao.isSelected()) {
-            carregaTabelaTotal(diaria, calculaQuantDias(), totalPagar());
-        } else
-            JOptionPane.showMessageDialog(null, "Selecione uma Forma de Pagamento");
     }//GEN-LAST:event_but_calcularMouseClicked
 
     private void but_reservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_reservarActionPerformed
-        Locacao novaReserva = new Locacao(totalPagar(), calculaQuantDias());
-        int indexVeiculo = cb_veiculos.getSelectedIndex();
-        int indexCliente;
+        try {
+            Locacao novaReserva = new Locacao(totalPagar(), calculaQuantDias());
+            int indexVeiculo = cb_veiculos.getSelectedIndex();
+            int indexCliente;
 
-        novaReserva.setVeiculo(Locadora.getVeiculos().get(indexVeiculo));
+            novaReserva.setVeiculo(Locadora.getVeiculos().get(indexVeiculo));
 
-        if ((rbut_alugarCpf.isSelected() || rbut_alugarCnpj.isSelected()) && verificaCampo(novaReserva)) {
-            indexCliente = pesquisaID();
-            if (indexCliente > -1) {
-                System.out.println(indexCliente);
-                novaReserva.setCliente(Locadora.getCliente().get(indexCliente));
-                Locadora.adicionaReserva(novaReserva);
-                new Principal().setVisible(true);
-                this.setVisible(false);
+            if ((rbut_alugarCpf.isSelected() || rbut_alugarCnpj.isSelected()) && verificaCampo(novaReserva)) {
+                indexCliente = pesquisaID();
+                if (indexCliente > -1) {
+                    System.out.println(indexCliente);
+                    novaReserva.setCliente(Locadora.getCliente().get(indexCliente));
+                    Locadora.adicionaReserva(novaReserva);
+                    new Principal().setVisible(true);
+                    this.setVisible(false);
+                }
             }
+        } catch (NullPointerException err) {
+            System.out.println("Data invalida...");
         }
 
 

@@ -6,9 +6,11 @@ Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
 
-import java.util.Date;
+import br.ufjf.ice.dcc.locadoraveiculos.telas.Login;
 
-public interface Pagamento {
-    
-    public float pagamento(float precoDiaria, int dias);   
+public class Main {
+    public static void main(String[] args) {
+        Login inicio = new Login();
+        inicio.setVisible(true);    
+    }
 }

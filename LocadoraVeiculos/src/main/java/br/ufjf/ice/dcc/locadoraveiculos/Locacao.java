@@ -8,11 +8,6 @@ package br.ufjf.ice.dcc.locadoraveiculos;
 
 import java.util.Date;
 
-/**
- *
- * @author lucca
- */
-
 //Mantem um registro de uma reserva
 public class Locacao {
     private Cliente cliente;

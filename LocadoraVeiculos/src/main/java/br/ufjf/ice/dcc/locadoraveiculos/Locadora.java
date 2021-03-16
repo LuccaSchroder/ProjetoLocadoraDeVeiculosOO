@@ -10,17 +10,13 @@ import br.ufjf.ice.dcc.locadoraveiculos.telas.ArquivoDeDados.Arquivo;
 import java.util.*;
 import com.google.gson.Gson;
 
-/**
- *
- * @author lucca
- */
 public class Locadora {
     private static List <Veiculo> veiculos = new ArrayList<>(); //todos os veiculos
     private static List <Locacao> reservas = new ArrayList<>(); //guarda todas as reversas de determinado veiculo
     private static List <Cliente> clientes = new ArrayList<>();
     private static List <Atendente> atendentes = new ArrayList<>(); 
     private static List <Gerente> gerentes = new ArrayList<>(); 
-    private static Atendente atendenteLogado = new Atendente("");
+    private static Atendente atendenteLogado = new Atendente();
     private static Gerente gerenteLogado = new Gerente();
     private static Gson gson = new Gson();
     
@@ -34,7 +30,6 @@ public class Locadora {
     }
     
     public static void adicionaReserva(Locacao reserva){
-        //System.out.println(reserva.getDataInicio());
         reservas.add(reserva);
         salvarReservas();
     }
@@ -42,14 +37,6 @@ public class Locadora {
     public static List<Locacao> getReservas() {
         return reservas;
     }
-    
-    /*public static void adicionaReservaPJ(Locacao reserva){
-        reservasPF.add(reserva);
-    }
-
-    public static List<Locacao> getReservasPJ() {
-        return reservasPJ;
-    }*/
     
     public static void adicionaCliente(Cliente cliente){
         clientes.add(cliente);
@@ -59,14 +46,6 @@ public class Locadora {
     public static List<Cliente> getCliente() {
         return clientes;
     }
-    /*
-    public static void adicionaPJuridica(PessoaJuridica pessoa){
-        pJuridica.add(pessoa);
-    }
-
-    public static List<PessoaJuridica> getPJuridica() {
-        return pJuridica;
-    }*/
     
     public static List<Atendente> getAtendente() {
         return atendentes;
@@ -94,15 +73,6 @@ public class Locadora {
         return false;
     }
     
-    //RETORNA SE UMA PESSOA JURIDICA JA FOI CADASTRADO
-    /*public static boolean verificaPJuridica(PessoaJuridica pessoa){
-        for (int i = 0; i < pJuridica.size(); i++) {
-            if(pJuridica.get(i).getCnpj().equals(pessoa.getCnpj()))
-                return true;
-        }
-        return false;
-    }*/
-    
     public static boolean buscaUsuario(String id, String senha){
         if(id.equals("adm") && senha.equals("123")){
             return true;
@@ -115,7 +85,6 @@ public class Locadora {
                         atendenteLogado = atendentes.get(i);
                         return true;
                     }
-
                 }  
             }
             for (int i = 0; i < gerentes.size(); i++) {
@@ -127,7 +96,6 @@ public class Locadora {
                         gerenteLogado = gerentes.get(i);
                         return true;
                     }
-
                 } 
             }
             return false;
@@ -152,11 +120,9 @@ public class Locadora {
     }
     
     public static Funcionario getLogado(){
-        if(atendenteLogado.getID() != ""){
-            //System.out.println("é atendente");
+        if(!atendenteLogado.getID().isEmpty()){
             return atendenteLogado;
         } else {
-            //System.out.println("é gerente");
             return gerenteLogado;
         }
     }
@@ -186,9 +152,12 @@ public class Locadora {
                     } else if(reservas.get(i).getDataFim().equals(dataInicio)){
                         return false;
                     } else {
-                        if(reservas.get(i).getDataFim().before(dataFim)){
+                        if(reservas.get(i).getDataFim().before(dataInicio)){
+                            return true;
+                        } else if(!reservas.get(i).getDataFim().after(dataInicio)){
                             return true;
                         }
+                        
                         return false;
                     }
                 }
@@ -196,8 +165,6 @@ public class Locadora {
             return true;
         } else
             return false;
-        
-       
     }
     
     public static void deslogar(){
@@ -206,26 +173,14 @@ public class Locadora {
     }
     
     public static String getNomeLogado(){
-        if(gerenteLogado != null)
+        if(!gerenteLogado.getID().isEmpty())
             return gerenteLogado.getNome();
-        else if(atendenteLogado != null)
+        else if(!atendenteLogado.getID().isEmpty())
             return atendenteLogado.getNome();
         return "";
     }
    
     public static void salvarGerentes(){
-        /*
-        List <Funcionario> funcionarios = new ArrayList<>();
-        Funcionario ronan = new Gerente();
-        ronan.usuario.setId("13084376689");
-        ronan.usuario.setSenha("1234");
-        ronan.setCpf("13084376689");
-        ronan.setDataNascimento(new Date());
-        ronan.setEmail("r@live.com");
-        ronan.setNome("Ronan");
-        ronan.setEndereco(new Endereco("36000000", "av", 0, "c", "c", "jf", "mg"));
-        funcionarios.add(ronan);
-        */
         if(Arquivo.write("gerentes.txt", gson.toJson(gerentes) ))
             System.out.println("Gerentes salvos com sucesso");
         else 
@@ -308,33 +263,4 @@ public class Locadora {
     public static void carregaListVeiculos(List veiculosSalvos){
         veiculos = veiculosSalvos;
     }
-    public static void main(String[] args) {
-        /*Usuario a1 = new Usuario("Ronan dos Santos", "12312312313");
-        Usuario a2 = new Usuario("Lucca", "1111111111");
-        Usuario a3 = new Usuario("Jaque", "2222222222");
-        Usuario a4 = new Usuario("Wendell", "3333333333");
-
-        //a.imprime();
-        Veiculo b = new Veiculo("aaa1111", "gol");
-        veiculos.add(b);
-        
-        //b.imprime();
-        //Reserva c = new Locacao(a1, b, 5);
-        //reservas.add(c);
-        
-        //c.imprime();
-        
-        clientes.add(a1);
-        clientes.add(a2);
-        clientes.add(a3);
-        clientes.add(a4);
-        
-        imprimeClientes();*/
-        Cliente pessoa = null;
-        
-        pessoa.getID();
-        
-        System.out.println(pessoa.getID());
-    }
-
 }

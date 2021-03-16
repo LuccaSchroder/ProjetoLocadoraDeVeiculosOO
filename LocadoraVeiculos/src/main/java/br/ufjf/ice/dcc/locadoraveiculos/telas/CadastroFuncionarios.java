@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Lucca Oliveira Schroder - 201765205AC
+Ronan Dos Santos Rosa - 201765026AB
+Jaqueline da Silva Amaral Lopes - 201976007
+Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos.telas;
 
@@ -78,10 +79,10 @@ public class CadastroFuncionarios extends javax.swing.JFrame {
     //VERIFICA SE TODOS CAMPOS DE FUNCIONARIO FORAM PREENCHIDOS.
     private boolean verificaCamposFunc(Funcionario funcionario) {
         funcionario.setNome(ct_nome.getText());
-        funcionario.setCpf(ct_cpf.getText());
+        funcionario.setCpf(ct_cpf.getText().replaceAll("\\.", "").replaceAll("-", ""));
         funcionario.setEmail(ctext_cadastroEmail.getText());
         funcionario.setTelefone(ct_telefone.getText());
-        funcionario.usuario.setId(ct_cpf.getText());        
+        funcionario.usuario.setId(ct_cpf.getText().replaceAll("\\.", "").replaceAll("-", ""));        
         funcionario.usuario.setSenha(ctext_senhausuaro.getText());
 
 

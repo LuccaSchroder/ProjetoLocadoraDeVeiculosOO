@@ -6,10 +6,6 @@ Wendell Guimarães Júnior - 201635032
  */
 package br.ufjf.ice.dcc.locadoraveiculos;
 
-/**
- *
- * @author lucca
- */
 public class Veiculo {
     private String placa;
     private String modelo;
